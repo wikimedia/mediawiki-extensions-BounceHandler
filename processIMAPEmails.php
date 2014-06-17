@@ -36,7 +36,7 @@ class BounceHandlerClearance extends Maintenance {
 		// Establish IMAP connection
 		$conn = imap_open( $wgIMAPserver, $imapuser, $imappass );
 		if ( !$conn ) {
-			$this->error( imap_last_error() );
+			$this->error( imap_last_error(), 1 );
 		}
 		$num_recent = imap_num_recent( $conn );
 
