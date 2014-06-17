@@ -9,7 +9,7 @@ $wgExtensionCredits['other'][] = array(
 			'Legoktm',
 			'Jeff Green',
 		),
-	'url' => "https://github.com/wikimedia/mediawiki-extensions-BounceHandler",
+	'url' => "https://www.mediawiki.org/wiki/Extension:BounceHandler",
 	'descriptionmsg' => 'bouncehandler-desc',
 	'version'  => '1.0',
 	'license-name' => "GPL V2.0",

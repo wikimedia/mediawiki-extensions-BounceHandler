@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tony Thomas"
+		]
+	},
+	"bouncehandler-desc": "Helps in handling email bounces for MediaWiki"
+}
