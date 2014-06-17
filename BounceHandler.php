@@ -1,6 +1,7 @@
 <?php
-/* BounceHandler Extension to handle email bounces in MediaWiki
-*/
+/**
+ * BounceHandler Extension to handle email bounces in MediaWiki
+ */
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'BounceHandler',

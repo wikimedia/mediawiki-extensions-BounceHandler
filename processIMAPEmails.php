@@ -15,6 +15,7 @@ class BounceHandlerClearance extends Maintenance {
 		$this->addArg( "imapuser", "IMAP account Username", false );
 		$this->addArg( "imappass", "IMAP account Password", false );
 	}
+
 	public function execute() {
 		global $wgIMAPuser, $wgIMAPpass, $wgIMAPserver, $wgBounceRecordPeriod, $wgBounceRecordLimit;
 		$imapuser = $this->getArg( 0 );

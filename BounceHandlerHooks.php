@@ -1,11 +1,13 @@
 <?php
-/** Hooks used by BounceHandler
-*/
+/**
+ * Hooks used by BounceHandler
+ */
 
 class BounceHandlerHooks {
 	/**
 	 * This function generates the VERP address on UserMailer::send()
-	 * @param array $recip recipients array
+	 *
+	 * @param MailAddress $recip recipients array
 	 * @param string  returnPath return-path address
 	 * @return bool true
 	 */
@@ -25,7 +27,7 @@ class BounceHandlerHooks {
 	}
 
 	/**
-	 * Generate VERP address of the form
+	 * Generate VERP address
 	 *
 	 * @param string recipient email
 	 * @return string ReturnPath address
@@ -80,8 +82,10 @@ class BounceHandlerHooks {
 	}
 
 	/**
-	 *
 	 * Add tables to Database
+	 *
+	 * @param DatabaseUpdater $updater
+	 * @return bool
 	 */
 	public static function addBounceRecordsTable( DatabaseUpdater $updater ) {
 		$updater->addExtensionTable(
