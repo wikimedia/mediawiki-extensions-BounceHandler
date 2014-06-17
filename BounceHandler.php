@@ -29,7 +29,7 @@ $wgMessagesDirs['BounceHandler'] = $dir. '/i18n';
 $wgExtensionMessagesFiles['BounceHandlerAlias'] = $dir . '/BounceHandler.alias.php';
 
 # Schema updates for update.php
-$wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::AddTable';
+$wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::addBounceRecordsTable';
 
 /**
  * VERP Configurations

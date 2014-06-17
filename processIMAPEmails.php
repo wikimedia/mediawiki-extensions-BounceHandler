@@ -19,22 +19,25 @@ class BounceHandlerClearance extends Maintenance {
 		global $wgIMAPuser, $wgIMAPpass, $wgIMAPserver;
 		$imapuser = $this->getArg( 0 );
 		$imappass = $this->getArg( 1 );
-		if ( !( $imapuser ) && ( $wgIMAPuser === null ) ) {
+		if ( !$imapuser && $wgIMAPuser === null ) {
 			$this->error( "invalid IMAP username.", true );
 		} else {
-			$imapuser = ( ( $wgIMAPuser === null ) ? $imapuser : $wgIMAPuser );
+			$imapuser = $wgIMAPuser === null ? $imapuser : $wgIMAPuser;
 		}
-		if ( !( $imappass ) && ( $wgIMAPpass === null ) ) {
+		if ( !$imappass && $wgIMAPpass === null ) {
 			$this->error( "invalid IMAP password.", true );
 		} else {
-			$imappass = ( ( $wgIMAPpass === null ) ?  $imappass : $wgIMAPpass );
+			$imappass = $wgIMAPpass === null ?  $imappass : $wgIMAPpass;
 		}
 		if ( $wgIMAPserver === null ) {
 			$this->error( "invalid IMAP server.", true );
 		}
 
 		// Establish IMAP connection
-		$conn = imap_open( $wgIMAPserver, $imapuser, $imappass ) or die( imap_last_error() );
+		$conn = imap_open( $wgIMAPserver, $imapuser, $imappass );
+		if ( !$conn ) {
+			$this->error( imap_last_error() );
+		}
 		$num_recent = imap_num_recent( $conn );
 
 		// Establish Database connection

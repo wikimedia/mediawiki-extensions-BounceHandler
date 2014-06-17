@@ -9,7 +9,7 @@ class BounceHandlerHooks {
 		if ( $wgEnableVERP ) {
 			$from->address = self::generateVERP( $recip->address );
 		}
-	return true;
+		return true;
 	}
 	/**
 	 * Generate VERP address
@@ -26,17 +26,18 @@ class BounceHandlerHooks {
 		}
 		$verp_hash = hash_hmac( $wgVERPalgo, $to, $wgVERPsecret );
 		$email_prefix = 'bounces';
-		$returnPath = $email_prefix.'-'.$verp_hash.'@'.$email_domain;
+		$returnPath = $email_prefix. '-' .$verp_hash. '@' .$email_domain;
 		return $returnPath;
 	}
+
 	/*
-	* Add tables to DataBase
+	* Add tables to Database
 	*/
-	public static function AddTable( DatabaseUpdater $updater ) {
+	public static function addBounceRecordsTable( DatabaseUpdater $updater ) {
 		$updater->addExtensionTable(
 			'bounce_records',
 			__DIR__. '/sql/bounce_records.sql', true
 			);
-	return true;
+		return true;
 	}
 }
