@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Shirayuki"
+		]
+	},
+	"bouncehandler-desc": "MediaWiki の bounce メール (不達メール) の処理を支援する"
+}
