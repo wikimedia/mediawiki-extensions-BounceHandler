@@ -22,7 +22,7 @@ $dir = __DIR__ ;
 $wgAutoloadClasses['BounceHandlerHooks'] =  $dir. '/BounceHandlerHooks.php';
 
 //Register Hooks
-$wgHooks['UserMailerChangeFromAddress'][] = 'BounceHandlerHooks::onVERPAddressGenerate';
+$wgHooks['UserMailerChangeReturnPath'][] = 'BounceHandlerHooks::onVERPAddressGenerate';
 
 /*Messages Files */
 $wgMessagesDirs['BounceHandler'] = $dir. '/i18n';
@@ -40,6 +40,7 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::addBounceRecords
  */
 $wgVERPalgorithm = 'md5';
 $wgVERPsecret = 'MediawikiVERP';
+$wgVERPAcceptTime = 259200; //3 days time
 
 /* IMAP configs */
 $wgIMAPuser = 'user';
