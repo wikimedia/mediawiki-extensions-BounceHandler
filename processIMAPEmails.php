@@ -54,14 +54,14 @@ class BounceHandlerClearance extends Maintenance {
 					//Establish connection with required database
 					$wikiId = $failedUser[ 'wikiId'];
 					$originalEmail = $failedUser[ 'rawEmail' ];
-					$dbr = wfGetDB( DB_MASTER, array(), $wikiId );
+					$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
 					if( is_array( $failedUser ) ) {
 						$rowData = array(
 						'br_user' => $originalEmail,
 						'br_timestamp' => $header->date,
 						'br_reason' => $header->subject
 						);
-						$dbr->insert( 'bounce_records', $rowData, __METHOD__ );
+						$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 					}
 				}
 			}
