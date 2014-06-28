@@ -26,7 +26,6 @@ $wgHooks['UserMailerChangeReturnPath'][] = 'BounceHandlerHooks::onVERPAddressGen
 
 /*Messages Files */
 $wgMessagesDirs['BounceHandler'] = $dir. '/i18n';
-$wgExtensionMessagesFiles['BounceHandlerAlias'] = $dir . '/BounceHandler.alias.php';
 
 # Schema updates for update.php
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::addBounceRecordsTable';
@@ -41,6 +40,8 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::addBounceRecords
 $wgVERPalgorithm = 'md5';
 $wgVERPsecret = 'MediawikiVERP';
 $wgVERPAcceptTime = 259200; //3 days time
+$wgBounceRecordPeriod = 604800; // 60 * 60 * 24 * 7 - 7 days bounce activity are considered before un-subscribing
+$wgBounceRecordLimit = 3; // If there are more than 3 bounces in the $wgBounceRecordPeriod, the user is un-subscribed
 
 /* IMAP configs */
 $wgIMAPuser = 'user';
