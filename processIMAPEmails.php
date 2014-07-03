@@ -54,15 +54,17 @@ class BounceHandlerClearance extends Maintenance {
 					//Establish connection with required database
 					$wikiId = $failedUser[ 'wikiId'];
 					$originalEmail = $failedUser[ 'rawEmail' ];
+					$bounceTimestamp = wfTimestamp( TS_MW, $header->udate );
 					$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
 					if( is_array( $failedUser ) ) {
 						$rowData = array(
 						'br_user' => $originalEmail,
-						'br_timestamp' => $header->date,
+						'br_timestamp' => $bounceTimestamp,
 						'br_reason' => $header->subject
 						);
 						$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 					}
+					self::BounceHandlerActions( $wikiId, $originalEmail, $bounceTimestamp );
 				}
 			}
 		}
@@ -125,6 +127,54 @@ class BounceHandlerClearance extends Maintenance {
 			wfDebugLog( 'BounceHandler',"Error fetching email_id of user_id $rawUserId from Database $wikiId." );
 		}
 		return $rawEmail;
+	}
+
+	/**
+	 * Perform actions on users who failed to receive emails in a given period
+	 * @param string $dbr the wiki Database pointer
+	 * @param string $originalEmail email-id of the failing recipient
+	 * @param string $bounceTimestamp The bounce email Timestamp
+	 * @retuurn bool
+	 */
+
+	protected static function BounceHandlerActions( $wikiId, $originalEmail, $bounceTimestamp ) {
+		global $wgBounceRecordPeriod, $wgBounceRecordLimit;
+		$unixTime = wfTimestamp();
+		$bounceValidPeriod = wfTimestamp( TS_MW, $unixTime - $wgBounceRecordPeriod );
+		$dbr = wfGetDB( DB_SLAVE, array(), $wikiId );
+		$res = $dbr->selectRow( 'bounce_records',
+			array(
+				'COUNT(*) as total_count'
+			),
+			array(
+				'br_user'=> $originalEmail
+			),
+			__METHOD__
+		);
+		if( $res !== false ) {
+			if ( $res->total_count > $wgBounceRecordLimit ) {
+				//Unsubscribe the user
+				$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
+				$res = $dbw->update( 'user',
+					array(
+					'user_email_authenticated' => null,
+					'user_email_token' => null,
+					'user_email_token_expires' => null
+					),
+					array( 'user_email' => $originalEmail ),
+					__METHOD__
+				);
+				if ( $res ) {
+					wfDebugLog( 'BounceHandler', "Un-subscribed user $originalEmail for exceeding Bounce
+							Limit $wgBounceRecordLimit" );
+				} else {
+					wfDebugLog( 'BounceHandler', "Failed to un-subscribe the failing recipient $originalEmail" );
+				}
+			}
+		} else {
+			wfDebugLog( 'BounceHandler',"Error fetching the count of past bounces for user $originalEmail" );
+		}
+		return true;
 	}
 }
 $maintClass = 'BounceHandlerClearance';
