@@ -21,6 +21,11 @@ $dir = __DIR__ ;
 //Hooks files
 $wgAutoloadClasses['BounceHandlerHooks'] =  $dir. '/BounceHandlerHooks.php';
 
+//Register and Load BounceHandler API
+$wgAutoloadClasses['ApiBounceHandler'] = $dir. '/ApiBounceHandler.php';
+$wgAPIModules['bouncehandler'] = 'ApiBounceHandler';
+
+
 //Register Hooks
 $wgHooks['UserMailerChangeReturnPath'][] = 'BounceHandlerHooks::onVERPAddressGenerate';
 
@@ -47,3 +52,6 @@ $wgBounceRecordLimit = 3; // If there are more than 3 bounces in the $wgBounceRe
 $wgIMAPuser = 'user';
 $wgIMAPpass = 'pass';
 $wgIMAPserver = '{localhost:143/imap/novalidate-cert}INBOX';
+
+/*Allow only internal IP range to do the POST request */
+$wgBounceHandlerInternalIPs = array( '127.0.0.1', '::1' );
