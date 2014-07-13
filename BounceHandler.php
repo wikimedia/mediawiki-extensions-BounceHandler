@@ -25,6 +25,9 @@ $wgAutoloadClasses['BounceHandlerHooks'] =  $dir. '/BounceHandlerHooks.php';
 $wgAutoloadClasses['ApiBounceHandler'] = $dir. '/ApiBounceHandler.php';
 $wgAPIModules['bouncehandler'] = 'ApiBounceHandler';
 
+//Register and Load Jobs
+$wgAutoloadClasses['BounceHandlerJob'] = $dir. '/BounceHandlerJob.php';
+$wgJobClasses['BounceHandlerJob'] = 'BounceHandlerJob';
 
 //Register Hooks
 $wgHooks['UserMailerChangeReturnPath'][] = 'BounceHandlerHooks::onVERPAddressGenerate';

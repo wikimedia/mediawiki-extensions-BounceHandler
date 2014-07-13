@@ -20,6 +20,26 @@ class ApiBounceHandler extends ApiBase {
 		}
 
 		$email = $this->getMain()->getVal( 'email' );
+		$params = array ( 'email' => $email );
+		$title = Title::newFromText( 'BounceHandler Job' );
+		$job = new BounceHandlerJob( $title, $params );
+		JobQueueGroup::singleton()->push( $job );
+
+		$this->getResult()->addValue(
+			null,
+			$this->getModuleName(),
+			array ( 'submitted' => 'job' )
+		);
+
+		return true;
+	}
+
+	/**
+	 * Process received bounce emails from Job Queue
+	 * @param string $email
+	 * @return bool
+	 */
+	public static function processEmail( $email ) {
 		$emailHeaders = array();
 		$failedUser = array();
 
@@ -50,19 +70,10 @@ class ApiBounceHandler extends ApiBase {
 				$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 			}
 			self::BounceHandlerActions( $wikiId, $originalEmail, $bounceTimestamp );
-			$this->getResult()->addValue(
-				null,
-				$this->getModuleName(),
-				array ( 'result' => 'success', 'user' => $originalEmail, 'status' => 'recorded' )
-			);
 		} else {
 			wfDebugLog( 'BounceHandler', "Received temporary bounce from $to" );
-			$this->getResult()->addValue(
-				null,
-				$this->getModuleName(),
-				array( 'result' => 'failure' , 'user' => $to, 'status' => 'invalid bounce' )
-			);
 		}
+
 	}
 
 	/**
@@ -71,7 +82,7 @@ class ApiBounceHandler extends ApiBase {
 	 * @param $email
 	 * @return string
 	 */
-	protected function getHeaders( $email ) {
+	protected static function getHeaders( $email ) {
 		$emailLines = explode( "\n", $email );
 		foreach ( $emailLines as $emailLine ) {
 			if ( preg_match( "/^To: (.*)/", $emailLine, $toMatch ) ) {
@@ -102,7 +113,7 @@ class ApiBounceHandler extends ApiBase {
 	 * @param string $hashedEmail The original hashed Email from bounce email
 	 * @return array $failedUser The failed user details
 	 * */
-	protected function getUserDetails( $hashedEmail ) {
+	protected static function getUserDetails( $hashedEmail ) {
 		global $wgVERPalgorithm, $wgVERPsecret, $wgVERPAcceptTime;
 		$currentTime = wfTimestamp();
 		$failedUser = array();
@@ -130,7 +141,7 @@ class ApiBounceHandler extends ApiBase {
 	 * @param string $rawUserId The userId of the failing recipient
 	 * @return string $rawEmail The emailId of the failing recipient
 	 */
-	protected function getOriginalEmail( $failedUser, $rawUserId ) {
+	protected static function getOriginalEmail( $failedUser, $rawUserId ) {
 		// In multiple wiki deployed case, the $wikiId can help correctly identify the user after looking up in
 		// the required database.
 		$wikiId = $failedUser[ 'wikiId' ];
