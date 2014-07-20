@@ -42,15 +42,27 @@ class ApiBounceHandler extends ApiBase {
 	public static function processEmail( $email ) {
 		$emailHeaders = array();
 		$failedUser = array();
+		if ( !stream_resolve_include_path( 'vendor/pear/mail_mime-decode/Mail/mimeDecode.php' ) ) {
+			wfDebugLog( 'BounceHandler',
+			" PEAR MimeDecode package is not installed. Falling back to self parsing the email." );
+			// Extract headers from raw email
+			$emailHeaders  = self::getHeaders( $email );
 
-		// Extract headers from raw email
-		$emailHeaders  = self::getHeaders( $email );
-		// Extract required header fields
+		} else {
+			// mimeDecode configurations
+			$params['include_bodies'] = true;
+			$params['decode_bodies'] = true;
+			$params['decode_headers'] = true;
+
+			$decoder = new Mail_mimeDecode( $email );
+			$structure = $decoder->decode( $params );
+
+			$emailHeaders = $structure->headers;
+		}
 		$to = $emailHeaders[ 'to' ];
 		$subject = $emailHeaders[ 'subject' ];
 		$emailDate = $emailHeaders[ 'date' ];
-		$permanentFailure = $emailHeaders[ 'permanentFailure'];
-
+		$permanentFailure = $emailHeaders[ 'x-failed-recipients' ];
 		// The bounceHandler needs to respond only to permanent failures. Permanently failures will generate
 		// bounces with a 'X-Failed-Recipients' header.
 		if ( $permanentFailure !== null ) {
@@ -95,7 +107,7 @@ class ApiBounceHandler extends ApiBase {
 				$headers[ 'date' ] = $dateMatch[1];
 			}
 			if ( preg_match( "/^X-Failed-Recipients: (.*)/", $emailLine, $failureMatch ) ) {
-				$headers[ 'permanentFailure' ] = $failureMatch;
+				$headers[ 'x-failed-recipients' ] = $failureMatch;
 			}
 			if ( trim( $emailLine ) == "" ) {
 				// Empty line denotes that the header part is finished
