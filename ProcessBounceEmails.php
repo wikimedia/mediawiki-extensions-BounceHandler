@@ -6,7 +6,7 @@ class ProcessBounceEmails {
 	 * @return bool
 	 */
 	public function processEmail( $email ) {
-		global $wgBounceRecordPeriod, $wgBounceRecordLimit;
+		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgUnrecognizedBounceNotify, $wgPasswordSender;
 		$emailHeaders = array();
 		$failedUser = array();
 		if ( !stream_resolve_include_path( 'vendor/pear/mail_mime-decode/Mail/mimeDecode.php' ) ) {
@@ -52,6 +52,8 @@ class ProcessBounceEmails {
 			$takeBounceActions->handleFailingRecipient( $originalEmail, $bounceTimestamp );
 		} else {
 			wfDebugLog( 'BounceHandler', "Received temporary bounce from $to" );
+			$handleUnIdentifiedBounce = new ProcessUnRecognizedBounces( $wgUnrecognizedBounceNotify, $wgPasswordSender );
+			$handleUnIdentifiedBounce->processUnRecognizedBounces( $email );
 		}
 
 	}

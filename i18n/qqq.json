@@ -4,5 +4,6 @@
 			"Tony Thomas"
 		]
 	},
-	"bouncehandler-desc": "{{desc|name=Bounce Handler|url=https://www.mediawiki.org/wiki/Extension:BounceHandler}}"
+	"bouncehandler-desc": "{{desc|name=Bounce Handler|url=https://www.mediawiki.org/wiki/Extension:BounceHandler}}",
+	"bouncehandler-notify_subject": "Subject of notification email sent to wiki administrators on a failed to parse bounce"
 }

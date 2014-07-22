@@ -4,5 +4,6 @@
 			"Tony Thomas"
 		]
 	},
-	"bouncehandler-desc": "Helps in handling email bounces for MediaWiki"
+	"bouncehandler-desc": "Helps in handling email bounces for MediaWiki",
+	"bouncehandler-notify_subject": "Returning temporary bounce"
 }

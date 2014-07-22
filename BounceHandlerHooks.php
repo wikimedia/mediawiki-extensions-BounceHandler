@@ -11,6 +11,9 @@ class BounceHandlerHooks {
 	 */
 	public static function onVERPAddressGenerate( $recip, &$returnPath ) {
 		$user = User::newFromName( $recip[0]->name );
+		if ( !$user ) {
+			return true;
+		}
 		$email = $recip[0]->address;
 		if ( $user->getEmail() === $email && $user->isEmailConfirmed() ) {
 			$uid = $user->getId();

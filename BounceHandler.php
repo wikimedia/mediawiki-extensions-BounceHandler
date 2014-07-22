@@ -29,6 +29,7 @@ $wgAPIModules['bouncehandler'] = 'ApiBounceHandler';
 $wgAutoloadClasses['BounceHandlerJob'] = $dir. '/BounceHandlerJob.php';
 $wgAutoloadClasses['ProcessBounceEmails'] = $dir. '/ProcessBounceEmails.php';
 $wgAutoloadClasses['BounceHandlerActions'] = $dir. '/BounceHandlerActions.php';
+$wgAutoloadClasses['ProcessUnRecognizedBounces'] = $dir. '/ProcessUnRecognizedBounces.php';
 
 $wgJobClasses['BounceHandlerJob'] = 'BounceHandlerJob';
 
@@ -59,5 +60,8 @@ $wgIMAPuser = 'user';
 $wgIMAPpass = 'pass';
 $wgIMAPserver = '{localhost:143/imap/novalidate-cert}INBOX';
 
-/*Allow only internal IP range to do the POST request */
+/* Allow only internal IP range to do the POST request */
 $wgBounceHandlerInternalIPs = array( '127.0.0.1', '::1' );
+
+/* Admin email address which should be notified in the case of an unprocessed valid bounce */
+$wgUnrecognizedBounceNotify = array( 'wiki-admin@wikimedia.org' );
