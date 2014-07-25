@@ -16,7 +16,8 @@ class BounceHandlerJob extends Job {
 		$email = $this->params[ 'email' ];
 
 		if ( $email ) {
-			ApiBounceHandler::processEmail( $email );
+			$bounceProcessor = new ProcessBounceEmails;
+			$bounceProcessor->processEmail( $email );
 		}
 
 		return true;

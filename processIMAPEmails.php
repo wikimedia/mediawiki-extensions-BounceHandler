@@ -64,7 +64,7 @@ class BounceHandlerClearance extends Maintenance {
 						);
 						$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 					}
-					ApiBounceHandler::BounceHandlerActions( $wikiId, $originalEmail, $bounceTimestamp );
+					ProcessBounceEmails::BounceHandlerActions( $wikiId, $originalEmail, $bounceTimestamp );
 				}
 			}
 		}
