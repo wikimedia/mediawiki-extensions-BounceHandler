@@ -28,6 +28,7 @@ $wgAPIModules['bouncehandler'] = 'ApiBounceHandler';
 //Register and Load Jobs
 $wgAutoloadClasses['BounceHandlerJob'] = $dir. '/BounceHandlerJob.php';
 $wgAutoloadClasses['ProcessBounceEmails'] = $dir. '/ProcessBounceEmails.php';
+$wgAutoloadClasses['BounceHandlerActions'] = $dir. '/BounceHandlerActions.php';
 
 $wgJobClasses['BounceHandlerJob'] = 'BounceHandlerJob';
 

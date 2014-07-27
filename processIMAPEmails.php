@@ -16,7 +16,7 @@ class BounceHandlerClearance extends Maintenance {
 		$this->addArg( "imappass", "IMAP account Password", false );
 	}
 	public function execute() {
-		global $wgIMAPuser, $wgIMAPpass, $wgIMAPserver;
+		global $wgIMAPuser, $wgIMAPpass, $wgIMAPserver, $wgBounceRecordPeriod, $wgBounceRecordLimit;
 		$imapuser = $this->getArg( 0 );
 		$imappass = $this->getArg( 1 );
 		if ( !$imapuser && $wgIMAPuser === null ) {
@@ -64,7 +64,8 @@ class BounceHandlerClearance extends Maintenance {
 						);
 						$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 					}
-					ProcessBounceEmails::BounceHandlerActions( $wikiId, $originalEmail, $bounceTimestamp );
+					$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit );
+					$takeBounceActions->handleFailingRecipient( $originalEmail, $bounceTimestamp );
 				}
 			}
 		}
