@@ -19,6 +19,11 @@ class BounceHandlerActions {
 	 */
 	protected $bounceRecordLimit;
 
+	/**
+	 * @param string $wikiId The database id of the failing recipient
+	 * @param int $bounceRecordPeriod Time period for which bounce activities are considered before un-subscribing
+	 * @param int $bounceRecordLimit The number of bounce allowed in the bounceRecordPeriod.
+	 */
 	public function __construct( $wikiId, $bounceRecordPeriod, $bounceRecordLimit ) {
 		$this->wikiId = $wikiId;
 		$this->bounceRecordPeriod = $bounceRecordPeriod;

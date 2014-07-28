@@ -10,6 +10,10 @@ class ProcessUnRecognizedBounces {
 	 */
 	protected $unrecognizedBounceNotify;
 
+	/**
+	 * @param array $unrecognizedBounceNotify The array of admins to be notified on a bounce parse failure
+	 * @param string $passwordSender The default email Return path address
+	 */
 	public function __construct( $unrecognizedBounceNotify, $passwordSender ) {
 		$this->unrecognizedBounceNotify = $unrecognizedBounceNotify;
 		$this->passwordSender = $passwordSender;
