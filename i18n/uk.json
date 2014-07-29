@@ -4,5 +4,6 @@
 			"Ата"
 		]
 	},
-	"bouncehandler-desc": "Допомагає в обробці відмов електронної пошти для MediaWiki"
+	"bouncehandler-desc": "Допомагає в обробці відмов електронної пошти для MediaWiki",
+	"bouncehandler-notify_subject": "Повернення тимчасових відмов"
 }

@@ -4,5 +4,6 @@
 			"Gomoko"
 		]
 	},
-	"bouncehandler-desc": "Aide à gérer les rebonds de courriel pour MédiaWiki"
+	"bouncehandler-desc": "Aide à gérer les rebonds de courriel pour MédiaWiki",
+	"bouncehandler-notify_subject": "Renvoi d’un rebond temporaire"
 }

@@ -1,4 +1,9 @@
 {
-	"@metadata": [],
-	"bouncehandler-desc": "Hilft bei der Handhabung von E-Mail-Rückläufern in MediaWiki"
+	"@metadata": {
+		"authors": [
+			"Metalhead64"
+		]
+	},
+	"bouncehandler-desc": "Hilft bei der Handhabung von E-Mail-Rückläufern in MediaWiki",
+	"bouncehandler-notify_subject": "Rücksendung eines temporären Rückläufers"
 }
