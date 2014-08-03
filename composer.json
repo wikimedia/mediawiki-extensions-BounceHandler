@@ -26,7 +26,6 @@
     "license" : "GPL-2.0+",
     "require":
     {
-        "pear/mail_mime-decode": "1.5.5",
-        "pear/pear_exception": "1.0.x-dev"
+        "floriansemm/official-library-php-email-parser": "dev-master"
     }
 }

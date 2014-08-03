@@ -1,4 +1,8 @@
 <?php
+// Check and include Plancake email parser library
+if ( file_exists( __DIR__ . 'vendor/autoload.php' ) ) {
+	require_once( __DIR__ . 'vendor/autoload.php' );
+}
 class ProcessBounceEmails {
 	/**
 	 * Process received bounce emails from Job Queue
@@ -9,22 +13,19 @@ class ProcessBounceEmails {
 		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgUnrecognizedBounceNotify, $wgPasswordSender;
 		$emailHeaders = array();
 		$failedUser = array();
-		if ( !stream_resolve_include_path( 'vendor/pear/mail_mime-decode/Mail/mimeDecode.php' ) ) {
+		if ( !class_exists( 'PlancakeEmailParser' ) ) {
 			wfDebugLog( 'BounceHandler',
-			" PEAR MimeDecode package is not installed. Falling back to self parsing the email." );
+			" Plancake email parser library is not installed. Falling back to self parsing the email." );
 			// Extract headers from raw email
 			$emailHeaders  = self::getHeaders( $email );
-
 		} else {
-			// mimeDecode configurations
-			$params['include_bodies'] = true;
-			$params['decode_bodies'] = true;
-			$params['decode_headers'] = true;
+			// Extract headers using the Plancake library
+			$decoder = new PlancakeEmailParser( $email );
 
-			$decoder = new Mail_mimeDecode( $email );
-			$structure = $decoder->decode( $params );
-
-			$emailHeaders = $structure->headers;
+			$emailHeaders[ 'to' ] = $decoder->getHeader( 'To' );
+			$emailHeaders[ 'subject' ] = $decoder->getSubject();
+			$emailHeaders[ 'date' ] = $decoder->getHeader( 'Date' );
+			$emailHeaders[ 'x-failed-recipients' ] = $decoder->getHeader( 'X-Failed-Recipients' );
 		}
 		$to = $emailHeaders[ 'to' ];
 		$subject = $emailHeaders[ 'subject' ];
