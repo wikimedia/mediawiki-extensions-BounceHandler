@@ -4,5 +4,6 @@
 			"Xuacu"
 		]
 	},
-	"bouncehandler-desc": "Ayuda pa xestionar los rebotes de correos electrónicos pa MediaWiki"
+	"bouncehandler-desc": "Ayuda pa xestionar los rebotes de correos electrónicos pa MediaWiki",
+	"bouncehandler-notify_subject": "Devolviendo'l rebote temporal"
 }
