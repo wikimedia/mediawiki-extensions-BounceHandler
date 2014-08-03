@@ -22,14 +22,14 @@ $dir = __DIR__ ;
 $wgAutoloadClasses['BounceHandlerHooks'] =  $dir. '/BounceHandlerHooks.php';
 
 //Register and Load BounceHandler API
-$wgAutoloadClasses['ApiBounceHandler'] = $dir. '/ApiBounceHandler.php';
+$wgAutoloadClasses['ApiBounceHandler'] = $dir. '/includes/ApiBounceHandler.php';
 $wgAPIModules['bouncehandler'] = 'ApiBounceHandler';
 
 //Register and Load Jobs
-$wgAutoloadClasses['BounceHandlerJob'] = $dir. '/BounceHandlerJob.php';
-$wgAutoloadClasses['ProcessBounceEmails'] = $dir. '/ProcessBounceEmails.php';
-$wgAutoloadClasses['BounceHandlerActions'] = $dir. '/BounceHandlerActions.php';
-$wgAutoloadClasses['ProcessUnRecognizedBounces'] = $dir. '/ProcessUnRecognizedBounces.php';
+$wgAutoloadClasses['BounceHandlerJob'] = $dir. '/includes/BounceHandlerJob.php';
+$wgAutoloadClasses['ProcessBounceEmails'] = $dir. '/includes/ProcessBounceEmails.php';
+$wgAutoloadClasses['BounceHandlerActions'] = $dir. '/includes/BounceHandlerActions.php';
+$wgAutoloadClasses['ProcessUnRecognizedBounces'] = $dir. '/includes/ProcessUnRecognizedBounces.php';
 
 $wgJobClasses['BounceHandlerJob'] = 'BounceHandlerJob';
 
