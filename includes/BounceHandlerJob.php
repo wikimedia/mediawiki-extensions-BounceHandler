@@ -16,7 +16,7 @@ class BounceHandlerJob extends Job {
 		$email = $this->params[ 'email' ];
 
 		if ( $email ) {
-			$bounceProcessor = new ProcessBounceEmails;
+			$bounceProcessor = ProcessBounceEmails::getProcessor();
 			$bounceProcessor->processEmail( $email );
 		}
 

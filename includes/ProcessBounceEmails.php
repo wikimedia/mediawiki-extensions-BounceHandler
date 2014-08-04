@@ -3,91 +3,56 @@
 if ( file_exists( __DIR__ . '/../vendor/autoload.php' ) ) {
 	require_once( __DIR__ . '/../vendor/autoload.php' );
 }
-class ProcessBounceEmails {
+abstract class ProcessBounceEmails {
+	/**
+	 * Recieves an email from the Job queue and process it
+	 *
+	 * @param string $email
+	 */
+	abstract public function processEmail( $email );
+
+	/**
+	 * Generates BounceProcessor checking existence of external libraries
+	 *
+	 * @return BounceProcessor
+	 */
+	public static function getProcessor() {
+		if ( !class_exists( 'PlancakeEmailParser' ) ) {
+		 	$bounceProcessor = new ProcessBounceWithRegex();
+		} else {
+			$bounceProcessor = new ProcessBounceWithPlancake();
+		}
+		return $bounceProcessor;
+	}
 	/**
 	 * Process received bounce emails from Job Queue
-	 * @param string $email
-	 * @return bool
+	 * @param array $emailHeaders
 	 */
-	public function processEmail( $email ) {
+	public function processBounceHeaders( $emailHeaders ) {
 		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgUnrecognizedBounceNotify, $wgPasswordSender;
-		$emailHeaders = array();
 		$failedUser = array();
-		if ( !class_exists( 'PlancakeEmailParser' ) ) {
-			wfDebugLog( 'BounceHandler',
-			" Plancake email parser library is not installed. Falling back to self parsing the email." );
-			// Extract headers from raw email
-			$emailHeaders  = self::getHeaders( $email );
-		} else {
-			// Extract headers using the Plancake library
-			$decoder = new PlancakeEmailParser( $email );
-
-			$emailHeaders[ 'to' ] = $decoder->getHeader( 'To' );
-			$emailHeaders[ 'subject' ] = $decoder->getSubject();
-			$emailHeaders[ 'date' ] = $decoder->getHeader( 'Date' );
-			$emailHeaders[ 'x-failed-recipients' ] = $decoder->getHeader( 'X-Failed-Recipients' );
-		}
 		$to = $emailHeaders[ 'to' ];
 		$subject = $emailHeaders[ 'subject' ];
 		$emailDate = $emailHeaders[ 'date' ];
 		$permanentFailure = $emailHeaders[ 'x-failed-recipients' ];
-		// The bounceHandler needs to respond only to permanent failures. Permanently failures will generate
-		// bounces with a 'X-Failed-Recipients' header.
-		if ( $permanentFailure !== null ) {
-			// Get original failed user email and wiki details
-			$failedUser = self::getUserDetails( $to );
-			$wikiId = $failedUser[ 'wikiId' ];
-			$originalEmail = $failedUser[ 'rawEmail' ];
 
-			$bounceTimestamp = wfTimestamp( TS_MW, $emailDate );
-			$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
-			if( is_array( $failedUser ) ) {
-				$rowData = array(
-				'br_user' => $originalEmail,
-				'br_timestamp' => $bounceTimestamp,
-				'br_reason' => $subject
-				);
-				$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
-			}
-			$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit );
-			$takeBounceActions->handleFailingRecipient( $originalEmail, $bounceTimestamp );
-		} else {
-			wfDebugLog( 'BounceHandler', "Received temporary bounce from $to" );
-			$handleUnIdentifiedBounce = new ProcessUnRecognizedBounces( $wgUnrecognizedBounceNotify, $wgPasswordSender );
-			$handleUnIdentifiedBounce->processUnRecognizedBounces( $email );
+		// Get original failed user email and wiki details
+		$failedUser = self::getUserDetails( $to );
+		$wikiId = $failedUser[ 'wikiId' ];
+		$originalEmail = $failedUser[ 'rawEmail' ];
+		$bounceTimestamp = wfTimestamp( TS_MW, $emailDate );
+		$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
+		if( is_array( $failedUser ) ) {
+			$rowData = array(
+			'br_user' => $originalEmail,
+			'br_timestamp' => $bounceTimestamp,
+			'br_reason' => $subject
+			);
+			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 		}
+		$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit );
+		$takeBounceActions->handleFailingRecipient( $originalEmail, $bounceTimestamp );
 
-	}
-
-	/**
-	 * Extract the required headers from the received email
-	 *
-	 * @param $email
-	 * @return string
-	 */
-	public function getHeaders( $email ) {
-		$headers = array();
-		$emailLines = explode( "\n", $email );
-		foreach ( $emailLines as $emailLine ) {
-			if ( preg_match( "/^To: (.*)/", $emailLine, $toMatch ) ) {
-				$headers[ 'to' ] = $toMatch[1];
-			}
-			if ( preg_match( "/^Subject: (.*)/", $emailLine, $subjectMatch ) ) {
-				$headers[ 'subject' ] = $subjectMatch[1];
-			}
-			if ( preg_match( "/^Date: (.*)/", $emailLine, $dateMatch ) ) {
-				$headers[ 'date' ] = $dateMatch[1];
-			}
-			if ( preg_match( "/^X-Failed-Recipients: (.*)/", $emailLine, $failureMatch ) ) {
-				$headers[ 'x-failed-recipients' ] = $failureMatch;
-			}
-			if ( trim( $emailLine ) == "" ) {
-				// Empty line denotes that the header part is finished
-				break;
-			}
-		}
-
-		return $headers;
 	}
 
 	/**
@@ -143,6 +108,20 @@ class ProcessBounceEmails {
 		} else {
 			wfDebugLog( 'BounceHandler',"Error fetching email_id of user_id $rawUserId from Database $wikiId." );
 		}
+	}
+
+	/**
+	 * Handle unrecognized bounces by notifying wiki admins with the full email
+	 *
+	 * @param string $email
+	 * @param string $to
+	 */
+	public function handleUnrecognizedBounces( $email, $to ) {
+		global $wgUnrecognizedBounceNotify, $wgPasswordSender;
+
+		wfDebugLog( 'BounceHandler', "Received temporary bounce from $to" );
+		$handleUnIdentifiedBounce = new ProcessUnRecognizedBounces( $wgUnrecognizedBounceNotify, $wgPasswordSender );
+		$handleUnIdentifiedBounce->processUnRecognizedBounces( $email );
 	}
 
 }
