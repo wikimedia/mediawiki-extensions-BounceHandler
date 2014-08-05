@@ -37,6 +37,7 @@ $wgJobClasses['BounceHandlerJob'] = 'BounceHandlerJob';
 
 //Register Hooks
 $wgHooks['UserMailerChangeReturnPath'][] = 'BounceHandlerHooks::onVERPAddressGenerate';
+$wgHooks['UnitTestsList'][] = 'BounceHandlerHooks::registerUnitTests';
 
 /*Messages Files */
 $wgMessagesDirs['BounceHandler'] = $dir. '/i18n';
