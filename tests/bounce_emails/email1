@@ -1,0 +1,44 @@
+Return-path: <>
+Envelope-to: www-data@localhost.localdomain
+Delivery-date: Fri, 20 Jun 2014 22:57:43 +0530
+Received: from Debian-exim by router-ultra with local (Exim 4.80)
+	id 1Wy2bH-0002q0-8l
+	for www-data@localhost.localdomain; Fri, 20 Jun 2014 22:57:43 +0530
+X-Failed-Recipients: bob@example.com
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@localhost.localdomain>
+To: my_wiki.wiki_-1-750h18h52-d3435fa90ccfd281874315d26c2f4889@localhost
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1Wy2bH-0002q0-8l@router-ultra>
+Date: Fri, 20 Jun 2014 22:57:43 +0530
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  bob@example.com
+    Mailing to remote domains not supported
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <www-data@localhost.localdomain>
+Received: from www-data by router-ultra with local (Exim 4.80)
+	(envelope-from <www-data@localhost.localdomain>)
+	id 1Wy2bG-0002pw-RR
+	for bob@example.com; Fri, 20 Jun 2014 22:57:42 +0530
+To: Bob <bob@example.com>
+Subject: My Test email from user "Bob"
+X-PHP-Originating-Script: 1000:UserMailer.php
+Date: Fri, 20 Jun 2014 22:57:42 +0530
+Message-ID: <my_wiki-wiki_.53a46f0eaf55d8.84359228@localhost>
+X-Mailer: MediaWiki mailer
+MIME-Version: 1.0
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
+From: Bob <my_wiki.wiki_-1-750h18h52-d3435fa90ccfd281874315d26c2f4889@localhost>
+
+Hi
+
+-- 
+This email was sent by Bob to Bob by the "Email user" function at My Test.

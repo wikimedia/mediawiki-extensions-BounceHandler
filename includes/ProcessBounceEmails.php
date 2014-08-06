@@ -1,8 +1,4 @@
 <?php
-// Check and include Plancake email parser library
-if ( file_exists( __DIR__ . '/../vendor/autoload.php' ) ) {
-	require_once( __DIR__ . '/../vendor/autoload.php' );
-}
 abstract class ProcessBounceEmails {
 	/**
 	 * Recieves an email from the Job queue and process it
