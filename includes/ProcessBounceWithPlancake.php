@@ -6,7 +6,26 @@ class ProcessBounceWithPlancake extends ProcessBounceEmails {
 	 * @param string $email
 	 */
 	public function processEmail( $email ) {
-		global $wgUnrecognizedBounceNotify, $wgPasswordSender;
+		$emailHeaders = $this->extractHeaders( $email );
+
+		// The bounceHandler needs to respond only to permanent failures.
+		$isPermanentFailure = $this->checkPermanentFailure( $emailHeaders );
+		if ( $isPermanentFailure ) {
+			$this->processBounceHeaders( $emailHeaders );
+		} else {
+			$to = $emailHeaders[ 'to' ];
+			$this->handleUnrecognizedBounces( $email, $to );
+		}
+	}
+
+	/**
+	 * Extract headers from the received bounce email using Plancake mail parser
+	 *
+	 * @param string $email
+	 * @return array $emailHeaders.
+	 */
+	public function extractHeaders( $email ) {
+		$emailHeaders = array();
 		$decoder = new PlancakeEmailParser( $email );
 
 		$emailHeaders[ 'to' ] = $decoder->getHeader( 'To' );
@@ -14,14 +33,7 @@ class ProcessBounceWithPlancake extends ProcessBounceEmails {
 		$emailHeaders[ 'date' ] = $decoder->getHeader( 'Date' );
 		$emailHeaders[ 'x-failed-recipients' ] = $decoder->getHeader( 'X-Failed-Recipients' );
 
-		// The bounceHandler needs to respond only to permanent failures. Permanently failures will generate
-		// bounces with a 'X-Failed-Recipients' header.
-		$permanentFailure = $emailHeaders[ 'x-failed-recipients' ];
-		$to = $emailHeaders[ 'to' ];
-		if ( $permanentFailure == null ) {
-			$this->handleUnrecognizedBounces( $email, $to );
-		} else {
-			$this->processBounceHeaders( $emailHeaders );
-		}
+		return $emailHeaders;
 	}
+
 }

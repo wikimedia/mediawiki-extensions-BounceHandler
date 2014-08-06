@@ -111,6 +111,21 @@ abstract class ProcessBounceEmails {
 	}
 
 	/**
+	 * Check for a permanent failure
+	 *
+	 * @param array $emailHeaders
+	 * @return bool
+	 */
+	protected function checkPermanentFailure( $emailHeaders ) {
+		$permanentFailure = $emailHeaders[ 'x-failed-recipients' ];
+		if ( $permanentFailure == null ) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
 	 * Handle unrecognized bounces by notifying wiki admins with the full email
 	 *
 	 * @param string $email
