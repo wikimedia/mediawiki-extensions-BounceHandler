@@ -25,7 +25,8 @@ class BounceHandlerHooks {
 	}
 
 	/**
-	 * Generate VERP address
+	 * Generate VERP address of the form
+	 *
 	 * @param string recipient email
 	 * @return string ReturnPath address
 	 */
@@ -39,8 +40,9 @@ class BounceHandlerHooks {
 			$url = wfParseUrl( $wgServer );
 			$email_domain = $url['host'];
 		}
-		// Creating the email prefix as wikiId-base36( $UserID )-base36( $Timestamp )@domain-hash( $algorithm,
-		// $key, $prefix )@$domain
+		// Creating the VERP address prefix as wikiId-base36( $UserID )-base36( $Timestamp )
+		// and the generated VERP return path is of the form :
+		// wikiId-base36( $UserID )-base36( $Timestamp )-hash( $algorithm, $key, $prefix )@$email_domain
 		// We dont want repeating '-' in our WikiId
 		$wikiId = str_replace( '-', '.', wfWikiID() );
 		$email_prefix = $wikiId. '-'. base_convert( $uid, 10, 36). '-'. base_convert( $timeNow, 10, 36);
