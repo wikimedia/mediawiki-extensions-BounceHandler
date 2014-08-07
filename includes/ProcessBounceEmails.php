@@ -69,8 +69,8 @@ abstract class ProcessBounceEmails {
 		if ( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret ) === $hashedVERPPart[3] &&
 		$currentTime - $emailTime < $wgVERPAcceptTime ) {
 			$failedUser[ 'wikiId' ] = str_replace( '.', '-', $hashedVERPPart[0] );
-			$rawUserId = base_convert( $hashedVERPPart[1], 36, 10 );
-			$failedUser[ 'rawEmail' ] = self::getOriginalEmail( $failedUser, $rawUserId );
+			$failedUser[ 'rawUserId' ] = base_convert( $hashedVERPPart[1], 36, 10 );
+			$failedUser[ 'rawEmail' ] = self::getOriginalEmail( $failedUser );
 			return $failedUser;
 		} else {
 			wfDebugLog( 'BounceHandler',
@@ -82,13 +82,13 @@ abstract class ProcessBounceEmails {
 	 * Generate Original Email Id from a hashed emailId
 	 *
 	 * @param array $failedUser The failed user details
-	 * @param string $rawUserId The userId of the failing recipient
 	 * @return string $rawEmail The emailId of the failing recipient
 	 */
-	public function getOriginalEmail( $failedUser, $rawUserId ) {
+	public function getOriginalEmail( $failedUser ) {
 		// In multiple wiki deployed case, the $wikiId can help correctly identify the user after looking up in
 		// the required database.
 		$wikiId = $failedUser[ 'wikiId' ];
+		$rawUserId = $failedUser[ 'rawUserId' ];
 		$dbr = wfGetDB( DB_SLAVE, array(), $wikiId );
 		$res = $dbr->selectRow(
 			'user',
