@@ -12,6 +12,7 @@ class BounceHandlerHooks {
 	 * @return bool true
 	 */
 	public static function onVERPAddressGenerate( $recip, &$returnPath ) {
+		global $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP;
 		$user = User::newFromName( $recip[0]->name );
 		if ( !$user ) {
 			return true;
@@ -22,37 +23,11 @@ class BounceHandlerHooks {
 		} else {
 			return true;
 		}
-		$returnPath = self::generateVERP( $uid );
+		$verpAddress = new VerpAddressGenerator( $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP );
+		$returnPath = $verpAddress->generateVERP( $uid );
+
 		return true;
 	}
-
-	/**
-	 * Generate VERP address
-	 *
-	 * @param string recipient email
-	 * @return string ReturnPath address
-	 */
-	protected static function generateVERP( $uid ) {
-		global $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP;
-		// Get the time in Unix timestamp to compare with seconds
-		$timeNow = wfTimestamp();
-		if(  is_array( $wgSMTP ) && isset( $wgSMTP['IDHost'] ) && $wgSMTP['IDHost'] ) {
-			$email_domain = $wgSMTP['IDHost'];
-		} else {
-			$url = wfParseUrl( $wgServer );
-			$email_domain = $url['host'];
-		}
-		// Creating the VERP address prefix as wikiId-base36( $UserID )-base36( $Timestamp )
-		// and the generated VERP return path is of the form :
-		// wikiId-base36( $UserID )-base36( $Timestamp )-hash( $algorithm, $key, $prefix )@$email_domain
-		// We dont want repeating '-' in our WikiId
-		$wikiId = str_replace( '-', '.', wfWikiID() );
-		$email_prefix = $wikiId. '-'. base_convert( $uid, 10, 36). '-'. base_convert( $timeNow, 10, 36);
-		$verp_hash = hash_hmac( $wgVERPalgorithm, $email_prefix, $wgVERPsecret );
-		$returnPath = $email_prefix. '-' .$verp_hash. '@' .$email_domain;
-		return $returnPath;
-	}
-
 
 	/**
 	 * Hook to add PHPUnit test cases.

@@ -33,6 +33,7 @@ $wgAutoloadClasses['BounceHandlerActions'] = $dir. '/includes/BounceHandlerActio
 $wgAutoloadClasses['ProcessUnRecognizedBounces'] = $dir. '/includes/ProcessUnRecognizedBounces.php';
 $wgAutoloadClasses['ProcessBounceWithPlancake'] = $dir. '/includes/ProcessBounceWithPlancake.php';
 $wgAutoloadClasses['ProcessBounceWithRegex'] = $dir. '/includes/ProcessBounceWithRegex.php';
+$wgAutoloadClasses['VerpAddressGenerator'] = $dir. '/includes/VerpAddressGenerator.php';
 
 $wgJobClasses['BounceHandlerJob'] = 'BounceHandlerJob';
 
