@@ -26,7 +26,7 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 	 */
 	public function extractHeaders( $email ) {
 		$emailHeaders = array();
-		$emailLines = explode( "\n", $email );
+		$emailLines = preg_split( "/(\r?\n|\r)/", $email );
 		foreach ( $emailLines as $emailLine ) {
 			if ( preg_match( "/^To: (.*)/", $emailLine, $toMatch ) ) {
 				$emailHeaders[ 'to' ] = $toMatch[1];
@@ -39,10 +39,6 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 			}
 			if ( preg_match( "/^X-Failed-Recipients: (.*)/", $emailLine, $failureMatch ) ) {
 				$emailHeaders[ 'x-failed-recipients' ] = $failureMatch[1];
-			}
-			if ( trim( $emailLine ) == "" ) {
-				// Empty line denotes that the header part is finished
-				break;
 			}
 		}
 		return $emailHeaders;

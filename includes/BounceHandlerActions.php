@@ -34,16 +34,18 @@ class BounceHandlerActions {
 	 * Perform actions on users who failed to receive emails in a given period
 	 *
 	 * @param string $originalEmail The email-id of the failing recipient
-	 * @param string $bounceTimestamp The bounce mail timestamp
 	 * @return bool
 	 */
-	public function handleFailingRecipient( $originalEmail, $bounceTimestamp ) {
-		$unixTime = wfTimestamp();
-		$bounceValidPeriod = wfTimestamp( TS_MW, $unixTime - $this->bounceRecordPeriod );
+	public function handleFailingRecipient( $originalEmail ) {
+		$currentTime = wfTimestamp();
+		$bounceValidPeriod = wfTimestamp( $currentTime - $this->bounceRecordPeriod );
 		$dbr = wfGetDB( DB_SLAVE, array(), $this->wikiId );
 		$res = $dbr->selectRow( 'bounce_records',
 			array( 'COUNT(*) as total_count' ),
-			array( 'br_user'=> $originalEmail ),
+			array(
+				'br_user'=> $originalEmail,
+				'br_timestamp' >= $bounceValidPeriod
+			),
 			__METHOD__
 		);
 		if( $res !== false && ( $res->total_count > $this->bounceRecordLimit ) ) {

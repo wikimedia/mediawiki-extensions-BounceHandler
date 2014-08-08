@@ -25,18 +25,15 @@ abstract class ProcessBounceEmails {
 	 * @param array $emailHeaders
 	 */
 	public function processBounceHeaders( $emailHeaders ) {
-		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgUnrecognizedBounceNotify, $wgPasswordSender;
-		$failedUser = array();
+		global $wgBounceRecordPeriod, $wgBounceRecordLimit;
 		$to = $emailHeaders[ 'to' ];
 		$subject = $emailHeaders[ 'subject' ];
-		$emailDate = $emailHeaders[ 'date' ];
-		$permanentFailure = $emailHeaders[ 'x-failed-recipients' ];
 
 		// Get original failed user email and wiki details
 		$failedUser = self::getUserDetails( $to );
 		$wikiId = $failedUser[ 'wikiId' ];
 		$originalEmail = $failedUser[ 'rawEmail' ];
-		$bounceTimestamp = wfTimestamp( TS_MW, $emailDate );
+		$bounceTimestamp= $failedUser[ 'bounceTime' ];
 		$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
 		if( is_array( $failedUser ) ) {
 			$rowData = array(
@@ -47,7 +44,7 @@ abstract class ProcessBounceEmails {
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 		}
 		$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit );
-		$takeBounceActions->handleFailingRecipient( $originalEmail, $bounceTimestamp );
+		$takeBounceActions->handleFailingRecipient( $originalEmail );
 
 	}
 
@@ -65,12 +62,13 @@ abstract class ProcessBounceEmails {
 		preg_match( '~(.*?)@~', $hashedEmail, $hashedPart );
 		$hashedVERPPart = explode( '-', $hashedPart[1] );
 		$hashedData = $hashedVERPPart[0]. '-'. $hashedVERPPart[1]. '-'. $hashedVERPPart[2];
-		$emailTime = base_convert( $hashedVERPPart[2], 36, 10 );
-		if ( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret ) === $hashedVERPPart[3] &&
-		$currentTime - $emailTime < $wgVERPAcceptTime ) {
+		$bounceTime = base_convert( $hashedVERPPart[2], 36, 10 );
+		if ( base64_encode( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ) ) === $hashedVERPPart[3] &&
+		$currentTime - $bounceTime < $wgVERPAcceptTime ) {
 			$failedUser[ 'wikiId' ] = str_replace( '.', '-', $hashedVERPPart[0] );
 			$failedUser[ 'rawUserId' ] = base_convert( $hashedVERPPart[1], 36, 10 );
 			$failedUser[ 'rawEmail' ] = self::getOriginalEmail( $failedUser );
+			$failedUser[ 'bounceTime' ] = $bounceTime;
 			return $failedUser;
 		} else {
 			wfDebugLog( 'BounceHandler',
