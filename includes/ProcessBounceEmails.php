@@ -5,7 +5,7 @@ abstract class ProcessBounceEmails {
 	 *
 	 * @param string $email
 	 */
-	abstract public function processEmail( $email );
+	abstract public function handleBounce( $email );
 
 	/**
 	 * Generates BounceProcessor checking existence of external libraries
@@ -20,32 +20,61 @@ abstract class ProcessBounceEmails {
 		}
 		return $bounceProcessor;
 	}
+
+	/**
+	 * Process bounce email
+	 *
+	 * @param array $emailHeaders
+	 * @return bool
+	 */
+	public function processEmail( $emailHeaders ) {
+		// The bounceHandler needs to respond only to permanent failures.
+		$isPermanentFailure = $this->checkPermanentFailure( $emailHeaders );
+		if ( $isPermanentFailure ) {
+			$processBounce = $this->processBounceHeaders( $emailHeaders );
+			if ( $processBounce ) {
+				return true;
+			}
+		} else {
+			return false;
+		}
+	}
+
 	/**
 	 * Process received bounce emails from Job Queue
+	 *
 	 * @param array $emailHeaders
+	 * @return bool
 	 */
 	public function processBounceHeaders( $emailHeaders ) {
 		global $wgBounceRecordPeriod, $wgBounceRecordLimit;
-		$to = $emailHeaders[ 'to' ];
-		$subject = $emailHeaders[ 'subject' ];
+		$to = $emailHeaders['to'];
+		$subject = $emailHeaders['subject'];
 
 		// Get original failed user email and wiki details
-		$failedUser = self::getUserDetails( $to );
-		$wikiId = $failedUser[ 'wikiId' ];
-		$originalEmail = $failedUser[ 'rawEmail' ];
-		$bounceTimestamp= $failedUser[ 'bounceTime' ];
-		$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
-		if( is_array( $failedUser ) ) {
+		$failedUser = $this->getUserDetails( $to );
+		if( is_array( $failedUser ) && isset( $failedUser['wikiId'] ) && isset( $failedUser[ 'rawUserId'] )
+		&& isset( $failedUser['rawEmail'] ) && isset( $failedUser[ 'bounceTime' ] ) ) {
+			$wikiId = $failedUser['wikiId'];
+			$originalEmail = $failedUser['rawEmail'];
+			$bounceTimestamp= $failedUser['bounceTime'];
+			$bouncedUserId = $failedUser['rawUserId'];
+			$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
+
 			$rowData = array(
-			'br_user' => $originalEmail,
-			'br_timestamp' => $bounceTimestamp,
-			'br_reason' => $subject
+				'br_user' => $originalEmail,
+				'br_timestamp' => $bounceTimestamp,
+				'br_reason' => $subject
 			);
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
-		}
-		$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit );
-		$takeBounceActions->handleFailingRecipient( $originalEmail );
 
+			$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit );
+			$takeBounceActions->handleFailingRecipient( $failedUser );
+			return true;
+		} else {
+			wfDebugLog( 'BounceHandler', "Error: Failed to extract user details from verp address $to " );
+			return false;
+		}
 	}
 
 	/**
@@ -65,15 +94,15 @@ abstract class ProcessBounceEmails {
 		$bounceTime = base_convert( $hashedVERPPart[2], 36, 10 );
 		if ( base64_encode( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ) ) === $hashedVERPPart[3] &&
 		$currentTime - $bounceTime < $wgVERPAcceptTime ) {
-			$failedUser[ 'wikiId' ] = str_replace( '.', '-', $hashedVERPPart[0] );
-			$failedUser[ 'rawUserId' ] = base_convert( $hashedVERPPart[1], 36, 10 );
-			$failedUser[ 'rawEmail' ] = self::getOriginalEmail( $failedUser );
-			$failedUser[ 'bounceTime' ] = $bounceTime;
-			return $failedUser;
+			$failedUser['wikiId'] = str_replace( '.', '-', $hashedVERPPart[0] );
+			$failedUser['rawUserId'] = base_convert( $hashedVERPPart[1], 36, 10 );
+			$failedUser['rawEmail'] = self::getOriginalEmail( $failedUser );
+			$failedUser['bounceTime'] = $bounceTime;
 		} else {
 			wfDebugLog( 'BounceHandler',
 			"Error: Hash validation failed. Expected hash of $hashedData, got $hashedVERPPart[3]." );
 		}
+		return $failedUser;
 	}
 
 	/**
@@ -85,8 +114,8 @@ abstract class ProcessBounceEmails {
 	public function getOriginalEmail( $failedUser ) {
 		// In multiple wiki deployed case, the $wikiId can help correctly identify the user after looking up in
 		// the required database.
-		$wikiId = $failedUser[ 'wikiId' ];
-		$rawUserId = $failedUser[ 'rawUserId' ];
+		$wikiId = $failedUser['wikiId'];
+		$rawUserId = $failedUser['rawUserId'];
 		$dbr = wfGetDB( DB_SLAVE, array(), $wikiId );
 		$res = $dbr->selectRow(
 			'user',

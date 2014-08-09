@@ -1,19 +1,16 @@
 <?php
 class ProcessBounceWithRegex extends ProcessBounceEmails {
 	/**
-	 * Process bounces with common regex functions
+	 * Process email using common regex functions
 	 *
 	 * @param string $email
 	 */
-	public function processEmail( $email ) {
+	public function handleBounce( $email ) {
 		$emailHeaders = $this->extractHeaders( $email );
+		$to = $emailHeaders['to'];
 
-		// The bounceHandler needs to respond only to permanent failures.
-		$isPermanentFailure = $this->checkPermanentFailure( $emailHeaders );
-		if ( $isPermanentFailure ) {
-			$this->processBounceHeaders( $emailHeaders );
-		} else {
-			$to = $emailHeaders[ 'to' ];
+		$processEmail = $this->processEmail( $emailHeaders );
+		if ( !$processEmail ){
 			$this->handleUnrecognizedBounces( $email, $to );
 		}
 	}
@@ -29,16 +26,20 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 		$emailLines = preg_split( "/(\r?\n|\r)/", $email );
 		foreach ( $emailLines as $emailLine ) {
 			if ( preg_match( "/^To: (.*)/", $emailLine, $toMatch ) ) {
-				$emailHeaders[ 'to' ] = $toMatch[1];
+				$emailHeaders['to'] = $toMatch[1];
 			}
 			if ( preg_match( "/^Subject: (.*)/", $emailLine, $subjectMatch ) ) {
-				$emailHeaders[ 'subject' ] = $subjectMatch[1];
+				$emailHeaders['subject'] = $subjectMatch[1];
 			}
 			if ( preg_match( "/^Date: (.*)/", $emailLine, $dateMatch ) ) {
-				$emailHeaders[ 'date' ] = $dateMatch[1];
+				$emailHeaders['date'] = $dateMatch[1];
 			}
 			if ( preg_match( "/^X-Failed-Recipients: (.*)/", $emailLine, $failureMatch ) ) {
-				$emailHeaders[ 'x-failed-recipients' ] = $failureMatch[1];
+				$emailHeaders['x-failed-recipients'] = $failureMatch[1];
+			}
+			if ( trim( $emailLine ) == "" ) {
+				// Empty line denotes that the header part is finished
+				break;
 			}
 			if ( trim( $emailLine ) == "" ) {
 				// Empty line denotes that the header part is finished

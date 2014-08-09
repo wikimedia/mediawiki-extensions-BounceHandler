@@ -5,15 +5,12 @@ class ProcessBounceWithPlancake extends ProcessBounceEmails {
 	 *
 	 * @param string $email
 	 */
-	public function processEmail( $email ) {
+	public function handleBounce( $email ) {
 		$emailHeaders = $this->extractHeaders( $email );
+		$to = $emailHeaders['to'];
 
-		// The bounceHandler needs to respond only to permanent failures.
-		$isPermanentFailure = $this->checkPermanentFailure( $emailHeaders );
-		if ( $isPermanentFailure ) {
-			$this->processBounceHeaders( $emailHeaders );
-		} else {
-			$to = $emailHeaders[ 'to' ];
+		$processEmail = $this->processEmail( $emailHeaders );
+		if ( !$processEmail ){
 			$this->handleUnrecognizedBounces( $email, $to );
 		}
 	}
@@ -28,10 +25,10 @@ class ProcessBounceWithPlancake extends ProcessBounceEmails {
 		$emailHeaders = array();
 		$decoder = new PlancakeEmailParser( $email );
 
-		$emailHeaders[ 'to' ] = $decoder->getHeader( 'To' );
-		$emailHeaders[ 'subject' ] = $decoder->getSubject();
-		$emailHeaders[ 'date' ] = $decoder->getHeader( 'Date' );
-		$emailHeaders[ 'x-failed-recipients' ] = $decoder->getHeader( 'X-Failed-Recipients' );
+		$emailHeaders['to'] = $decoder->getHeader( 'To' );
+		$emailHeaders['subject'] = $decoder->getSubject();
+		$emailHeaders['date'] = $decoder->getHeader( 'Date' );
+		$emailHeaders['x-failed-recipients'] = $decoder->getHeader( 'X-Failed-Recipients' );
 
 		return $emailHeaders;
 	}

@@ -13,11 +13,11 @@ class BounceHandlerJob extends Job {
 	}
 
 	public function run() {
-		$email = $this->params[ 'email' ];
+		$email = $this->params['email'];
 
 		if ( $email ) {
 			$bounceProcessor = ProcessBounceEmails::getProcessor();
-			$bounceProcessor->processEmail( $email );
+			$bounceProcessor->handleBounce( $email );
 		}
 
 		return true;

@@ -33,10 +33,11 @@ class BounceHandlerActions {
 	/**
 	 * Perform actions on users who failed to receive emails in a given period
 	 *
-	 * @param string $originalEmail The email-id of the failing recipient
+	 * @param array $failedUser The details of the failing user
 	 * @return bool
 	 */
-	public function handleFailingRecipient( $originalEmail ) {
+	public function handleFailingRecipient( array $failedUser ) {
+		$originalEmail = $failedUser['rawEmail'];
 		$currentTime = wfTimestamp();
 		$bounceValidPeriod = wfTimestamp( $currentTime - $this->bounceRecordPeriod );
 		$dbr = wfGetDB( DB_SLAVE, array(), $this->wikiId );
@@ -49,7 +50,7 @@ class BounceHandlerActions {
 			__METHOD__
 		);
 		if( $res !== false && ( $res->total_count > $this->bounceRecordLimit ) ) {
-			$this->unSubscribeUser( $originalEmail );
+			$this->unSubscribeUser( $failedUser );
 		} else {
 			wfDebugLog( 'BounceHandler',"Error fetching the count of past bounces for user $originalEmail" );
 		}
@@ -60,10 +61,12 @@ class BounceHandlerActions {
 	/**
 	 * Function to Un-subscribe a failing recipient
 	 *
-	 * @param string $originalEmail
+	 * @param array $failedUser The details of the failing user
 	 */
-	private function unSubscribeUser( $originalEmail ) {
+	private function unSubscribeUser( array $failedUser ) {
 		//Un-subscribe the user
+		$originalEmail = $failedUser['rawEmail'];
+		$bounceUserId = $failedUser['rawUserId'];
 		$dbw = wfGetDB( DB_MASTER, array(), $this->wikiId );
 		$res = $dbw->update( 'user',
 			array(
@@ -71,7 +74,10 @@ class BounceHandlerActions {
 				'user_email_token' => null,
 				'user_email_token_expires' => null
 			),
-			array( 'user_email' => $originalEmail ),
+			array(
+				'user_email' => $originalEmail,
+				'user_id' => $bounceUserId
+			),
 			__METHOD__
 		);
 		if ( $res ) {
