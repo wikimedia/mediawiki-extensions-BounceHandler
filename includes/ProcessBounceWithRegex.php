@@ -40,6 +40,10 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 			if ( preg_match( "/^X-Failed-Recipients: (.*)/", $emailLine, $failureMatch ) ) {
 				$emailHeaders[ 'x-failed-recipients' ] = $failureMatch[1];
 			}
+			if ( trim( $emailLine ) == "" ) {
+				// Empty line denotes that the header part is finished
+				break;
+			}
 		}
 		return $emailHeaders;
 	}
