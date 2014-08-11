@@ -7,17 +7,38 @@ class BounceHandlerHooks {
 	/**
 	 * This function generates the VERP address on UserMailer::send()
 	 *
-	 * @param MailAddress $recip recipients array
-	 * @param string  returnPath return-path address
-	 * @return bool true
+	 * @param MailAddress|MailAddress[] $recip Recipient's email (or an array of them)
+	 * @param string $returnPath return-path address
+	 * @return bool
+	 * @throws InvalidArgumentException
 	 */
 	public static function onVERPAddressGenerate( $recip, &$returnPath ) {
+		if ( is_object( $recip ) ) {
+			self::generateVerp( $recip, $returnPath );
+		} else if ( is_array( $recip ) ){
+			foreach( $recip as $to ) {
+				self::generateVerp( $to, $returnPath );
+			}
+		} else {
+			throw new InvalidArgumentException( "Expected MailAddress object or an array of MailAddress, got $recip" );
+		}
+		return true;
+	}
+
+	/**
+	 * Process a given $to address and return its VERP return path
+	 *
+	 * @param MailAddress $to
+	 * @param string returnPath return-path address
+	 * @return bool true
+	 */
+	public static function generateVerp( MailAddress $to, &$returnPath ) {
 		global $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP;
-		$user = User::newFromName( $recip[0]->name );
+		$user = User::newFromName( $to->name );
 		if ( !$user ) {
 			return true;
 		}
-		$email = $recip[0]->address;
+		$email = $to->address;
 		if ( $user->getEmail() === $email && $user->isEmailConfirmed() ) {
 			$uid = $user->getId();
 		} else {
@@ -25,7 +46,6 @@ class BounceHandlerHooks {
 		}
 		$verpAddress = new VerpAddressGenerator( $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP );
 		$returnPath = $verpAddress->generateVERP( $uid );
-
 		return true;
 	}
 
