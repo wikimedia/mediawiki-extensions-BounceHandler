@@ -29,11 +29,11 @@ class BounceHandlerHooks {
 	 * Process a given $to address and return its VERP return path
 	 *
 	 * @param MailAddress $to
-	 * @param string returnPath return-path address
+	 * @param string $returnPath return-path address
 	 * @return bool true
 	 */
 	public static function generateVerp( MailAddress $to, &$returnPath ) {
-		global $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP;
+		global $wgVERPprefix, $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP;
 		$user = User::newFromName( $to->name );
 		if ( !$user ) {
 			return true;
@@ -44,7 +44,7 @@ class BounceHandlerHooks {
 		} else {
 			return true;
 		}
-		$verpAddress = new VerpAddressGenerator( $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP );
+		$verpAddress = new VerpAddressGenerator( $wgVERPprefix, $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP );
 		$returnPath = $verpAddress->generateVERP( $uid );
 		return true;
 	}

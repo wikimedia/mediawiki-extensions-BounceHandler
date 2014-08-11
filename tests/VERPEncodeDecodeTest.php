@@ -18,12 +18,14 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 
 		$uid = $user->getId();
 
+		$prefix = 'wiki';
 		$algorithm = 'md5';
 		$secretKey = 'mySecret';
 		$server = 'http://testwiki.org';
 		$smtp = array();
 
 		$this->setMwGlobals( array(
+			'wgVERPprefix' => $prefix,
 			'wgVERPalgorithm' => $algorithm,
 			'wgVERPsecret' => $secretKey,
 			'wgServer' => $server,
@@ -32,7 +34,7 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 		);
 		$this->setMwGlobals( 'wgVERPAcceptTime', 259200 );
 
-		$encodeVERP = new VerpAddressGenerator( $algorithm, $secretKey, $server, $smtp );
+		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $server, $smtp );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );
 
 		$decodeVERPwithRegex = new ProcessBounceWithRegex();

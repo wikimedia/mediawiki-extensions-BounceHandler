@@ -90,12 +90,12 @@ abstract class ProcessBounceEmails {
 		$failedUser = array();
 		preg_match( '~(.*?)@~', $hashedEmail, $hashedPart );
 		$hashedVERPPart = explode( '-', $hashedPart[1] );
-		$hashedData = $hashedVERPPart[0]. '-'. $hashedVERPPart[1]. '-'. $hashedVERPPart[2];
-		$bounceTime = base_convert( $hashedVERPPart[2], 36, 10 );
-		if ( base64_encode( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ) ) === $hashedVERPPart[3] &&
-		$currentTime - $bounceTime < $wgVERPAcceptTime ) {
-			$failedUser['wikiId'] = str_replace( '.', '-', $hashedVERPPart[0] );
-			$failedUser['rawUserId'] = base_convert( $hashedVERPPart[1], 36, 10 );
+		$hashedData = $hashedVERPPart[0]. '-'. $hashedVERPPart[1]. '-'. $hashedVERPPart[2]. '-'. $hashedVERPPart[3];
+		$bounceTime = base_convert( $hashedVERPPart[3], 36, 10 );
+		if ( base64_encode( substr( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ), 0, 12 ) ) === $hashedVERPPart[4]
+		&& $currentTime - $bounceTime < $wgVERPAcceptTime ) {
+			$failedUser['wikiId'] = str_replace( '.', '-', $hashedVERPPart[1] );
+			$failedUser['rawUserId'] = base_convert( $hashedVERPPart[2], 36, 10 );
 			$failedUser['rawEmail'] = self::getOriginalEmail( $failedUser );
 			$failedUser['bounceTime'] = $bounceTime;
 		} else {
