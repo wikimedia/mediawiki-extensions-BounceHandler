@@ -26,9 +26,14 @@ class ProcessBounceWithPlancake extends ProcessBounceEmails {
 		$decoder = new PlancakeEmailParser( $email );
 
 		$emailHeaders['to'] = $decoder->getHeader( 'To' );
-		$emailHeaders['subject'] = $decoder->getSubject();
 		$emailHeaders['date'] = $decoder->getHeader( 'Date' );
 		$emailHeaders['x-failed-recipients'] = $decoder->getHeader( 'X-Failed-Recipients' );
+		try {
+			$emailHeaders['subject'] = $decoder->getSubject();
+		} catch( Exception $e ) {
+			wfDebugLog( 'BounceHandler', "Plancake Mail Parser: Couldn't parse the bounce email subject
+			header, got exception {$e->getCode()}" );
+		}
 
 		return $emailHeaders;
 	}

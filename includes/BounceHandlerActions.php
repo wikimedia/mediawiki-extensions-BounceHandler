@@ -63,24 +63,15 @@ class BounceHandlerActions {
 	 *
 	 * @param array $failedUser The details of the failing user
 	 */
-	private function unSubscribeUser( array $failedUser ) {
+	public function unSubscribeUser( array $failedUser ) {
 		//Un-subscribe the user
 		$originalEmail = $failedUser['rawEmail'];
 		$bounceUserId = $failedUser['rawUserId'];
-		$dbw = wfGetDB( DB_MASTER, array(), $this->wikiId );
-		$res = $dbw->update( 'user',
-			array(
-				'user_email_authenticated' => null,
-				'user_email_token' => null,
-				'user_email_token_expires' => null
-			),
-			array(
-				'user_email' => $originalEmail,
-				'user_id' => $bounceUserId
-			),
-			__METHOD__
-		);
+
+		$user = User::newFromId( $bounceUserId );
+		$res = $user->invalidateEmail();
 		if ( $res ) {
+			$user->saveSettings();
 			wfDebugLog( 'BounceHandler', "Un-subscribed user $originalEmail for exceeding Bounce
 							Limit $this->bounceRecordLimit" );
 		} else {
