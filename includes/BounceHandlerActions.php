@@ -69,13 +69,25 @@ class BounceHandlerActions {
 		$bounceUserId = $failedUser['rawUserId'];
 
 		$user = User::newFromId( $bounceUserId );
-		$res = $user->invalidateEmail();
-		if ( $res ) {
-			$user->saveSettings();
-			wfDebugLog( 'BounceHandler', "Un-subscribed user $originalEmail for exceeding Bounce
-							Limit $this->bounceRecordLimit" );
+		if ( class_exists( 'CentralAuthUser') ) {
+			$caUser = CentralAuthUser::getInstance( $user );
+			if ( $caUser->isAttached( $this->wikiId ) ) {
+				$caUser->setEmailAuthenticationTimestamp( null );
+				$caUser->saveSettings();
+				wfDebugLog( 'BounceHandler', " Un-subscribed global user $originalEmail for exceeding Bounce
+				Limit $this->bounceRecordLimit" );
+			} else {
+				wfDebugLog( 'BounceHandler', " $originalEmail not found attached to $this->wikiId database in the CentralAuth " );
+			}
 		} else {
-			wfDebugLog( 'BounceHandler', "Failed to un-subscribe the failing recipient $originalEmail" );
+			$res = $user->invalidateEmail();
+			if ( $res ) {
+				$user->saveSettings();
+				wfDebugLog( 'BounceHandler', "Un-subscribed user $originalEmail for exceeding Bounce
+				Limit $this->bounceRecordLimit" );
+			} else {
+				wfDebugLog( 'BounceHandler', "Failed to un-subscribe the failing recipient $originalEmail" );
+			}
 		}
 	}
 
