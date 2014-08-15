@@ -20,14 +20,21 @@ class BounceHandlerActions {
 	protected $bounceRecordLimit;
 
 	/**
+	 * @var bool
+	 */
+	protected $bounceHandlerUnconfirmUsers;
+
+	/**
 	 * @param string $wikiId The database id of the failing recipient
 	 * @param int $bounceRecordPeriod Time period for which bounce activities are considered before un-subscribing
 	 * @param int $bounceRecordLimit The number of bounce allowed in the bounceRecordPeriod.
+	 * @param bool $bounceHandlerUnconfirmUsers Enable/Disable user un-subscribe action
 	 */
-	public function __construct( $wikiId, $bounceRecordPeriod, $bounceRecordLimit ) {
+	public function __construct( $wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers ) {
 		$this->wikiId = $wikiId;
 		$this->bounceRecordPeriod = $bounceRecordPeriod;
 		$this->bounceRecordLimit = $bounceRecordLimit;
+		$this->bounceHandlerUnconfirmUsers = $bounceHandlerUnconfirmUsers;
 	}
 
 	/**
@@ -49,7 +56,7 @@ class BounceHandlerActions {
 			),
 			__METHOD__
 		);
-		if( $res !== false && ( $res->total_count > $this->bounceRecordLimit ) ) {
+		if( $res !== false && ( $res->total_count > $this->bounceRecordLimit ) && $this->bounceHandlerUnconfirmUsers ) {
 			$this->unSubscribeUser( $failedUser );
 		} else {
 			wfDebugLog( 'BounceHandler',"Error fetching the count of past bounces for user $originalEmail" );

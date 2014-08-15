@@ -57,6 +57,7 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::addBounceRecords
 $wgVERPprefix = 'wiki';
 $wgVERPalgorithm = 'md5';
 $wgVERPsecret = 'MediawikiVERP';
+$wgBounceHandlerUnconfirmUsers = false; // Toggle the user un-subscribe action
 $wgVERPAcceptTime = 259200; //3 days time
 $wgBounceRecordPeriod = 604800; // 60 * 60 * 24 * 7 - 7 days bounce activity are considered before un-subscribing
 $wgBounceRecordLimit = 3; // If there are more than 3 bounces in the $wgBounceRecordPeriod, the user is un-subscribed

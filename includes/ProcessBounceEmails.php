@@ -47,7 +47,7 @@ abstract class ProcessBounceEmails {
 	 * @return bool
 	 */
 	public function processBounceHeaders( $emailHeaders ) {
-		global $wgBounceRecordPeriod, $wgBounceRecordLimit;
+		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers;
 		$to = $emailHeaders['to'];
 		$subject = $emailHeaders['subject'];
 
@@ -68,7 +68,8 @@ abstract class ProcessBounceEmails {
 			);
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 
-			$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit );
+			$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit,
+			$wgBounceHandlerUnconfirmUsers );
 			$takeBounceActions->handleFailingRecipient( $failedUser );
 			return true;
 		} else {

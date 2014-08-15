@@ -34,6 +34,7 @@ class UnSubscribeUserTest extends MediaWikiTestCase {
 			'wgVERPsecret' => $secretKey,
 			'wgServer' => $server,
 			'wgSMTP' => $smtp,
+			'wgBounceHandlerUnconfirmUsers' => true,
 			'wgBounceRecordPeriod' => $bounceRecordPeriod,
 			'wgBounceRecordLimit' => $bounceRecordLimit
 			)
