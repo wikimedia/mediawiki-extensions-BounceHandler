@@ -84,17 +84,26 @@ class BounceHandlerActions {
 				wfDebugLog( 'BounceHandler', " Un-subscribed global user $originalEmail for exceeding Bounce
 				Limit $this->bounceRecordLimit" );
 			} else {
-				wfDebugLog( 'BounceHandler', " $originalEmail not found attached to $this->wikiId database in the CentralAuth " );
+				$this->unConfirmUserEmail( $user );
 			}
 		} else {
-			$res = $user->invalidateEmail();
-			if ( $res ) {
-				$user->saveSettings();
-				wfDebugLog( 'BounceHandler', "Un-subscribed user $originalEmail for exceeding Bounce
-				Limit $this->bounceRecordLimit" );
-			} else {
-				wfDebugLog( 'BounceHandler', "Failed to un-subscribe the failing recipient $originalEmail" );
-			}
+			$this->unConfirmUserEmail( $user );
+		}
+	}
+
+	/**
+	 * Perform the un-subscribe email action on a given bounced user
+	 *
+	 * @param User $user
+	 */
+	public function unConfirmUserEmail( User $user ) {
+		$userEmail = $user->getEmail();
+		$res = $user->invalidateEmail();
+		$user->saveSettings();
+		if ( $res ) {
+			wfDebugLog( 'BounceHandler', "Un-subscribed $userEmail for exceeding Bounce limit $this->bounceRecordLimit" );
+		} else {
+			wfDebugLog( 'BounceHandler', "Failed to un-subscribe the failing recipient $userEmail" );
 		}
 	}
 
