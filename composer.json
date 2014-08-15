@@ -22,7 +22,7 @@
         "irc": "irc://irc.freenode.org/wikimedia-dev",
         "source": "https://github.com/wikimedia/mediawiki-extensions-BounceHandler"
     },
-    "description": "PEAR MimeDecode library for Mediawiki extension BounceHandler",
+    "description": "Plancake PHP email parser library for Mediawiki extension BounceHandler",
     "license" : "GPL-2.0+",
     "require":
     {
