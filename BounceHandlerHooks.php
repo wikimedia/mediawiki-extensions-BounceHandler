@@ -16,9 +16,8 @@ class BounceHandlerHooks {
 		if ( is_object( $recip ) ) {
 			self::generateVerp( $recip, $returnPath );
 		} else if ( is_array( $recip ) ){
-			foreach( $recip as $to ) {
-				self::generateVerp( $to, $returnPath );
-			}
+			// Generating VERP address for a batch of send emails is complex. This feature is hence disabled
+			return true;
 		} else {
 			throw new InvalidArgumentException( "Expected MailAddress object or an array of MailAddress, got $recip" );
 		}
