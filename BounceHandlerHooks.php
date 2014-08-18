@@ -7,21 +7,18 @@ class BounceHandlerHooks {
 	/**
 	 * This function generates the VERP address on UserMailer::send()
 	 *
-	 * @param MailAddress|MailAddress[] $recip Recipient's email (or an array of them)
+	 * @param MailAddress[] $recip Recipient's email array
 	 * @param string $returnPath return-path address
 	 * @return bool
 	 * @throws InvalidArgumentException
 	 */
-	public static function onVERPAddressGenerate( $recip, &$returnPath ) {
-		if ( is_object( $recip ) ) {
-			self::generateVerp( $recip, $returnPath );
-		} else if ( is_array( $recip ) ){
+	public static function onVERPAddressGenerate( array $recip, &$returnPath ) {
+		if ( count( $recip ) === 1 ) {
+			self::generateVerp( $recip[0], $returnPath );
+		} else {
 			// Generating VERP address for a batch of send emails is complex. This feature is hence disabled
 			return true;
-		} else {
-			throw new InvalidArgumentException( "Expected MailAddress object or an array of MailAddress, got $recip" );
 		}
-		return true;
 	}
 
 	/**
