@@ -7,7 +7,7 @@ $wgExtensionCredits['other'][] = array(
 	'name' => 'BounceHandler',
 	'author' => array(
 			'Tony Thomas',
-			'Legoktm',
+			'Kunal Mehta',
 			'Jeff Green',
 		),
 	'url' => "https://www.mediawiki.org/wiki/Extension:BounceHandler",
