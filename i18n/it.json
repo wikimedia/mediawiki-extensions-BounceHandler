@@ -4,5 +4,6 @@
 			"Beta16"
 		]
 	},
-	"bouncehandler-desc": "Aiuta nella gestione delle email di ritorno per MediaWiki"
+	"bouncehandler-desc": "Aiuta nella gestione delle email di ritorno per MediaWiki",
+	"bouncehandler-notify_subject": "Ritorno di un messaggio di errore temporaneo"
 }
