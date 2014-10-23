@@ -56,7 +56,7 @@ class BounceHandlerActions {
 			),
 			__METHOD__
 		);
-		if( $res !== false && ( $res->total_count > $this->bounceRecordLimit ) && $this->bounceHandlerUnconfirmUsers ) {
+		if( $res !== false && ( $res->total_count >= $this->bounceRecordLimit ) && $this->bounceHandlerUnconfirmUsers ) {
 			$this->unSubscribeUser( $failedUser );
 		} else {
 			wfDebugLog( 'BounceHandler',"Error fetching the count of past bounces for user $originalEmail" );
