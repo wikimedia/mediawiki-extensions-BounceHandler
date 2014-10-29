@@ -8,9 +8,9 @@ abstract class ProcessBounceEmails {
 	abstract public function handleBounce( $email );
 
 	/**
-	 * Generates BounceProcessor checking existence of external libraries
+	 * Generates ProcessBounceEmails checking existence of external libraries
 	 *
-	 * @return BounceProcessor
+	 * @return ProcessBounceEmails
 	 */
 	public static function getProcessor() {
 		if ( !class_exists( 'PlancakeEmailParser' ) ) {
