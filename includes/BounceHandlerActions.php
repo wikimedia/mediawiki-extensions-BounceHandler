@@ -56,6 +56,8 @@ class BounceHandlerActions {
 			),
 			__METHOD__
 		);
+		wfGetLB( $this->wikiId )->reuseConnection( $dbr );
+
 		if( $res !== false && ( $res->total_count >= $this->bounceRecordLimit ) && $this->bounceHandlerUnconfirmUsers ) {
 			$this->unSubscribeUser( $failedUser );
 		} else {

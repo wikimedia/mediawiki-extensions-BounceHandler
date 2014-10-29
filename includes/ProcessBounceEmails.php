@@ -67,6 +67,7 @@ abstract class ProcessBounceEmails {
 				'br_reason' => $subject
 			);
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
+			wfGetLB( $wikiId )->reuseConnection( $dbw );
 
 			$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit,
 			$wgBounceHandlerUnconfirmUsers );
@@ -97,7 +98,8 @@ abstract class ProcessBounceEmails {
 		&& $currentTime - $bounceTime < $wgVERPAcceptTime ) {
 			$failedUser['wikiId'] = str_replace( '.', '-', $hashedVERPPart[1] );
 			$failedUser['rawUserId'] = base_convert( $hashedVERPPart[2], 36, 10 );
-			$failedUser['rawEmail'] = self::getOriginalEmail( $failedUser );
+			$failedEmail = self::getOriginalEmail( $failedUser );
+			$failedUser['rawEmail'] = $failedEmail ? : null;
 			$failedUser['bounceTime'] = $bounceTime;
 		} else {
 			wfDebugLog( 'BounceHandler',
@@ -122,15 +124,17 @@ abstract class ProcessBounceEmails {
 			'user',
 			array( 'user_email' ),
 			array(
-			'user_id' => $rawUserId,
-		),
+				'user_id' => $rawUserId,
+			),
 			__METHOD__
-			);
+		);
+		wfGetLB( $wikiId )->reuseConnection( $dbr );
 		if( $res !== false ) {
 			$rawEmail = $res->user_email;
 			return $rawEmail;
 		} else {
 			wfDebugLog( 'BounceHandler',"Error fetching email_id of user_id $rawUserId from Database $wikiId." );
+			return false;
 		}
 	}
 
