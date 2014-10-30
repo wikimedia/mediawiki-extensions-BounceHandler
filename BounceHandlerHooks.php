@@ -6,6 +6,7 @@
 class BounceHandlerHooks {
 	/**
 	 * This function generates the VERP address on UserMailer::send()
+	 * Generating VERP address for a batch of send emails is complex. This feature is hence disabled
 	 *
 	 * @param MailAddress[] $recip Recipient's email array
 	 * @param string $returnPath return-path address
@@ -15,10 +16,9 @@ class BounceHandlerHooks {
 	public static function onVERPAddressGenerate( array $recip, &$returnPath ) {
 		if ( count( $recip ) === 1 ) {
 			self::generateVerp( $recip[0], $returnPath );
-		} else {
-			// Generating VERP address for a batch of send emails is complex. This feature is hence disabled
-			return true;
 		}
+
+		return true;
 	}
 
 	/**

@@ -31,13 +31,10 @@ abstract class ProcessBounceEmails {
 		// The bounceHandler needs to respond only to permanent failures.
 		$isPermanentFailure = $this->checkPermanentFailure( $emailHeaders );
 		if ( $isPermanentFailure ) {
-			$processBounce = $this->processBounceHeaders( $emailHeaders );
-			if ( $processBounce ) {
-				return true;
-			}
-		} else {
-			return false;
+			return $this->processBounceHeaders( $emailHeaders );
 		}
+
+		return false;
 	}
 
 	/**
@@ -132,10 +129,10 @@ abstract class ProcessBounceEmails {
 		if( $res !== false ) {
 			$rawEmail = $res->user_email;
 			return $rawEmail;
-		} else {
-			wfDebugLog( 'BounceHandler',"Error fetching email_id of user_id $rawUserId from Database $wikiId." );
-			return false;
 		}
+
+		wfDebugLog( 'BounceHandler',"Error fetching email_id of user_id $rawUserId from Database $wikiId." );
+		return false;
 	}
 
 	/**
