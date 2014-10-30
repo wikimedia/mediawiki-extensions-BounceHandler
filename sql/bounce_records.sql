@@ -4,7 +4,7 @@
 
 CREATE TABLE /*_*/bounce_records (
 	br_id 		INT unsigned        NOT NULL PRIMARY KEY auto_increment,
-	br_user		VARCHAR(255)	NOT NULL, -- Email Id of failing recipient
+	br_user_email		VARCHAR(255)	NOT NULL, -- Email address of the failing recipient
 	br_timestamp   	varbinary(14)   NOT NULL,
 	br_reason	VARCHAR(255)	NOT NULL  -- Failure reasons
 )/*$wgDBTableOptions*/;

@@ -46,6 +46,7 @@ $wgMessagesDirs['BounceHandler'] = $dir. '/i18n';
 
 # Schema updates for update.php
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::addBounceRecordsTable';
+$wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::alterBounceRecordsUserColumn';
 
 /**
  * VERP Configurations

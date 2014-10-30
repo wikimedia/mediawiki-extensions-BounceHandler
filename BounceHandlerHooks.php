@@ -82,7 +82,22 @@ class BounceHandlerHooks {
 		$updater->addExtensionTable(
 			'bounce_records',
 			__DIR__. '/sql/bounce_records.sql', true
-			);
+		);
+		return true;
+	}
+
+	/**
+	 * Rename 'br_user' column in bounce_records to 'br_user_email'
+	 *
+	 * @param DatabaseUpdater $updater
+	 * @return bool
+	 */
+	public static function alterBounceRecordsUserColumn( DatabaseUpdater $updater ) {
+		$updater->modifyExtensionField(
+			'bounce_records',
+			'br_user',
+			__DIR__. '/sql/alter_user_column.sql'
+		);
 		return true;
 	}
 }

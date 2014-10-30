@@ -62,7 +62,7 @@ abstract class ProcessBounceEmails {
 			$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
 
 			$rowData = array(
-				'br_user' => $originalEmail,
+				'br_user_email' => $originalEmail,
 				'br_timestamp' => $bounceTimestamp,
 				'br_reason' => $subject
 			);

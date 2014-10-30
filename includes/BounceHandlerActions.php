@@ -51,7 +51,7 @@ class BounceHandlerActions {
 		$res = $dbr->selectRow( 'bounce_records',
 			array( 'COUNT(*) as total_count' ),
 			array(
-				'br_user'=> $originalEmail,
+				'br_user_email'=> $originalEmail,
 				'br_timestamp' >= $bounceValidPeriod
 			),
 			__METHOD__
