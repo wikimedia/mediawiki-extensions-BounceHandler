@@ -49,10 +49,10 @@ class BounceHandlerActions {
 		$bounceValidPeriod = wfTimestamp( $currentTime - $this->bounceRecordPeriod );
 		$dbr = wfGetDB( DB_SLAVE, array(), $this->wikiId );
 		$res = $dbr->selectRow( 'bounce_records',
-			array( 'COUNT(*) as total_count' ),
+			array( 'total_count' => 'COUNT(*)' ),
 			array(
 				'br_user_email'=> $originalEmail,
-				'br_timestamp' >= $bounceValidPeriod
+				'br_timestamp >= ' . $dbr->addQuotes( wfTimestamp( $bounceValidPeriod ) )
 			),
 			__METHOD__
 		);
