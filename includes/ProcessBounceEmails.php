@@ -50,12 +50,11 @@ abstract class ProcessBounceEmails {
 
 		// Get original failed user email and wiki details
 		$failedUser = $this->getUserDetails( $to );
-		if( is_array( $failedUser ) && isset( $failedUser['wikiId'] ) && isset( $failedUser[ 'rawUserId'] )
-		&& isset( $failedUser['rawEmail'] ) && isset( $failedUser[ 'bounceTime' ] ) ) {
+		if( is_array( $failedUser ) && isset( $failedUser['wikiId'] ) && isset( $failedUser['rawEmail'] )
+		&& isset( $failedUser[ 'bounceTime' ] ) ) {
 			$wikiId = $failedUser['wikiId'];
 			$originalEmail = $failedUser['rawEmail'];
 			$bounceTimestamp= $failedUser['bounceTime'];
-			$bouncedUserId = $failedUser['rawUserId'];
 			$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
 
 			$rowData = array(
