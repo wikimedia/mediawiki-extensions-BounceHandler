@@ -6,10 +6,10 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'BounceHandler',
 	'author' => array(
-			'Tony Thomas',
-			'Kunal Mehta',
-			'Jeff Green',
-		),
+		'Tony Thomas',
+		'Kunal Mehta',
+		'Jeff Green',
+	),
 	'url' => "https://www.mediawiki.org/wiki/Extension:BounceHandler",
 	'descriptionmsg' => 'bouncehandler-desc',
 	'version'  => '1.0',
@@ -45,8 +45,7 @@ $wgHooks['UnitTestsList'][] = 'BounceHandlerHooks::registerUnitTests';
 $wgMessagesDirs['BounceHandler'] = $dir. '/i18n';
 
 # Schema updates for update.php
-$wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::addBounceRecordsTable';
-$wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::alterBounceRecordsUserColumn';
+$wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::loadExtensionSchemaUpdates';
 
 /**
  * VERP Configurations

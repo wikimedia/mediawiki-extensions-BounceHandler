@@ -24,12 +24,13 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 		$server = 'http://testwiki.org';
 		$smtp = array();
 
-		$this->setMwGlobals( array(
-			'wgVERPprefix' => $prefix,
-			'wgVERPalgorithm' => $algorithm,
-			'wgVERPsecret' => $secretKey,
-			'wgServer' => $server,
-			'wgSMTP' => $smtp
+		$this->setMwGlobals(
+			array(
+				'wgVERPprefix' => $prefix,
+				'wgVERPalgorithm' => $algorithm,
+				'wgVERPsecret' => $secretKey,
+				'wgServer' => $server,
+				'wgSMTP' => $smtp
 			)
 		);
 		$this->setMwGlobals( 'wgVERPAcceptTime', 259200 );

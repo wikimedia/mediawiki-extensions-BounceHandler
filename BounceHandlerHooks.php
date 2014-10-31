@@ -42,6 +42,7 @@ class BounceHandlerHooks {
 		}
 		$verpAddress = new VerpAddressGenerator( $wgVERPprefix, $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP );
 		$returnPath = $verpAddress->generateVERP( $uid );
+
 		return true;
 	}
 
@@ -68,6 +69,7 @@ class BounceHandlerHooks {
 		}
 
 		$files = array_merge( $files, $ourFiles );
+
 		return true;
 		// @codeCoverageIgnoreEnd
 	}
@@ -78,26 +80,10 @@ class BounceHandlerHooks {
 	 * @param DatabaseUpdater $updater
 	 * @return bool
 	 */
-	public static function addBounceRecordsTable( DatabaseUpdater $updater ) {
-		$updater->addExtensionTable(
-			'bounce_records',
-			__DIR__. '/sql/bounce_records.sql', true
-		);
-		return true;
-	}
+	public static function LoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
+		$updater->addExtensionTable( 'bounce_records', __DIR__ . '/sql/bounce_records.sql', true );
+		$updater->modifyExtensionField( 'bounce_records', 'br_user', __DIR__ . '/sql/alter_user_column.sql' );
 
-	/**
-	 * Rename 'br_user' column in bounce_records to 'br_user_email'
-	 *
-	 * @param DatabaseUpdater $updater
-	 * @return bool
-	 */
-	public static function alterBounceRecordsUserColumn( DatabaseUpdater $updater ) {
-		$updater->modifyExtensionField(
-			'bounce_records',
-			'br_user',
-			__DIR__. '/sql/alter_user_column.sql'
-		);
 		return true;
 	}
 }

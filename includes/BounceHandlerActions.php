@@ -51,7 +51,7 @@ class BounceHandlerActions {
 		$res = $dbr->selectRow( 'bounce_records',
 			array( 'total_count' => 'COUNT(*)' ),
 			array(
-				'br_user_email'=> $originalEmail,
+				'br_user_email' => $originalEmail,
 				'br_timestamp >= ' . $dbr->addQuotes( wfTimestamp( $bounceValidPeriod ) )
 			),
 			__METHOD__
@@ -83,14 +83,13 @@ class BounceHandlerActions {
 			if ( $caUser->isAttached( $this->wikiId ) ) {
 				$caUser->setEmailAuthenticationTimestamp( null );
 				$caUser->saveSettings();
-				wfDebugLog( 'BounceHandler', " Un-subscribed global user $originalEmail for exceeding Bounce
-				Limit $this->bounceRecordLimit" );
-			} else {
-				$this->unConfirmUserEmail( $user );
+				wfDebugLog( 'BounceHandler',
+					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit"
+				);
+				return;
 			}
-		} else {
-			$this->unConfirmUserEmail( $user );
 		}
+		$this->unConfirmUserEmail( $user );
 	}
 
 	/**
@@ -103,7 +102,9 @@ class BounceHandlerActions {
 		$res = $user->invalidateEmail();
 		$user->saveSettings();
 		if ( $res ) {
-			wfDebugLog( 'BounceHandler', "Un-subscribed $userEmail for exceeding Bounce limit $this->bounceRecordLimit" );
+			wfDebugLog( 'BounceHandler',
+				"Un-subscribed $userEmail for exceeding Bounce limit $this->bounceRecordLimit"
+			);
 		} else {
 			wfDebugLog( 'BounceHandler', "Failed to un-subscribe the failing recipient $userEmail" );
 		}

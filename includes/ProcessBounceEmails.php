@@ -51,7 +51,8 @@ abstract class ProcessBounceEmails {
 		// Get original failed user email and wiki details
 		$failedUser = $this->getUserDetails( $to );
 		if( is_array( $failedUser ) && isset( $failedUser['wikiId'] ) && isset( $failedUser['rawEmail'] )
-		&& isset( $failedUser[ 'bounceTime' ] ) ) {
+			&& isset( $failedUser[ 'bounceTime' ] )
+		) {
 			$wikiId = $failedUser['wikiId'];
 			$originalEmail = $failedUser['rawEmail'];
 			$bounceTimestamp= $failedUser['bounceTime'];
@@ -90,8 +91,10 @@ abstract class ProcessBounceEmails {
 		$hashedVERPPart = explode( '-', $hashedPart[1] );
 		$hashedData = $hashedVERPPart[0]. '-'. $hashedVERPPart[1]. '-'. $hashedVERPPart[2]. '-'. $hashedVERPPart[3];
 		$bounceTime = base_convert( $hashedVERPPart[3], 36, 10 );
+
 		if ( base64_encode( substr( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ), 0, 12 ) ) === $hashedVERPPart[4]
-		&& $currentTime - $bounceTime < $wgVERPAcceptTime ) {
+			&& $currentTime - $bounceTime < $wgVERPAcceptTime
+		) {
 			$failedUser['wikiId'] = str_replace( '.', '-', $hashedVERPPart[1] );
 			$failedUser['rawUserId'] = base_convert( $hashedVERPPart[2], 36, 10 );
 			$failedEmail = self::getOriginalEmail( $failedUser );
@@ -99,7 +102,8 @@ abstract class ProcessBounceEmails {
 			$failedUser['bounceTime'] = $bounceTime;
 		} else {
 			wfDebugLog( 'BounceHandler',
-			"Error: Hash validation failed. Expected hash of $hashedData, got $hashedVERPPart[3]." );
+				"Error: Hash validation failed. Expected hash of $hashedData, got $hashedVERPPart[3]."
+			);
 		}
 		return $failedUser;
 	}
