@@ -20,17 +20,35 @@ class ApiBounceHandler extends ApiBase {
 		}
 
 		$email = $this->getMain()->getVal( 'email' );
-		$params = array ( 'email' => $email );
-		$title = Title::newFromText( 'BounceHandler Job' );
-		$job = new BounceHandlerJob( $title, $params );
-		JobQueueGroup::singleton()->push( $job );
 
-		$this->getResult()->addValue(
-			null,
-			$this->getModuleName(),
-			array ( 'submitted' => 'job' )
-		);
+		if ( $email ) {
+			$params = array ( 'email' => $email );
+			$title = Title::newFromText( 'BounceHandler Job' );
+			$job = new BounceHandlerJob( $title, $params );
+			JobQueueGroup::singleton()->push( $job );
 
+			$this->getResult()->addValue(
+				null,
+				$this->getModuleName(),
+				array ( 'submitted' => 'job' )
+			);
+		} else {
+			$this->getResult()->addValue(
+				null,
+				$this->getModuleName(),
+				array ( 'submitted' => 'failure' )
+			);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Mark the API as internal
+	 *
+	 * @return bool
+	 */
+	public function isInternal() {
 		return true;
 	}
 

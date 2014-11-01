@@ -18,6 +18,8 @@ class ApiBounceHandlerTest extends ApiTestCase {
 
 	/**
 	 * Tests API request from an allowed IP
+	 *
+	 *
 	 */
 	function testBounceHandlerWithGoodIPPasses() {
 		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
@@ -37,10 +39,38 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 */
 	function testBounceHandlerWithBadIPPasses() {
 		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '111.111.111.111' ) );
-		$this->doApiRequest( array(
+		list( $apiResult ) = $this->doApiRequest( array(
 			'action' => 'bouncehandler',
 			'email' => self::$bounceEmail
 		) );
+	}
+
+	/**
+	 * Tests API request with null 'email' param
+	 *
+	 */
+	function testBounceHandlerWithNullParams() {
+		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
+			list( $apiResult ) = $this->doApiRequest( array(
+			'action' => 'bouncehandler',
+			'email' => ''
+			) );
+
+		$this->assertEquals( 'failure', $apiResult['bouncehandler']['submitted'] );
+	}
+
+	/**
+	 * Tests API with Wrong params
+	 *
+	 */
+	function testBounceHandlerWithWrongParams() {
+		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
+		list( $apiResult ) = $this->doApiRequest( array(
+			'action' => 'bouncehandler',
+			'emails' => self::$bounceEmail
+		) );
+
+		$this->assertEquals( 'failure', $apiResult['bouncehandler']['submitted'] );
 	}
 
 }
