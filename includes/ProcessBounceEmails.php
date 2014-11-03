@@ -56,7 +56,7 @@ abstract class ProcessBounceEmails {
 			$wikiId = $failedUser['wikiId'];
 			$originalEmail = $failedUser['rawEmail'];
 			$bounceTimestamp= $failedUser['bounceTime'];
-			$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
+			$dbw = self::getBounceRecordDB( DB_MASTER, $wikiId );
 
 			$rowData = array(
 				'br_user_email' => $originalEmail,
@@ -64,7 +64,6 @@ abstract class ProcessBounceEmails {
 				'br_reason' => $subject
 			);
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
-			wfGetLB( $wikiId )->reuseConnection( $dbw );
 
 			$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit,
 			$wgBounceHandlerUnconfirmUsers );
@@ -119,7 +118,8 @@ abstract class ProcessBounceEmails {
 		// the required database.
 		$wikiId = $failedUser['wikiId'];
 		$rawUserId = $failedUser['rawUserId'];
-		$dbr = wfGetDB( DB_SLAVE, array(), $wikiId );
+		$dbr = self::getBounceRecordDB( DB_SLAVE, $wikiId );
+
 		$res = $dbr->selectRow(
 			'user',
 			array( 'user_email' ),
@@ -128,7 +128,6 @@ abstract class ProcessBounceEmails {
 			),
 			__METHOD__
 		);
-		wfGetLB( $wikiId )->reuseConnection( $dbr );
 		if( $res !== false ) {
 			$rawEmail = $res->user_email;
 			return $rawEmail;
@@ -167,4 +166,18 @@ abstract class ProcessBounceEmails {
 		$handleUnIdentifiedBounce->processUnRecognizedBounces( $email );
 	}
 
+	/**
+	 * @param integer $index DB_MASTER/DB_SLAVE
+	 * @param string $wiki
+	 * @return IDatabase
+	 */
+	public static function getBounceRecordDB( $index, $wiki ) {
+		global $wgBounceHandlerCluster;
+
+		$lb = $wgBounceHandlerCluster
+			? wfGetLBFactory()->getExternalLB( $wgBounceHandlerCluster )
+			: wfGetLB( $wiki );
+
+		return $lb->getConnectionRef( $index, array(), $wiki );
+	}
 }

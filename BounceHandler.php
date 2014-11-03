@@ -68,6 +68,9 @@ $wgBounceHandlerInternalIPs = array( '127.0.0.1', '::1' );
 /* Admin email address which should be notified in the case of an unprocessed valid bounce */
 $wgUnrecognizedBounceNotify = array( 'wiki-admin@wikimedia.org' );
 
+# Alternative DB cluster to use for the bounce tables
+$wgBounceHandlerCluster = false;
+
 // Check and include Plancake email parser library
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once( __DIR__ . '/vendor/autoload.php' );

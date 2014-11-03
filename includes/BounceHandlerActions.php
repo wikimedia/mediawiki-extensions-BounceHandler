@@ -47,7 +47,7 @@ class BounceHandlerActions {
 		$originalEmail = $failedUser['rawEmail'];
 		$currentTime = wfTimestamp();
 		$bounceValidPeriod = wfTimestamp( $currentTime - $this->bounceRecordPeriod );
-		$dbr = wfGetDB( DB_SLAVE, array(), $this->wikiId );
+		$dbr = ProcessBounceEmails::getBounceRecordDB( DB_SLAVE, $this->wikiId );
 		$res = $dbr->selectRow( 'bounce_records',
 			array( 'total_count' => 'COUNT(*)' ),
 			array(
@@ -56,7 +56,6 @@ class BounceHandlerActions {
 			),
 			__METHOD__
 		);
-		wfGetLB( $this->wikiId )->reuseConnection( $dbr );
 
 		if( $res !== false && ( $res->total_count >= $this->bounceRecordLimit ) && $this->bounceHandlerUnconfirmUsers ) {
 			$this->unSubscribeUser( $failedUser );
