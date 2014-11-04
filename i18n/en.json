@@ -5,5 +5,8 @@
 		]
 	},
 	"bouncehandler-desc": "Helps in handling email bounces for MediaWiki",
-	"bouncehandler-notify_subject": "Returning temporary bounce"
+	"bouncehandler-notify_subject": "Returning temporary bounce",
+	"apihelp-bouncehandler-example-1": "Receive a bounce email for processing with the content \"This is a test email\".",
+	"apihelp-bouncehandler-description": "Receive a bounce email and process it to handle the failing recipient.",
+	"apihelp-bouncehandler-param-email": "The bounced email."
 }

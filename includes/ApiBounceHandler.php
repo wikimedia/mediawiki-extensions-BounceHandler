@@ -19,26 +19,17 @@ class ApiBounceHandler extends ApiBase {
 			$this->dieUsage( 'This API module is for internal use only.', 'invalid-ip' );
 		}
 
-		$email = $this->getMain()->getVal( 'email' );
+		$params = $this->extractRequestParams();
 
-		if ( $email ) {
-			$params = array ( 'email' => $email );
-			$title = Title::newFromText( 'BounceHandler Job' );
-			$job = new BounceHandlerJob( $title, $params );
-			JobQueueGroup::singleton()->push( $job );
+		$title = Title::newFromText( 'BounceHandler Job' );
+		$job = new BounceHandlerJob( $title, $params );
+		JobQueueGroup::singleton()->push( $job );
 
-			$this->getResult()->addValue(
-				null,
-				$this->getModuleName(),
-				array ( 'submitted' => 'job' )
-			);
-		} else {
-			$this->getResult()->addValue(
-				null,
-				$this->getModuleName(),
-				array ( 'submitted' => 'failure' )
-			);
-		}
+		$this->getResult()->addValue(
+			null,
+			$this->getModuleName(),
+			array ( 'submitted' => 'job' )
+		);
 
 		return true;
 	}
@@ -50,6 +41,37 @@ class ApiBounceHandler extends ApiBase {
 	 */
 	public function isInternal() {
 		return true;
+	}
+
+	public function mustBePosted() {
+		return true;
+	}
+
+	public function isWriteMode() {
+		return true;
+	}
+
+	public function getAllowedParams() {
+		return array(
+			'email' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			)
+		);
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	public function getExamplesMessages() {
+		return array(
+			'action=bouncehandler&email=This%20is%20a%20test%20email'
+				=> 'apihelp-bouncehandler-example-1'
+		);
+	}
+
+	public function getHelpUrls() {
+		return "https://www.mediawiki.org/wiki/Extension:BounceHandler#API";
 	}
 
 }
