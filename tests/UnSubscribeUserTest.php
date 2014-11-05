@@ -22,8 +22,7 @@ class UnSubscribeUserTest extends MediaWikiTestCase {
 		$prefix = 'wiki';
 		$algorithm = 'md5';
 		$secretKey = 'mySecret';
-		$server = 'http://testwiki.org';
-		$smtp = array();
+		$domain = 'testwiki.org';
 		$bounceRecordPeriod = 604800;
 		$bounceRecordLimit = 3;
 
@@ -32,8 +31,7 @@ class UnSubscribeUserTest extends MediaWikiTestCase {
 				'wgVERPprefix' => $prefix,
 				'wgVERPalgorithm' => $algorithm,
 				'wgVERPsecret' => $secretKey,
-				'wgServer' => $server,
-				'wgSMTP' => $smtp,
+				'wgVERPdomainPart' => $domain,
 				'wgBounceHandlerUnconfirmUsers' => true,
 				'wgBounceRecordPeriod' => $bounceRecordPeriod,
 				'wgBounceRecordLimit' => $bounceRecordLimit
@@ -42,7 +40,7 @@ class UnSubscribeUserTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( 'wgVERPAcceptTime', 259200 );
 
-		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $server, $smtp );
+		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );
 
 		$emailHeaders['to'] = $encodedAddress;

@@ -167,12 +167,16 @@ abstract class ProcessBounceEmails {
 	}
 
 	/**
+	 * Get a lazy connection to the bounce table
+	 *
 	 * @param integer $index DB_MASTER/DB_SLAVE
-	 * @param string $wiki
+	 * @param string $wiki The DB that the bounced email was sent from
 	 * @return IDatabase
 	 */
 	public static function getBounceRecordDB( $index, $wiki ) {
-		global $wgBounceHandlerCluster;
+		global $wgBounceHandlerCluster, $wgBounceHandlerSharedDB;
+
+		$wiki = $wgBounceHandlerSharedDB ?: $wiki;
 
 		$lb = $wgBounceHandlerCluster
 			? wfGetLBFactory()->getExternalLB( $wgBounceHandlerCluster )

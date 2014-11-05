@@ -55,6 +55,7 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::loadExtensionSch
  * wgVERPsecret - The secret key to hash the return path address
  */
 $wgVERPprefix = 'wiki';
+$wgVERPdomainPart = 'meta.wikimedia.org';
 $wgVERPalgorithm = 'md5';
 $wgVERPsecret = 'MediawikiVERP';
 $wgBounceHandlerUnconfirmUsers = false; // Toggle the user un-subscribe action
@@ -70,6 +71,9 @@ $wgUnrecognizedBounceNotify = array( 'wiki-admin@wikimedia.org' );
 
 # Alternative DB cluster to use for the bounce tables
 $wgBounceHandlerCluster = false;
+
+# Central DB name to use if the bounce table is to be shared
+$wgBounceHandlerSharedDB = false;
 
 // Check and include Plancake email parser library
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
