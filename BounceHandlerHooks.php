@@ -28,7 +28,7 @@ class BounceHandlerHooks {
 	 * @param string $returnPath return-path address
 	 * @return bool true
 	 */
-	public static function generateVerp( MailAddress $to, &$returnPath ) {
+	protected static function generateVerp( MailAddress $to, &$returnPath ) {
 		global $wgVERPprefix, $wgVERPalgorithm, $wgVERPsecret, $wgServer, $wgSMTP;
 		$user = User::newFromName( $to->name );
 		if ( !$user ) {
