@@ -47,26 +47,19 @@ class VerpAddressGenerator {
 	/**
 	 * @var string
 	 */
-	protected $server;
-
-	/**
-	 * @var array
-	 */
-	protected $smtp;
+	protected $domain;
 
 	/**
 	 * @param string $prefix
 	 * @param string $algorithm
 	 * @param string $secretKey
-	 * @param string $server
-	 * @param array $smtp The SMTP setting configurations
+	 * @param string $domain
 	 */
-	public function __construct( $prefix, $algorithm, $secretKey, $server, $smtp ) {
+	public function __construct( $prefix, $algorithm, $secretKey, $domain ) {
 		$this->prefix = $prefix;
 		$this->algorithm = $algorithm;
 		$this->secretKey = $secretKey;
-		$this->server = $server;
-		$this->smtp = $smtp;
+		$this->domain = $domain;
 	}
 
 	/**
@@ -85,12 +78,7 @@ class VerpAddressGenerator {
 	public function generateVERP( $uid ) {
 		// Get the time in Unix timestamp to compare with seconds
 		$timeNow = wfTimestamp();
-		if(  is_array( $this->smtp ) && isset( $this->smtp['IDHost'] ) && $this->smtp['IDHost'] ) {
-			$email_domain = $this->smtp['IDHost'];
-		} else {
-			$url = wfParseUrl( $this->server );
-			$email_domain = $url['host'];
-		}
+		$email_domain = $this->domain;
 		// Creating the VERP address prefix as wikiId-base36( $UserID )-base36( $Timestamp )
 		// and the generated VERP return path is of the form :
 		// wikiId-base36( $UserID )-base36( $Timestamp )-hash( $algorithm, $key, $prefix )@$email_domain
