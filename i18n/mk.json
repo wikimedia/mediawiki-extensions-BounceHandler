@@ -5,5 +5,8 @@
 		]
 	},
 	"bouncehandler-desc": "Помага во работата на МедијаВики со неуспешно доставена е-пошта",
-	"bouncehandler-notify_subject": "Повраток на привремено недоставени пораки"
+	"bouncehandler-notify_subject": "Повраток на привремено недоставени пораки",
+	"apihelp-bouncehandler-example-1": "Испрати повратно известување по е-пошта за обработка со содржината „Ова е пробно писмо“.",
+	"apihelp-bouncehandler-description": "Испрати повратно известување по е-пошта за обработка за работа со неуспешен прием.",
+	"apihelp-bouncehandler-param-email": "Повратното писмо."
 }
