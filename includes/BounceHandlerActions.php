@@ -31,6 +31,11 @@ class BounceHandlerActions {
 	 * @param bool $bounceHandlerUnconfirmUsers Enable/Disable user un-subscribe action
 	 */
 	public function __construct( $wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers ) {
+		if ( $wikiId !== wfWikiID() ) {
+			// We want to use the User class methods, which make no sense on the wrong wiki
+			throw new MWException( "BounceHandlerActions constructed for a foreign wiki." );
+		}
+
 		$this->wikiId = $wikiId;
 		$this->bounceRecordPeriod = $bounceRecordPeriod;
 		$this->bounceRecordLimit = $bounceRecordLimit;
@@ -79,6 +84,7 @@ class BounceHandlerActions {
 		$bounceUserId = $failedUser['rawUserId'];
 
 		$user = User::newFromId( $bounceUserId );
+		// Handle the central account email status (if applicable)
 		if ( class_exists( 'CentralAuthUser') ) {
 			$caUser = CentralAuthUser::getInstance( $user );
 			if ( $caUser->isAttached( $this->wikiId ) ) {
@@ -87,9 +93,9 @@ class BounceHandlerActions {
 				wfDebugLog( 'BounceHandler',
 					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit"
 				);
-				return;
 			}
 		}
+		// Handle the local account email status
 		$this->unConfirmUserEmail( $user );
 	}
 
