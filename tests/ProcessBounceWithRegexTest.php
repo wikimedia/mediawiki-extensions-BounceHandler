@@ -5,7 +5,7 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 	}
 
 	public static function provideBounceEmails() {
-		$email = file_get_contents( __DIR__ .'/bounce_emails/email1' );
+		$email = file_get_contents( __DIR__ .'/bounce_emails/email2' );
 		return array (
 			array ( $email )
 		);

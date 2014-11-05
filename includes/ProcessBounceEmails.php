@@ -84,8 +84,10 @@ abstract class ProcessBounceEmails {
 	 * */
 	public function getUserDetails( $hashedEmail ) {
 		global $wgVERPalgorithm, $wgVERPsecret, $wgVERPAcceptTime;
-		$currentTime = wfTimestamp();
+
 		$failedUser = array();
+
+		$currentTime = wfTimestamp();
 		preg_match( '~(.*?)@~', $hashedEmail, $hashedPart );
 		$hashedVERPPart = explode( '-', $hashedPart[1] );
 		$hashedData = $hashedVERPPart[0]. '-'. $hashedVERPPart[1]. '-'. $hashedVERPPart[2]. '-'. $hashedVERPPart[3];
@@ -104,6 +106,7 @@ abstract class ProcessBounceEmails {
 				"Error: Hash validation failed. Expected hash of $hashedData, got $hashedVERPPart[3]."
 			);
 		}
+
 		return $failedUser;
 	}
 

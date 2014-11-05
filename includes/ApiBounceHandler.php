@@ -6,10 +6,11 @@
 class ApiBounceHandler extends ApiBase {
 	public function execute() {
 		global $wgBounceHandlerInternalIPs;
+
 		$requestIP = $this->getRequest()->getIP();
 		$inRangeIP = false;
-		foreach( $wgBounceHandlerInternalIPs as $BounceHandlerInternalIPs ) {
-			if ( IP::isInRange( $requestIP, $BounceHandlerInternalIPs ) ) {
+		foreach( $wgBounceHandlerInternalIPs as $internalIP ) {
+			if ( IP::isInRange( $requestIP, $internalIP ) ) {
 				$inRangeIP = true;
 				break;
 			}
@@ -21,15 +22,31 @@ class ApiBounceHandler extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
-		$title = Title::newFromText( 'BounceHandler Job' );
-		$job = new BounceHandlerJob( $title, $params );
-		JobQueueGroup::singleton()->push( $job );
+		// Extract the wiki ID from the Verp address (also verifies the hash)
+		$bounceProcessor = new ProcessBounceWithRegex();
+		$emailHeaders = $bounceProcessor->extractHeaders( $params['email'] );
+		$to = isset( $emailHeaders['to'] ) ? $emailHeaders['to'] : '';
+		$failedUser = strlen( $to ) ? $bounceProcessor->getUserDetails( $to ) : array();
 
-		$this->getResult()->addValue(
-			null,
-			$this->getModuleName(),
-			array ( 'submitted' => 'job' )
-		);
+		// Route the job to the wiki that the email was sent from.
+		// This way it can easily unconfirm the user's email using the User methods.
+		if ( isset( $failedUser['wikiId'] ) ) {
+			$title = Title::newFromText( 'BounceHandler Job' );
+			$job = new BounceHandlerJob( $title, $params );
+			JobQueueGroup::singleton( $failedUser['wikiId'] )->push( $job );
+
+			$this->getResult()->addValue(
+				null,
+				$this->getModuleName(),
+				array ( 'submitted' => 'job' )
+			);
+		} else {
+			$this->getResult()->addValue(
+				null,
+				$this->getModuleName(),
+				array ( 'submitted' => 'failure' )
+			);
+		}
 
 		return true;
 	}

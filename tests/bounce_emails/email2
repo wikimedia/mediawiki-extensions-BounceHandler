@@ -7,7 +7,7 @@ Received: from Debian-exim by router-ultra with local (Exim 4.80)
 X-Failed-Recipients: bob@example.com
 Auto-Submitted: auto-replied
 From: Mail Delivery System <Mailer-Daemon@localhost.localdomain>
-To: {VERP_ADDRESS}
+To: wiki-my_wiki.unittest_-2-neobfn-55A6qPtjRlVR6bXI@testwiki.org
 Subject: Mail delivery failed: returning message to sender
 Message-Id: <E1Wy2bH-0002q0-8l@router-ultra>
 Date: Fri, 20 Jun 2014 22:57:43 +0530
@@ -40,5 +40,5 @@ From: Bob <wiki-my_wiki.unittest_-2-neobfn-55A6qPtjRlVR6bXI@testwiki.org>
 
 Hi
 
--- 
+--
 This email was sent by Bob to Bob by the "Email user" function at My Test.
