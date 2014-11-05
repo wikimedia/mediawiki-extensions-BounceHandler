@@ -44,23 +44,25 @@ class BounceHandlerActions {
 	 * @return bool
 	 */
 	public function handleFailingRecipient( array $failedUser ) {
-		$originalEmail = $failedUser['rawEmail'];
-		$currentTime = wfTimestamp();
-		$bounceValidPeriod = wfTimestamp( $currentTime - $this->bounceRecordPeriod );
-		$dbr = ProcessBounceEmails::getBounceRecordDB( DB_SLAVE, $this->wikiId );
-		$res = $dbr->selectRow( 'bounce_records',
-			array( 'total_count' => 'COUNT(*)' ),
-			array(
-				'br_user_email' => $originalEmail,
-				'br_timestamp >= ' . $dbr->addQuotes( wfTimestamp( $bounceValidPeriod ) )
-			),
-			__METHOD__
-		);
+		if ( $this->bounceHandlerUnconfirmUsers ) {
+			$originalEmail = $failedUser['rawEmail'];
+			$bounceValidPeriod = time() - $this->bounceRecordPeriod; // Unix
 
-		if( $res !== false && ( $res->total_count >= $this->bounceRecordLimit ) && $this->bounceHandlerUnconfirmUsers ) {
-			$this->unSubscribeUser( $failedUser );
-		} else {
-			wfDebugLog( 'BounceHandler',"Error fetching the count of past bounces for user $originalEmail" );
+			$dbr = ProcessBounceEmails::getBounceRecordDB( DB_SLAVE, $this->wikiId );
+
+			$totalBounces = $dbr->selectRowCount( 'bounce_records',
+				array( '*' ),
+				array(
+					'br_user_email' => $originalEmail,
+					'br_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $bounceValidPeriod ) )
+				),
+				__METHOD__,
+				array( 'LIMIT' => $this->bounceRecordLimit )
+			);
+
+			if ( $totalBounces >= $this->bounceRecordLimit ) {
+				$this->unSubscribeUser( $failedUser );
+			}
 		}
 
 		return true;

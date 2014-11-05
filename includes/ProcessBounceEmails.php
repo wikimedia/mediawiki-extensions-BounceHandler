@@ -60,13 +60,13 @@ abstract class ProcessBounceEmails {
 
 			$rowData = array(
 				'br_user_email' => $originalEmail,
-				'br_timestamp' => $bounceTimestamp,
+				'br_timestamp' => $dbw->timestamp( $bounceTimestamp ),
 				'br_reason' => $subject
 			);
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 
-			$takeBounceActions = new BounceHandlerActions( $wikiId, $wgBounceRecordPeriod, $wgBounceRecordLimit,
-			$wgBounceHandlerUnconfirmUsers );
+			$takeBounceActions = new BounceHandlerActions( $wikiId,
+				$wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers );
 			$takeBounceActions->handleFailingRecipient( $failedUser );
 			return true;
 		} else {
@@ -98,7 +98,7 @@ abstract class ProcessBounceEmails {
 			$failedUser['rawUserId'] = base_convert( $hashedVERPPart[2], 36, 10 );
 			$failedEmail = self::getOriginalEmail( $failedUser );
 			$failedUser['rawEmail'] = $failedEmail ? : null;
-			$failedUser['bounceTime'] = $bounceTime;
+			$failedUser['bounceTime'] = wfTimestamp( TS_MW, $bounceTime );
 		} else {
 			wfDebugLog( 'BounceHandler',
 				"Error: Hash validation failed. Expected hash of $hashedData, got $hashedVERPPart[3]."
