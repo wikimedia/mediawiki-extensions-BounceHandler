@@ -5,5 +5,6 @@
 		]
 	},
 	"bouncehandler-desc": "帮助处理MediaWiki的电子邮件下一跳",
-	"bouncehandler-notify_subject": "返回暂时下一跳"
+	"bouncehandler-notify_subject": "返回暂时下一跳",
+	"apihelp-bouncehandler-param-email": "退回的邮件。"
 }
