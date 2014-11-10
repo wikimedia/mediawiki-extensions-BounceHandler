@@ -22,18 +22,20 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 		$algorithm = 'md5';
 		$secretKey = 'mySecret';
 		$domain = 'testwiki.org';
+		$serverName = 'testwiki.org';
 
 		$this->setMwGlobals(
 			array(
 				'wgVERPprefix' => $prefix,
 				'wgVERPalgorithm' => $algorithm,
 				'wgVERPsecret' => $secretKey,
-				'wgVERPdomainPart' => $domain
+				'wgVERPdomainPart' => $domain,
+				'wgServerName' => $serverName
 			)
 		);
 		$this->setMwGlobals( 'wgVERPAcceptTime', 259200 );
 
-		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain );
+		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain, $serverName );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );
 
 		$decodeVERPwithRegex = new ProcessBounceWithRegex();

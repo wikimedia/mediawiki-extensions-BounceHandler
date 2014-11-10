@@ -50,15 +50,17 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::loadExtensionSch
 /**
  * VERP Configurations
  * wgVERPprefix - The prefix of the VERP address.
+ * wgVERPdomainPart - The domain part of the VERP email address, defaults to $wgServerName
  * wgVERPalgorithm - Algorithm to hash the return path address.Possible algorithms are
  * md2. md4, md5, sha1, sha224, sha256, sha384, ripemd128, ripemd160, whirlpool and more.
  * wgVERPsecret - The secret key to hash the return path address
+ * wgBounceHandlerUnconfirmUsers - Toggle the user un-subscribe action
  */
 $wgVERPprefix = 'wiki';
-$wgVERPdomainPart = 'meta.wikimedia.org';
+$wgVERPdomainPart = null; //set this only if you want the domain part of your email different from your wgServerName
 $wgVERPalgorithm = 'md5';
 $wgVERPsecret = 'MediawikiVERP';
-$wgBounceHandlerUnconfirmUsers = false; // Toggle the user un-subscribe action
+$wgBounceHandlerUnconfirmUsers = false;
 $wgVERPAcceptTime = 259200; //3 days time
 $wgBounceRecordPeriod = 604800; // 60 * 60 * 24 * 7 - 7 days bounce activity are considered before un-subscribing
 $wgBounceRecordLimit = 10; // If there are more than 10 bounces in the $wgBounceRecordPeriod, the user is un-subscribed
