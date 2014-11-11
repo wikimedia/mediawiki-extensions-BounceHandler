@@ -37,7 +37,6 @@ class ApiBounceHandlerTest extends ApiTestCase {
 		$algorithm = 'md5';
 		$secretKey = 'mySecret';
 		$domain = 'testwiki.org';
-		$serverName = 'testwiki.org';
 		$bounceRecordPeriod = 604800;
 		$bounceRecordLimit = 3;
 
@@ -47,7 +46,6 @@ class ApiBounceHandlerTest extends ApiTestCase {
 				'wgVERPalgorithm' => $algorithm,
 				'wgVERPsecret' => $secretKey,
 				'wgVERPdomainPart' => $domain,
-				'wgServerName' => $serverName,
 				'wgBounceHandlerUnconfirmUsers' => true,
 				'wgBounceRecordPeriod' => $bounceRecordPeriod,
 				'wgBounceRecordLimit' => $bounceRecordLimit,
@@ -55,7 +53,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 			)
 		);
 
-		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain, $serverName );
+		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );
 
 		$replace = array( "{VERP_ADDRESS}" => $encodedAddress );
