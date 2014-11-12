@@ -49,6 +49,7 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::loadExtensionSch
 
 /**
  * VERP Configurations
+ * $wgGenerateVERP -  Toggle VERP generation
  * wgVERPprefix - The prefix of the VERP address.
  * wgVERPdomainPart - The domain part of the VERP email address, defaults to $wgServerName
  * wgVERPalgorithm - Algorithm to hash the return path address.Possible algorithms are
@@ -56,6 +57,7 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'BounceHandlerHooks::loadExtensionSch
  * wgVERPsecret - The secret key to hash the return path address
  * wgBounceHandlerUnconfirmUsers - Toggle the user un-subscribe action
  */
+$wgGenerateVERP = true;
 $wgVERPprefix = 'wiki';
 $wgVERPdomainPart = null; //set this only if you want the domain part of your email different from your wgServerName
 $wgVERPalgorithm = 'md5';

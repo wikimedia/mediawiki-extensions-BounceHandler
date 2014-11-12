@@ -14,7 +14,8 @@ class BounceHandlerHooks {
 	 * @throws InvalidArgumentException
 	 */
 	public static function onVERPAddressGenerate( array $recip, &$returnPath ) {
-		if ( count( $recip ) === 1 ) {
+		global $wgGenerateVERP;
+		if ( $wgGenerateVERP && count( $recip ) === 1 ) {
 			self::generateVerp( $recip[0], $returnPath );
 		}
 
