@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Siebrand"
+		]
+	},
+	"bouncehandler-desc": "Helpt bij het verwerken van teruggestuurde e-mails voor MediaWiki",
+	"bouncehandler-notify_subject": "Retourneren van tijdelijke bounce"
+}
