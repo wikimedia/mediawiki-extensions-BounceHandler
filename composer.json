@@ -1,4 +1,5 @@
 {
+    "name": "mediawiki/bouncehandler",
     "authors" : [
         {
             "name": "Tony Thomas",
@@ -22,7 +23,7 @@
         "irc": "irc://irc.freenode.org/wikimedia-dev",
         "source": "https://github.com/wikimedia/mediawiki-extensions-BounceHandler"
     },
-    "description": "Plancake PHP email parser library for Mediawiki extension BounceHandler",
+    "description": "MediaWiki extension to process emails that bounce using VERP",
     "license" : "GPL-2.0+",
     "require":
     {
