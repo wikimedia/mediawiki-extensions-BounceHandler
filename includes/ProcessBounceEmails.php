@@ -121,7 +121,8 @@ abstract class ProcessBounceEmails {
 		// the required database.
 		$wikiId = $failedUser['wikiId'];
 		$rawUserId = $failedUser['rawUserId'];
-		$dbr = self::getBounceRecordDB( DB_SLAVE, $wikiId );
+		$lb = wfGetLB( $wikiId );
+		$dbr = $lb->getConnection( DB_SLAVE, array(), $wikiId );
 
 		$res = $dbr->selectRow(
 			'user',
@@ -131,6 +132,7 @@ abstract class ProcessBounceEmails {
 			),
 			__METHOD__
 		);
+		wfGetLB( $wikiId )->reuseConnection( $dbr );
 		if( $res !== false ) {
 			$rawEmail = $res->user_email;
 			return $rawEmail;
