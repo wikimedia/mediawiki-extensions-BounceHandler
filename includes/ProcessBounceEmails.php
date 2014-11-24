@@ -132,7 +132,7 @@ abstract class ProcessBounceEmails {
 			),
 			__METHOD__
 		);
-		wfGetLB( $wikiId )->reuseConnection( $dbr );
+		$lb->reuseConnection( $dbr );
 		if( $res !== false ) {
 			$rawEmail = $res->user_email;
 			return $rawEmail;
