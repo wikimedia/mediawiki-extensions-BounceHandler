@@ -84,7 +84,7 @@ $wgBounceHandlerCluster = false;
 # Central DB name to use if the bounce table is to be shared
 $wgBounceHandlerSharedDB = false;
 
-// Check and include Plancake email parser library
+// Local composer install during development
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	require_once( __DIR__ . '/vendor/autoload.php' );
+	require_once __DIR__ . '/vendor/autoload.php';
 }
