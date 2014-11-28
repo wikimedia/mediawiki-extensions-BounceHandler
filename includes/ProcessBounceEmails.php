@@ -44,13 +44,13 @@ abstract class ProcessBounceEmails {
 	 * @return bool
 	 */
 	public function processBounceHeaders( $emailHeaders ) {
-		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers;
+		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers, $wgBounceRecordMaxAge;
 		$to = $emailHeaders['to'];
 		$subject = $emailHeaders['subject'];
 
 		// Get original failed user email and wiki details
 		$failedUser = $this->getUserDetails( $to );
-		if( is_array( $failedUser ) && isset( $failedUser['wikiId'] ) && isset( $failedUser['rawEmail'] )
+		if ( is_array( $failedUser ) && isset( $failedUser['wikiId'] ) && isset( $failedUser['rawEmail'] )
 			&& isset( $failedUser[ 'bounceTime' ] )
 		) {
 			$wikiId = $failedUser['wikiId'];
@@ -64,6 +64,11 @@ abstract class ProcessBounceEmails {
 				'br_reason' => $subject
 			);
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
+
+			if ( $wgBounceRecordMaxAge ) {
+				$pruneOldRecords = new PruneOldBounceRecords( $wgBounceRecordMaxAge );
+				$pruneOldRecords->pruneOldRecords( $wikiId );
+			}
 
 			$takeBounceActions = new BounceHandlerActions( $wikiId,
 				$wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers );

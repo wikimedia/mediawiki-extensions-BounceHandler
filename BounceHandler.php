@@ -34,6 +34,7 @@ $wgAutoloadClasses['ProcessUnRecognizedBounces'] = $dir. '/includes/ProcessUnRec
 $wgAutoloadClasses['ProcessBounceWithPlancake'] = $dir. '/includes/ProcessBounceWithPlancake.php';
 $wgAutoloadClasses['ProcessBounceWithRegex'] = $dir. '/includes/ProcessBounceWithRegex.php';
 $wgAutoloadClasses['VerpAddressGenerator'] = $dir. '/includes/VerpAddressGenerator.php';
+$wgAutoloadClasses['PruneOldBounceRecords'] = $dir. '/includes/PruneOldBounceRecords.php';
 
 $wgJobClasses['BounceHandlerJob'] = 'BounceHandlerJob';
 
@@ -83,6 +84,9 @@ $wgBounceHandlerCluster = false;
 
 # Central DB name to use if the bounce table is to be shared
 $wgBounceHandlerSharedDB = false;
+
+# Maximum time in seconds until which a bounce record should be stored in the table
+$wgBounceRecordMaxAge = 5184000; //60 * 24 * 60 *60  ( 60 Days time in seconds )
 
 // Local composer install during development
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
