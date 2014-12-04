@@ -1,0 +1,70 @@
+Authentication-Results: hotmail.com; spf=none (sender IP is 65.55.90.45; identity alignment result is pass and alignment mode is relaxed) smtp.helo=SNT004-OMC1S34.hotmail.com; dkim=none (identity alignment result is pass and alignment mode is relaxed) header.d=mail.hotmail.com; x-hmca=none header.id=postmaster@mail.hotmail.com
+X-SID-PRA: postmaster@mail.hotmail.com
+X-Message-Delivery: Vj0xLjE7RD0wO0dEPTA7U0NMPTk7bD0xO3VzPTE=
+Received: from SNT004-OMC1S34.hotmail.com ([65.55.90.45]) by BAY004-MC1F18.hotmail.com over TLS secured channel with Microsoft SMTPSVC(7.5.7601.22751);
+	 Wed, 3 Dec 2014 15:30:53 -0800
+From: postmaster@mail.hotmail.com
+To: testemailfailure@outlook.com
+Date: Wed, 3 Dec 2014 15:30:52 -0800
+MIME-Version: 1.0
+Content-Type: multipart/report; report-type=delivery-status;
+	boundary="9B095B5ADSN=_01D009F899E17AE900014FF9SNT004?OMC1S34.h"
+Message-ID: <ljWwY0Vnk00005fb7@SNT004-OMC1S34.hotmail.com>
+Subject: Delivery Status Notification (Failure)
+Return-Path: <>
+X-OriginalArrivalTime: 03 Dec 2014 23:30:53.0101 (UTC) FILETIME=[2DECDDD0:01D00F51]
+
+This is a MIME-formatted message.
+Portions of this message may be unreadable without a MIME-capable mail program.
+
+--9B095B5ADSN=_01D009F899E17AE900014FF9SNT004?OMC1S34.h
+Content-Type: text/plain; charset=unicode-1-1-utf-7
+
+This is an automatically generated Delivery Status Notification.
+
+Delivery to the following recipients failed.
+
+       fa2s4f5s6af7ja8shren1a2d4om@outlook.com
+
+
+
+
+--9B095B5ADSN=_01D009F899E17AE900014FF9SNT004?OMC1S34.h
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns;SNT004-OMC1S34.hotmail.com
+Received-From-MTA: dns;SNT148-W94
+Arrival-Date: Wed, 3 Dec 2014 15:30:52 -0800
+
+Final-Recipient: rfc822;fa2s4f5s6af7ja8shren1a2d4om@outlook.com
+Action: failed
+Status: 5.5.0
+Diagnostic-Code: smtp;550 Requested action not taken: mailbox unavailable
+
+--9B095B5ADSN=_01D009F899E17AE900014FF9SNT004?OMC1S34.h
+Content-Type: message/rfc822
+
+Received: from SNT148-W94 ([65.55.90.7]) by SNT004-OMC1S34.hotmail.com over TLS secured channel with Microsoft SMTPSVC(7.5.7601.22751);
+	 Wed, 3 Dec 2014 15:30:52 -0800
+X-TMN: [wFdT/xYMAAje34hwFGRq8eJH5IQYpofwAN7z0l3/A8o=]
+X-Originating-Email: [testemailfailure@outlook.com]
+Message-ID: <SNT148-W941A948B7B5502EF54AC2A897B0@phx.gbl>
+Return-Path: testemailfailure@outlook.com
+Content-Type: multipart/alternative;
+	boundary="_9f0695af-6998-450a-a0b9-17e5c68c9e70_"
+From: testemailfailure@outlook.com
+To: "bounceduserfortest@outlook.com"
+	<bounceduserfortest@outlook.com>
+Subject: Test email
+Date: Wed, 3 Dec 2014 23:30:51 +0000
+Importance: Normal
+MIME-Version: 1.0
+X-OriginalArrivalTime: 03 Dec 2014 23:30:52.0356 (UTC) FILETIME=[2D7B3040:01D00F51]
+
+--_9f0695af-6998-450a-a0b9-17e5c68c9e70_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+--9B095B5ADSN=_01D009F899E17AE900014FF9SNT004?OMC1S34.h--

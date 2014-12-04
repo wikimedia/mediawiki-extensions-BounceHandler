@@ -164,11 +164,18 @@ abstract class ProcessBounceEmails {
 	 * @return bool
 	 */
 	protected function checkPermanentFailure( $emailHeaders ) {
-		$permanentFailure = $emailHeaders[ 'x-failed-recipients' ];
-		if ( $permanentFailure == null ) {
-			return false;
-		} else {
+		if ( isset( $emailHeaders['status'] ) ) {
+			$status = explode( '.', $emailHeaders['status'] );
+			// According to RFC1893 status codes starting with 5 mean Permanent Failures
+			return $status[0] == 5;
+		} elseif ( isset( $emailHeaders['smtp-code'] ) ) {
+			return $emailHeaders['smtp-code'] >= 500;
+		} elseif ( isset( $emailHeaders['x-failed-recipients'] ) ) {
+			// If not status code was found, let's presume that the presence of
+			// X-Failed-Recipients means permanent failure
 			return true;
+		} else {
+			return false;
 		}
 	}
 

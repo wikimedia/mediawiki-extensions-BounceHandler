@@ -26,6 +26,49 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 	}
 
 	/**
+	 * Parse the single part of delivery status message
+	 *
+	 * @param string[] $partLines array of strings that contain single lines of the email part
+	 * @return string|null String that contains the status code or null if it wasn't found
+	 */
+	private function parseMessagePart( $partLines ) {
+		foreach ( $partLines as $partLine ) {
+			if ( preg_match( '/^Content-Type: (.+)/', $partLine, $contentTypeMatch ) ) {
+				if ( $contentTypeMatch[1] != 'message/delivery-status' ) {
+					break;
+				}
+			}
+			if ( preg_match( '/^Status: (\d\.\d{1,3}\.\d{1,3})/', $partLine, $statusMatch ) ) {
+				return $statusMatch[1];
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Parse the multi-part delivery status message (DSN) according to RFC3464
+	 *
+	 * @param string[] $emailLines array of strings that contain single lines of the email
+	 * @return string|null String that contains the status code or null if it wasn't found
+	 */
+	private function parseDeliveryStatusMessage( $emailLines ) {
+		for ( $i = 0; $i < count( $emailLines ) - 1; ++$i ) {
+			$line = $emailLines[$i] . "\n" . $emailLines[$i + 1];
+			if ( preg_match( '/Content-Type: multipart\/report;\s*report-type=delivery-status;' .
+				'\s*boundary="(.+?)"/', $line, $contentTypeMatch ) ) {
+				$partIndices = array_keys( $emailLines, "--$contentTypeMatch[1]" );
+				foreach ( $partIndices as $index ) {
+					$result = $this->parseMessagePart( array_slice( $emailLines, $index ) );
+					if ( !is_null( $result ) ) {
+						return $result;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Extract headers from the received bounce
 	 *
 	 * @param string $email
@@ -51,9 +94,27 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 				// Empty line denotes that the header part is finished
 				break;
 			}
-			if ( trim( $emailLine ) == "" ) {
-				// Empty line denotes that the header part is finished
-				break;
+		}
+		$status = $this->parseDeliveryStatusMessage( $emailLines );
+		if ( !is_null( $status ) ) {
+			$emailHeaders['status'] = $status;
+		}
+
+		// If the x-failed-recipient header or status code was not found, we should fallback to a heuristic scan
+		// of the message for a SMTP status code
+		if ( !isset( $emailHeaders['status'] ) && !isset( $emailHeaders['x-failed-recipients'] ) ) {
+			foreach ( $emailLines as $emailLine ) {
+				if ( preg_match( '/^\s*(?:(?P<smtp>[1-5]\d{2})[^\d\w.]+)?' .
+					'(?P<status>[245]\.\d{1,3}\.\d{1,3})?\b/', $emailLine, $statusMatch ) ) {
+					if ( isset( $statusMatch['smtp'] ) ) {
+						$emailHeaders['smtp-code'] = $statusMatch['smtp'];
+						break;
+					}
+					if ( isset( $statusMatch['status'] ) ) {
+						$emailHeaders['status'] = $statusMatch['status'];
+						break;
+					}
+				}
 			}
 		}
 		return $emailHeaders;

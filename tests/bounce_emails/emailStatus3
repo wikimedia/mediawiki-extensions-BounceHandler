@@ -1,0 +1,51 @@
+From MAILER-DAEMON Wed Dec 03 16:00:19 2014
+Received: from Debian-exim by deployment-mx.eqiad.wmflabs with local (Exim 4.82)
+        id 1XwCLj-0004eu-R3
+        for wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org; Wed, 03 Dec 2014 16:00:19 +0000
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@deployment-mx.eqiad.wmflabs>
+To: wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1XwCLj-0004eu-R3@deployment-mx.eqiad.wmflabs>
+Date: Wed, 03 Dec 2014 16:00:19 +0000
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  bounceduserfortest@gmail.com
+    SMTP error from remote mail server after RCPT TO:<bounceduserfortest@gmail.com>:
+    host gmail-smtp-in.l.google.com [74.125.29.26]:
+    550-5.1.1 The email account that you tried to reach does not exist. Please try
+    550-5.1.1 double-checking the recipient's email address for typos or
+    550-5.1.1 unnecessary spaces. Learn more at
+    550 5.1.1 http://support.google.com/mail/bin/answer.py?answer=6596 s52si24422382qge.11 - gsmtp
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org>
+Received: from mediawiki-verp.eqiad.wmflabs ([10.68.17.11]:2307)
+        by deployment-mx.eqiad.wmflabs with esmtp (Exim 4.82)
+        (envelope-from <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org>)
+        id 1XwCLj-0004eq-HB
+        for bounceduserfortest@gmail.com; Wed, 03 Dec 2014 16:00:19 +0000
+Received: from www-data by mediawiki-verp.eqiad.wmflabs with local (Exim 4.82)
+        (envelope-from <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org>)
+        id 1XwCLh-0006A8-Tw
+        for bounceduserfortest@gmail.com; Wed, 03 Dec 2014 16:00:17 +0000
+To: Router123 <bounceduserfortest@gmail.com>
+Subject: testwiki email from user "01tonythomas"
+X-PHP-Originating-Script: 0:UserMailer.php
+From: 01tonythomas <01tonythomas@gmail.com>
+Date: Wed, 03 Dec 2014 16:00:17 +0000
+Message-ID: <testwiki.547f3391df5b44.92919571@mediawiki-verp.wmflabs.org>
+X-Mailer: MediaWiki mailer
+MIME-Version: 1.0
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
+
+Test bounce
+
+--
+This email was sent by 01tonythomas to Router123 by the "Email user" function at testwiki.

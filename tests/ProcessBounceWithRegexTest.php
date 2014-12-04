@@ -18,6 +18,33 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 		);
 	}
 
+	public static function provideBounceStatusEmails() {
+		$email1 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus1' );
+		$email2 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus2' );
+		$email3 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus3' );
+
+		return array(
+			array(
+				$email1, array( 'x-failed-recipients' => 'bounceduserfortest@gmail.com',
+				'to' => 'wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org',
+				'subject' => 'Mail delivery failed: returning message to sender',
+				'date' => 'Wed, 03 Dec 2014 16:00:19 +0000' )
+			),
+			array(
+				$email2, array( 'to' => 'testemailfailure@outlook.com',
+				'date' => 'Wed, 3 Dec 2014 15:30:52 -0800',
+				'subject' => 'Delivery Status Notification (Failure)',
+				'status' => '5.5.0' )
+			),
+			array(
+				$email3, array( 'to' => 'wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org',
+				'date' => 'Wed, 03 Dec 2014 16:00:19 +0000',
+				'subject' => 'Mail delivery failed: returning message to sender',
+				'smtp-code' => '550' )
+			)
+		);
+	}
+
 	/**
 	 * @dataProvider provideBounceEmails
 	 * @param $email
@@ -34,4 +61,16 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 
 		$this->assertArrayEquals( $regexResult, $plancakeResult );
 	}
+
+	/**
+	 * @dataProvider provideBounceStatusEmails
+	 * @param $emailStatus
+	 * @param $expected
+	 */
+	function testExtractHeadersWithStatus( $emailStatus, $expected ) {
+		$regexClass = new ProcessBounceWithRegex;
+		$regexResult = $regexClass->extractHeaders( $emailStatus );
+		$this->assertArrayEquals( $expected, $regexResult );
+	}
+
 }
