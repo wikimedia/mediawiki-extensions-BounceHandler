@@ -5,5 +5,8 @@
 		]
 	},
 	"bouncehandler-desc": "Hjälper till att hantera studsande e-post för MediaWiki",
-	"bouncehandler-notify_subject": "Skickar tillbaka tillfällig studs"
+	"bouncehandler-notify_subject": "Skickar tillbaka tillfällig studs",
+	"apihelp-bouncehandler-example-1": "Få ett studsat e-post för bearbetning med innehållet \"This is a test email\".",
+	"apihelp-bouncehandler-description": "Få ett studsat e-post och bearbeta det för hantera den misslyckade mottagaren.",
+	"apihelp-bouncehandler-param-email": "Den studsade e-posten."
 }
