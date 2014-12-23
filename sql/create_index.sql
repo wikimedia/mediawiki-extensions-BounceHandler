@@ -3,6 +3,4 @@
 -- Author: Tony Thomas, Legoktm, Jeff Green
 
 
-CREATE INDEX /*i*/br_mail_timestamp ON /*_*/bounce_records(br_user_email(50), br_timestamp);
-
-
+CREATE INDEX /*i*/br_timestamp ON /*_*/bounce_records(br_timestamp);
