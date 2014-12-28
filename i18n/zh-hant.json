@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cwlin0416"
+			"Cwlin0416",
+			"Liuxinyu970226"
 		]
 	},
-	"bouncehandler-desc": "可協助處理 Mediawiki 的退回的電子郵件"
+	"bouncehandler-desc": "可協助處理 MediaWiki 的退回的電子郵件"
 }
