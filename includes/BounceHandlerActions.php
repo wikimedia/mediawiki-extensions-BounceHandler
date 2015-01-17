@@ -33,7 +33,7 @@ class BounceHandlerActions {
 	public function __construct( $wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers ) {
 		if ( $wikiId !== wfWikiID() ) {
 			// We want to use the User class methods, which make no sense on the wrong wiki
-			throw new MWException( "BounceHandlerActions constructed for a foreign wiki." );
+			throw new Exception( "BounceHandlerActions constructed for a foreign wiki." );
 		}
 
 		$this->wikiId = $wikiId;
