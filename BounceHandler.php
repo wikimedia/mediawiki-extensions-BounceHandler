@@ -1,6 +1,11 @@
 <?php
 /**
  * BounceHandler Extension to handle email bounces in MediaWiki
+ *
+ * @file
+ * @ingroup Extensions
+ * @author Tony Thomas, Kunal Mehta, Jeff Green
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
@@ -13,7 +18,7 @@ $wgExtensionCredits['other'][] = array(
 	'url' => "https://www.mediawiki.org/wiki/Extension:BounceHandler",
 	'descriptionmsg' => 'bouncehandler-desc',
 	'version'  => '1.0',
-	'license-name' => "GPL V2.0",
+	'license-name' => 'GPL-2.0+',
 );
 
 /* Setup*/

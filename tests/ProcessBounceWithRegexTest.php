@@ -1,4 +1,11 @@
 <?php
+/**
+ * Class ProcessBounceWithRegexTest
+ *
+ * @covers ProcessBounceWithRegex
+ * @author Tony Thomas
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
 class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 	function setUp() {
 		parent::setUp();

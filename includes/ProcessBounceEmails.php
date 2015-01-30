@@ -1,4 +1,14 @@
 <?php
+/**
+ * Class ProcessBounceEmails
+ *
+ * Methods to process a bounce email
+ *
+ * @file
+ * @ingroup Extensions
+ * @author Tony Thomas, Kunal Mehta, Jeff Green
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
 abstract class ProcessBounceEmails {
 	/**
 	 * Recieves an email from the Job queue and process it

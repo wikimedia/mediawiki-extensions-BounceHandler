@@ -6,6 +6,8 @@
  * @group Database
  * @group medium
  * @covers PruneOldBounceRecords
+ * @author Tony Thomas
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 

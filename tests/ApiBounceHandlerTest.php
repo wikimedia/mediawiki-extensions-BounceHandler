@@ -1,10 +1,15 @@
 <?php
 /**
+ * Class ApiBounceHandlerTest
+ * 
  * Tests for API module
  *
  * @group API
  * @group medium
  * @group Database
+ * @covers ApiBounceHandler
+ * @author Tony Thomas
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 class ApiBounceHandlerTest extends ApiTestCase {
 

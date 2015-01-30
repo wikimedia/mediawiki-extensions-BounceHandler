@@ -1,4 +1,14 @@
 <?php
+/**
+ * Class ProcessBounceWithPlancake
+ *
+ * Extract email headers of a bounce email with the Plancake email parser library
+ *
+ * @file
+ * @ingroup Extensions
+ * @author Tony Thomas, Kunal Mehta, Jeff Green
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
 class ProcessBounceWithPlancake extends ProcessBounceEmails {
 	/**
 	 * Process bounce email using the Plancake mail parser library

@@ -1,6 +1,13 @@
 <?php
 /**
+ * Class BounceHandlerActions
+ *
  * Actions to be done on finding out a failing recipient
+ *
+ * @file
+ * @ingroup Extensions
+ * @author Tony Thomas, Kunal Mehta, Jeff Green
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 class BounceHandlerActions {
 

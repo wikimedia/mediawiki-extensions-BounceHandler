@@ -1,4 +1,14 @@
 <?php
+/**
+ * Class ProcessUnRecognizedBounces
+ *
+ * Process unrecognized bounce by notifying administrators
+ *
+ * @file
+ * @ingroup Extensions
+ * @author Tony Thomas, Kunal Mehta, Jeff Green
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
 class ProcessUnRecognizedBounces {
 	/**
 	 * @var string

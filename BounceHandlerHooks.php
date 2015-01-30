@@ -1,8 +1,12 @@
 <?php
 /**
  * Hooks used by BounceHandler
+ *
+ * @file
+ * @ingroup Hooks
+ * @author Tony Thomas, Kunal Mehta, Jeff Green
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
-
 class BounceHandlerHooks {
 	/**
 	 * This function generates the VERP address on UserMailer::send()

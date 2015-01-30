@@ -1,7 +1,13 @@
 <?php
 /**
+ * Class ApiBounceHandler
+ *
  * API to handle e-mail bounces
  *
+ * @file
+ * @ingroup API
+ * @author Tony Thomas, Kunal Mehta, Jeff Green
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 class ApiBounceHandler extends ApiBase {
 	public function execute() {

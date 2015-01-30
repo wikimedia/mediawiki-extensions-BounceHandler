@@ -1,5 +1,7 @@
 <?php
 /**
+ * Class BounceHandlerJob
+ *
  * Job Queue class to receive a POST request
  *
  * @file
