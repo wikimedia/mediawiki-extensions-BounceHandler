@@ -118,7 +118,7 @@ abstract class ProcessBounceEmails {
 			$failedUser['bounceTime'] = wfTimestamp( TS_MW, $bounceTime );
 		} else {
 			wfDebugLog( 'BounceHandler',
-				"Error: Hash validation failed. Expected hash of $hashedData, got $hashedVERPPart[3]."
+				"Error: Hash validation failed. Expected hash of $hashedData, got $hashedVERPPart[4]."
 			);
 		}
 
