@@ -4,5 +4,7 @@
 			"Purodha"
 		]
 	},
+	"bouncehandler-desc": "Hellef beim Beärbeijde vun retuur jekumme <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">e-mails</i> em MehdijaWikki.",
+	"apihelp-bouncehandler-description": "Nemm e retuur jekumme <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">e-mail</i> aan, un kömmer Desch dröm, dadd et dä Ämfänger nit jitt.",
 	"apihelp-bouncehandler-param-email": "Di retuur jekumme <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">e-mail</i>."
 }
