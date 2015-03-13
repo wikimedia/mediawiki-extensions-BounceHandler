@@ -101,13 +101,14 @@ class BounceHandlerActions {
 					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit"
 				);
 			}
+		} else {
+			// Handle the local account email status
+			$this->unConfirmUserEmail( $user );
 		}
-		// Handle the local account email status
-		$this->unConfirmUserEmail( $user );
 	}
 
 	/**
-	 * Perform the un-subscribe email action on a given bounced user
+	 * Perform the un-subscribe email action on a given bounced local user
 	 *
 	 * @param User $user
 	 */
