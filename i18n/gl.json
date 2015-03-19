@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Toliño"
+			"Toliño",
+			"Banjo"
 		]
 	},
-	"bouncehandler-desc": "Axuda na xestión dos reenvios de correos electrónicos en MediaWiki"
+	"bouncehandler-desc": "Axuda na xestión dos reenvios de correos electrónicos en MediaWiki",
+	"bouncehandler-notify_subject": "Retornando un brinco temporal",
+	"apihelp-bouncehandler-example-1": "Recibir un correo electrónico brincado para o seu proceso có contido \"Este é un correo electrónico de proba\".",
+	"apihelp-bouncehandler-description": "Recibir un correo electrónico brincado e procesalo para manexar o destinatario errado.",
+	"apihelp-bouncehandler-param-email": "O correo electrónico brincado."
 }
