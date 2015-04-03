@@ -59,7 +59,7 @@ abstract class ProcessBounceEmails {
 		$subject = $emailHeaders['subject'];
 
 		// Get original failed user email and wiki details
-		$failedUser = $this->getUserDetails( $to );
+		$failedUser = $to ? $this->getUserDetails( $to ) : false;
 		if ( is_array( $failedUser ) && isset( $failedUser['wikiId'] ) && isset( $failedUser['rawEmail'] )
 			&& isset( $failedUser[ 'bounceTime' ] )
 		) {
@@ -96,7 +96,7 @@ abstract class ProcessBounceEmails {
 	 * return the failed user details, if hashes match
 	 * @param string $hashedEmail The original hashed Email from bounce email
 	 * @return array $failedUser The failed user details
-	 * */
+	 */
 	public function getUserDetails( $hashedEmail ) {
 		global $wgVERPalgorithm, $wgVERPsecret, $wgVERPAcceptTime;
 
@@ -104,10 +104,20 @@ abstract class ProcessBounceEmails {
 
 		$currentTime = wfTimestamp();
 		preg_match( '~(.*?)@~', $hashedEmail, $hashedPart );
+		if ( !isset( $hashedPart[1] ) ) {
+			wfDebugLog( 'BounceHandler', "Error: The received address: $hashedEmail does not match the VERP pattern." );
+			return array();
+		}
 		$hashedVERPPart = explode( '-', $hashedPart[1] );
-		$hashedData = $hashedVERPPart[0]. '-'. $hashedVERPPart[1]. '-'. $hashedVERPPart[2]. '-'. $hashedVERPPart[3];
+		// This would ensure that indexes 0 - 4 in $hashedVERPPart is set
+		if ( isset( $hashedVERPPart[4] ) ) {
+			$hashedData = $hashedVERPPart[0] . '-' . $hashedVERPPart[1] . '-' . $hashedVERPPart[2] . '-' . $hashedVERPPart[3];
+		} else {
+			wfDebugLog( 'BounceHandler', "Error: Received malformed VERP address: $hashedPart[1], cannot extract details." );
+			return array();
+		}
 		$bounceTime = base_convert( $hashedVERPPart[3], 36, 10 );
-
+		// Check if the VERP hash is valid
 		if ( base64_encode( substr( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ), 0, 12 ) ) === $hashedVERPPart[4]
 			&& $currentTime - $bounceTime < $wgVERPAcceptTime
 		) {
