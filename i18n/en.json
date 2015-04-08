@@ -8,5 +8,8 @@
 	"bouncehandler-notify_subject": "Returning temporary bounce",
 	"apihelp-bouncehandler-example-1": "Receive a bounce email for processing with the content \"This is a test email\".",
 	"apihelp-bouncehandler-description": "Receive a bounce email and process it to handle the failing recipient.",
-	"apihelp-bouncehandler-param-email": "The bounced email."
+	"apihelp-bouncehandler-param-email": "The bounced email.",
+	"notification-bouncehandler": "{{GENDER:$1|Your}} registered email address is no longer valid.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Your}} registered email address $1 has been unsubscribed due to multiple message delivery failures. You can [[Special:ConfirmEmail|verify {{GENDER:$2|your}} email address again]].",
+	"notification-link-text-change-email": "Change your email address"
 }

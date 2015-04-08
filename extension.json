@@ -17,12 +17,14 @@
 		"BounceHandlerHooks": "BounceHandlerHooks.php",
 		"ApiBounceHandler": "includes/ApiBounceHandler.php",
 		"BounceHandlerJob": "includes/BounceHandlerJob.php",
+		"BounceHandlerNotificationJob": "includes/BounceHandlerNotificationJob.php",
 		"ProcessBounceEmails": "includes/ProcessBounceEmails.php",
 		"BounceHandlerActions": "includes/BounceHandlerActions.php",
 		"ProcessUnRecognizedBounces": "includes/ProcessUnRecognizedBounces.php",
 		"ProcessBounceWithRegex": "includes/ProcessBounceWithRegex.php",
 		"VerpAddressGenerator": "includes/VerpAddressGenerator.php",
-		"PruneOldBounceRecords": "includes/PruneOldBounceRecords.php"
+		"PruneOldBounceRecords": "includes/PruneOldBounceRecords.php",
+		"EchoBounceHandlerFormatter": "includes/EchoBounceHandlerFormatter.php"
 	},
 	"config": {
 		"BounceHandlerCluster": false,
@@ -55,10 +57,17 @@
 		],
 		"LoadExtensionSchemaUpdates": [
 			"BounceHandlerHooks::loadExtensionSchemaUpdates"
+		],
+		"BeforeCreateEchoEvent": [
+			"BounceHandlerHooks::onBeforeCreateEchoEvent"
+		],
+		"EchoGetDefaultNotifiedUsers": [
+			"BounceHandlerHooks::onEchoGetDefaultNotifiedUsers"
 		]
 	},
 	"JobClasses": {
-		"BounceHandlerJob": "BounceHandlerJob"
+		"BounceHandlerJob": "BounceHandlerJob",
+		"BounceHandlerNotificationJob": "BounceHandlerNotificationJob"
 	},
 	"MessagesDirs": {
 		"BounceHandler": [
