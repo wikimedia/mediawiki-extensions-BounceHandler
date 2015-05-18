@@ -5,5 +5,7 @@
 		]
 	},
 	"bouncehandler-desc": "Допомагає в обробці відмов електронної пошти для MediaWiki",
-	"bouncehandler-notify_subject": "Повернення тимчасових відмов"
+	"bouncehandler-notify_subject": "Повернення тимчасових відмов",
+	"apihelp-bouncehandler-example-1": "Отримати відмову для ел. листа з вмістом «Це тестовий лист».",
+	"apihelp-bouncehandler-param-email": "Відхилений ел. лист."
 }

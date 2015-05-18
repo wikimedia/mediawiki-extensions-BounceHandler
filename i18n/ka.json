@@ -4,5 +4,6 @@
 			"Otogi"
 		]
 	},
+	"bouncehandler-notify_subject": "დროებითი ასხლტომის დაბრუნება",
 	"apihelp-bouncehandler-param-email": "გადაგდებული ელექტრონული ფოსტა"
 }

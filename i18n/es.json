@@ -2,9 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Themasterriot",
-			"Fitoschido"
+			"Fitoschido",
+			"Ryo567"
 		]
 	},
 	"bouncehandler-desc": "Ayuda en el manejo de rebotes de correo electrónico para MediaWiki",
+	"apihelp-bouncehandler-example-1": "Recibir un correo de rebote para procesar con el contenido \"Esto es un correo de prueba\".",
+	"apihelp-bouncehandler-description": "Recibir un correo de rebote y procesarlo para gestionar el destinatario fallido.",
 	"apihelp-bouncehandler-param-email": "El mensaje rebotado."
 }

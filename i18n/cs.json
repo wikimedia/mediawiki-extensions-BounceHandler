@@ -7,7 +7,7 @@
 	},
 	"bouncehandler-desc": "Pomáhá v MediaWiki řešit nedoručené e-maily",
 	"bouncehandler-notify_subject": "Dočasné hlášení o problému",
-	"apihelp-bouncehandler-example-1": "Zaslat informační email pro zpracování s obsahem ''Toto je testovací email''.",
-	"apihelp-bouncehandler-description": "Povolit hlášení chyby doručení pro zpracování.",
-	"apihelp-bouncehandler-param-email": "Původní zpráva."
+	"apihelp-bouncehandler-example-1": "Přijmout ke zpracování vrácený e-mail s obsahem „This is a test email“.",
+	"apihelp-bouncehandler-description": "Přijmout vrácený e-mail a zpracovat ho, aby se vyřešil nefunkční příjemce.",
+	"apihelp-bouncehandler-param-email": "Vrácený e-mail."
 }
