@@ -5,5 +5,7 @@
 		]
 	},
 	"bouncehandler-desc": "ഇമെയിൽ ബൗൺസുകൾ കൈകാര്യം ചെയ്യാൻ മീഡിയവിക്കിയെ സഹായിക്കുന്നു",
-	"bouncehandler-notify_subject": "താത്കാലിക ബൗൺസ് മടക്കി അയക്കുന്നു"
+	"bouncehandler-notify_subject": "താത്കാലിക ബൗൺസ് മടക്കി അയക്കുന്നു",
+	"apihelp-bouncehandler-description": "ബൗൺസ് ഇമെയിൽ സ്വീകരിക്കുക ഒപ്പം പരാജയപ്പെട്ട സ്വീകർത്താവിനുള്ള കാര്യങ്ങൾ ചെയ്യുക.",
+	"apihelp-bouncehandler-param-email": "ബൗൺസ് ചെയ്ത ഇമെയിൽ"
 }
