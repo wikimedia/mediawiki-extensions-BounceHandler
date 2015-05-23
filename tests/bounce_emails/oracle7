@@ -1,0 +1,91 @@
+Received: from sender4.unimi.it ([172.24.4.24])
+ by msg-2.msg.unimi.it (Oracle Communications Messaging Server 7.0.5.32.0 64bit
+ (built Jul 16 2014)) with ESMTP id <0NK90087MJ4HVW10@msg-2.msg.unimi.it> for
+ l...@gmail.com (ORCPT f...@studenti.unimi.it); Tue,
+ 24 Feb 2015 07:24:17 +0100 (CET)
+Date: Tue, 24 Feb 2015 07:24:17 +0100
+From: Mailer-Daemon@sender4.unimi.it (Mail Delivery System)
+Subject: Delayed Mail (still being retried)
+To: f...@studenti.unimi.it
+Message-id: <96.23.16855.1191CE45@sender4.unimi.it>
+
+This is a MIME-encapsulated message.
+
+--Boundary_(ID_QjvPjmbUpV9wyXyvrbHROQ)
+Content-type: text/plain
+Content-transfer-encoding: 7BIT
+Content-description: Notification
+
+####################################################################
+# THIS IS A WARNING ONLY.  YOU DO NOT NEED TO RESEND YOUR MESSAGE. #
+####################################################################
+
+Your message could not be delivered for 0 days, 12 hours, 0 minutes.
+It will be retried until it is 1 days, 0 hours, 0 minutes old.
+
+For further assistance, please send mail to <postmaster>
+
+If you do so, please include this problem report. You can
+delete your own text from the attached returned message.
+
+<imperfectlyinformed@gmail.co>: 421 4.4.0 [internal] no MXs for this domain could be reached at this time
+
+
+--Boundary_(ID_QjvPjmbUpV9wyXyvrbHROQ)
+Content-type: message/delivery-status
+Content-description: Delivery report
+
+X-Symantec-Messaging-Gateway-Queue-ID: E7/40-16855-1507BE45
+X-Symantec-Messaging-Gateway-Sender: rfc822; f...@studenti.unimi.it
+Reporting-MTA: dns; sender4.unimi.it
+Arrival-Date: Tue, 24 Feb 2015 07:24:17 +0100
+
+Final-Recipient: rfc822; imperfectlyinformed@gmail.co
+Status: 4.4.0
+Action: delayed
+Last-Attempt-Date: Tue, 24 Feb 2015 07:24:17 +0100
+Diagnostic-Code: smtp; 421 4.4.0 [internal] no MXs for this domain could be reached at this time
+
+--Boundary_(ID_QjvPjmbUpV9wyXyvrbHROQ)
+Content-type: TEXT/RFC822-HEADERS
+Content-description: Undelivered Message Headers
+
+Received: from mta01.msg.unimi.it ( [172.24.11.11])
+	by sender4.unimi.it (Unimi Outbound) with SMTP id E4.40.16855.1507BE45; Mon,
+ 23 Feb 2015 19:24:17 +0100 (CET)
+Received: from [192.168.1.132]
+ (93-50-129-38.ip152.fastwebnet.it [93.50.129.38]) by mta01.msg.unimi.it
+ (Oracle Communications Messaging Server 7.0.5.32.0 64bit (built Jul 16 2014))
+ with ESMTPSA id <0NK800G86LR7YR00@mta01.msg.unimi.it> for
+ imperfectlyinformed@gmail.co; Mon, 23 Feb 2015 19:24:16 +0100 (CET)
+Date: Mon, 23 Feb 2015 19:23:30 +0100
+From: Federico Leva <f...@studenti.unimi.it>
+Subject: Re: [Wikimedia-l] Bye
+In-reply-to: <54EA14B5.2080908@gmail.com>
+To: nemowiki@gmail.com
+Reply-to: f...@studenti.unimi.it
+Message-id: <54EB7022.7000608@studenti.unimi.it>
+MIME-version: 1.0
+Content-type: TEXT/PLAIN
+Content-transfer-encoding: QUOTED-PRINTABLE
+X-AuditID: 9f950a18-b7f536d0000041d7-81-54eb7051d6d7
+X-Brightmail-Tracker:
+ H4sIAAAAAAAAA+NgFjrEIsWRmVeSWpSXmKPExsWyRoKbWzew4HWIwY9fYhZt02YwOzB6rO29
+	xxLAGMVlk5Kak1mWWqRvl8CVsWDbB7aCY8wV/xe9Z2xg/MjUxcjJISFgIrHl2FsWCFtM4sK9
+	9WxdjFwcQgKLGSUmvT7DAuHsYpJ4vfo6O0gVr4CBxMy9M8E6WARUJZ4tnMgGYrMJmEqceXEM
+	zBYS0JR40d8AVi8qECEx/9hrZoheQYkfk+8B9XJwiABtOzopDyQsLCAnMXXmBFaIVg2Jz3vX
+	MoLYnEBjdnSsARvJLGAm8eXlYVYIW15i85q3zBMYBWYhmToLSdksJGULGJlXMQoUp+alpBaZ
+	6JXmZeZm6mWWbGIEBt78qVwSOxhnrLY5xCjAwajEw3sj/1WIEGtiWXFl7iFGSQ4mJVFe/bzX
+	IUJ8SfkplRmJxRnxRaU5qcWHGCU4mJVEeCPTgXK8KYmVValF+TApGQ4OJQlexnyglGBRanpq
+	RVpmDjC+YNJMHJwg7TxA7SogNbzFBYm5xZnpEPlTjLocC9r3z2QSYsnLz0uVEudlACkSACnK
+	KM2DmwOK+lijRrVXjOJAhwvzCoJU8QATBtykV0BLmICW7Hn8CmRJSSJCSqqBsfdOuF/ZlqdC
+	3S8PaH2b8kPCYuKR/QsE3SzCgy5x7msNEXmzi9Fd6luGqVckw2lxhz0Ss7gny0gdm8p16J5K
+	PNei07OYSpcn9/Pen7m+0MA9Uqcl4ILrlsbNcxKm39/RZDFTTlX95HedX+5HP/T91TGbx2Sw
+	8H32nENz+3xWrzv7uISDN6Y0V4mlOCPRUIu5qDgRAC7LUvvVAgAA
+References: <54EA14B5.2080908@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101
+ Thunderbird/31.4.0
+
+
+
+--Boundary_(ID_QjvPjmbUpV9wyXyvrbHROQ)--
