@@ -104,7 +104,7 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 		// of the message for a SMTP status code
 		if ( !isset( $emailHeaders['status'] ) && !isset( $emailHeaders['x-failed-recipients'] ) ) {
 			foreach ( $emailLines as $emailLine ) {
-				if ( preg_match( '/^\s*(?:(?P<smtp>[1-5]\d{2})[^\d\w.]+)?' .
+				if ( preg_match( '/\s+(?:(?P<smtp>[1-5]\d{2}).)?' .
 					'(?P<status>[245]\.\d{1,3}\.\d{1,3})?\b/', $emailLine, $statusMatch ) ) {
 					if ( isset( $statusMatch['smtp'] ) ) {
 						$emailHeaders['smtp-code'] = $statusMatch['smtp'];

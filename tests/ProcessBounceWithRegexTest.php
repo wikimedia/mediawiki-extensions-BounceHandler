@@ -22,6 +22,7 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 		$email1 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus1' );
 		$email2 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus2' );
 		$email3 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus3' );
+		$email4 = file_get_contents( __DIR__ .'/bounce_emails/oracle7' );
 
 		return array(
 			array(
@@ -41,7 +42,13 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 				'date' => 'Wed, 03 Dec 2014 16:00:19 +0000',
 				'subject' => 'Mail delivery failed: returning message to sender',
 				'smtp-code' => '550' )
-			)
+			),
+			array(
+				$email4, array( 'to' => 'f...@studenti.unimi.it',
+				'date' => 'Tue, 24 Feb 2015 07:24:17 +0100',
+				'subject' => 'Delayed Mail (still being retried)',
+				'smtp-code' => '421' )
+			),
 		);
 	}
 
