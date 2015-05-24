@@ -1,0 +1,70 @@
+{
+	"name": "BounceHandler",
+	"version": "1.0",
+	"author": [
+		"Tony Thomas",
+		"Kunal Mehta",
+		"Jeff Green"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:BounceHandler",
+	"descriptionmsg": "bouncehandler-desc",
+	"license-name": "GPL-2.0+",
+	"type": "other",
+	"APIModules": {
+		"bouncehandler": "ApiBounceHandler"
+	},
+	"AutoloadClasses": {
+		"BounceHandlerHooks": "BounceHandlerHooks.php",
+		"ApiBounceHandler": "includes/ApiBounceHandler.php",
+		"BounceHandlerJob": "includes/BounceHandlerJob.php",
+		"ProcessBounceEmails": "includes/ProcessBounceEmails.php",
+		"BounceHandlerActions": "includes/BounceHandlerActions.php",
+		"ProcessUnRecognizedBounces": "includes/ProcessUnRecognizedBounces.php",
+		"ProcessBounceWithRegex": "includes/ProcessBounceWithRegex.php",
+		"VerpAddressGenerator": "includes/VerpAddressGenerator.php",
+		"PruneOldBounceRecords": "includes/PruneOldBounceRecords.php"
+	},
+	"config": {
+		"BounceHandlerCluster": false,
+		"BounceHandlerInternalIPs": [
+			"127.0.0.1",
+			"::1"
+		],
+		"BounceHandlerSharedDB": false,
+		"BounceHandlerUnconfirmUsers": false,
+		"BounceRecordLimit": 10,
+		"BounceRecordMaxAge": 5184000,
+		"BounceRecordPeriod": 604800,
+		"GenerateVERP": true,
+		"UnrecognizedBounceNotify": null,
+		"VERPAcceptTime": 259200,
+		"VERPalgorithm": "md5",
+		"VERPdomainPart": null,
+		"VERPprefix": "wiki",
+		"VERPsecret": "MediawikiVERP"
+	},
+	"ExtensionFunctions": [
+		"BounceHandlerHooks::extensionFunction"
+	],
+	"Hooks": {
+		"UserMailerChangeReturnPath": [
+			"BounceHandlerHooks::onVERPAddressGenerate"
+		],
+		"UnitTestsList": [
+			"BounceHandlerHooks::registerUnitTests"
+		],
+		"LoadExtensionSchemaUpdates": [
+			"BounceHandlerHooks::loadExtensionSchemaUpdates"
+		]
+	},
+	"JobClasses": {
+		"BounceHandlerJob": "BounceHandlerJob"
+	},
+	"MessagesDirs": {
+		"BounceHandler": [
+			"i18n"
+		]
+	},
+	"manifest_version": 1
+
+}
