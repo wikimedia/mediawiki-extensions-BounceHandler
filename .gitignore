@@ -20,11 +20,6 @@ project.index
 sublime-*
 sftp-config.json
 
-# Composer
-/vendor
-/composer.lock
-/composer.json
-
 # MediaWiki UI documentation
 /docs/kss/static
 
