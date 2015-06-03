@@ -102,27 +102,14 @@ class BounceHandlerActions {
 				);
 			}
 		} else {
-			// Handle the local account email status
-			$this->unConfirmUserEmail( $user );
-		}
-	}
-
-	/**
-	 * Perform the un-subscribe email action on a given bounced local user
-	 *
-	 * @param User $user
-	 */
-	public function unConfirmUserEmail( User $user ) {
-		$userEmail = $user->getEmail();
-		$res = $user->invalidateEmail();
-		$user->saveSettings();
-		if ( $res ) {
+			// Invalidate the email-id of a local user
+			$user->setEmailAuthenticationTimestamp( null );
+			$user->saveSettings();
 			wfDebugLog( 'BounceHandler',
-				"Un-subscribed $userEmail for exceeding Bounce limit $this->bounceRecordLimit"
+				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit"
 			);
-		} else {
-			wfDebugLog( 'BounceHandler', "Failed to un-subscribe the failing recipient $userEmail" );
 		}
+
 	}
 
 }
