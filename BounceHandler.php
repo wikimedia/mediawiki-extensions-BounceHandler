@@ -36,7 +36,6 @@ $wgAutoloadClasses['BounceHandlerJob'] = $dir. '/includes/BounceHandlerJob.php';
 $wgAutoloadClasses['ProcessBounceEmails'] = $dir. '/includes/ProcessBounceEmails.php';
 $wgAutoloadClasses['BounceHandlerActions'] = $dir. '/includes/BounceHandlerActions.php';
 $wgAutoloadClasses['ProcessUnRecognizedBounces'] = $dir. '/includes/ProcessUnRecognizedBounces.php';
-$wgAutoloadClasses['ProcessBounceWithPlancake'] = $dir. '/includes/ProcessBounceWithPlancake.php';
 $wgAutoloadClasses['ProcessBounceWithRegex'] = $dir. '/includes/ProcessBounceWithRegex.php';
 $wgAutoloadClasses['VerpAddressGenerator'] = $dir. '/includes/VerpAddressGenerator.php';
 $wgAutoloadClasses['PruneOldBounceRecords'] = $dir. '/includes/PruneOldBounceRecords.php';
@@ -92,8 +91,3 @@ $wgBounceHandlerSharedDB = false;
 
 # Maximum time in seconds until which a bounce record should be stored in the table
 $wgBounceRecordMaxAge = 5184000; //60 * 24 * 60 *60  ( 60 Days time in seconds )
-
-// Local composer install during development
-if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	require_once __DIR__ . '/vendor/autoload.php';
-}

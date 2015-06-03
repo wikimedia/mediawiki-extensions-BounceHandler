@@ -11,13 +11,6 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 		parent::setUp();
 	}
 
-	public static function provideBounceEmails() {
-		$email = file_get_contents( __DIR__ .'/bounce_emails/email2' );
-		return array (
-			array ( $email )
-		);
-	}
-
 	public static function provideBounceStatusEmails() {
 		$email1 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus1' );
 		$email2 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus2' );
@@ -50,23 +43,6 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 				'smtp-code' => '421' )
 			),
 		);
-	}
-
-	/**
-	 * @dataProvider provideBounceEmails
-	 * @param $email
-	 */
-	function testExtractHeaders( $email ) {
-		if ( !class_exists( 'PlancakeEmailParser' ) ) {
-			$this->markTestSkipped( "This test requires the Plancake Email Parser library" );
-		}
-		$regexClass = new ProcessBounceWithRegex;
-		$regexResult = $regexClass->extractHeaders( $email );
-
-		$plancakeClass = new ProcessBounceWithPlancake;
-		$plancakeResult = $plancakeClass->extractHeaders( $email );
-
-		$this->assertArrayEquals( $regexResult, $plancakeResult );
 	}
 
 	/**

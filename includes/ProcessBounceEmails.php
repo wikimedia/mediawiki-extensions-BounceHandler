@@ -11,23 +11,19 @@
  */
 abstract class ProcessBounceEmails {
 	/**
-	 * Recieves an email from the Job queue and process it
+	 * Receive an email from the job queue and process it
 	 *
 	 * @param string $email
 	 */
 	abstract public function handleBounce( $email );
 
 	/**
-	 * Generates ProcessBounceEmails checking existence of external libraries
+	 * Generates bounce email processor
 	 *
-	 * @return ProcessBounceEmails
+	 * @return ProcessBounceWithRegex
 	 */
 	public static function getProcessor() {
-		if ( !class_exists( 'PlancakeEmailParser' ) ) {
-		 	$bounceProcessor = new ProcessBounceWithRegex();
-		} else {
-			$bounceProcessor = new ProcessBounceWithPlancake();
-		}
+	        $bounceProcessor = new ProcessBounceWithRegex();
 		return $bounceProcessor;
 	}
 
