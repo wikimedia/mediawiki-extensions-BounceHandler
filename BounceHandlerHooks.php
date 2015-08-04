@@ -104,4 +104,50 @@ class BounceHandlerHooks {
 
 		return true;
 	}
+
+	/**
+	 * Add BounceHandler events to Echo
+	 *
+	 * @param array $notifications Echo notifications
+	 * @return bool
+	 */
+	public static function onBeforeCreateEchoEvent( array &$notifications ) {
+		$notifications['unsubscribe-bouncehandler'] = array(
+			'primary-link' => array(
+				'message' => 'notification-link-text-change-email',
+				'destination' => 'change-email'
+			),
+			'formatter-class' => 'EchoBounceHandlerFormatter',
+			'category' => 'system',
+			'title-message' => 'notification-bouncehandler',
+			'title-params' => array( 'user' ),
+			'flyout-message' => 'notification-bouncehandler-flyout',
+			'flyout-params' => array( 'failed-email', 'user' ),
+		);
+
+		return true;
+	}
+
+	/**
+	 * Add user to be notified on echo event
+	 *
+	 * @param EchoEvent $event
+	 * @param User[] $users
+	 * @return bool
+	 */
+	public static function onEchoGetDefaultNotifiedUsers( EchoEvent $event, array &$users ) {
+		if ( $event->getExtraParam( 'failed-user-id' ) === null ) {
+			return true;
+		}
+		$extra = $event->getExtra();
+		$eventType = $event->getType();
+		if ( $eventType === 'unsubscribe-bouncehandler' ) {
+			$recipientId = $extra['failed-user-id'];
+			$recipient = User::newFromId( $recipientId );
+			$users[$recipientId] = $recipient;
+		}
+
+		return true;
+	}
+
 }
