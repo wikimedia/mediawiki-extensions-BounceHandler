@@ -3,12 +3,16 @@
 		"authors": [
 			"Metalhead64",
 			"Tiin",
-			"Kghbln"
+			"Kghbln",
+			"Lib2know"
 		]
 	},
 	"bouncehandler-desc": "Hilft bei der Handhabung von E-Mail-Rückläufern",
 	"bouncehandler-notify_subject": "Rücksendung eines temporären Rückläufers",
 	"apihelp-bouncehandler-example-1": "Ruft eine Rückläufer-E-Mail zur Verarbeitung mit dem Inhalt „Dies ist eine Test-E-Mail“ ab.",
 	"apihelp-bouncehandler-description": "Ruft eine Rückläufer-E-Mail ab und verarbeitet sie zur Bearbeitung des fehlgeschlagenen Empfängers.",
-	"apihelp-bouncehandler-param-email": "Der E-Mail-Rückläufer."
+	"apihelp-bouncehandler-param-email": "Der E-Mail-Rückläufer.",
+	"notification-bouncehandler": "{{GENDER:$1|Deine}} registrierte E-Mail-Adresse ist nicht mehr gültig.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Deine}} registrierte E-Mail-Adresse $1 wurde abgemeldet, da mehrere Nachrichtenversendungen fehlschlugen. Du kannst [[Special:ConfirmEmail|erneut {{GENDER:$2|deine}} E-Mail-Adresse verifizieren]].",
+	"notification-link-text-change-email": "Deine E-Mail-Adresse ändern"
 }

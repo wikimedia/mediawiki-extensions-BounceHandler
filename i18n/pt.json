@@ -4,5 +4,8 @@
 			"Vitorvicentevalente"
 		]
 	},
-	"bouncehandler-desc": "Ajuda no tratamento de correio eletrónico para o MediaWiki"
+	"bouncehandler-desc": "Ajuda no tratamento de correio eletrónico para o MediaWiki",
+	"notification-bouncehandler": "O {{GENDER:$1|seu}} endereço de correio eletrónico registado é inválido.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|O}} registo do seu endereço de correio eletrónico $1 foi cancelado devido a várias falhas na entrega de mensagens. Pode [[Special:ConfirmEmail|verificar-{{GENDER:$2|lo}} novamente]].",
+	"notification-link-text-change-email": "Alterar o seu endereço de correio eletrónico"
 }

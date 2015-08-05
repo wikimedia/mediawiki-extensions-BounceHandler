@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrumps"
+		]
+	},
+	"notification-bouncehandler": "{{GENDER:$1|Twój}} zarejestrowany adres e-mail stracił ważność.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Twój}} zarejestrowany adres e-mail $1 został wypisany z powodu na wiele niepowodzeń dostarczania wiadomości. Możesz [[Special:ConfirmEmail|potwierdzić {{GENDER:$2|swój}} adres e-mail ponownie]].",
+	"notification-link-text-change-email": "Zmień swój adres e‐mail"
+}

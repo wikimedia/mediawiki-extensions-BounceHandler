@@ -8,5 +8,8 @@
 	"bouncehandler-notify_subject": "Renvoi d’un rebond temporaire",
 	"apihelp-bouncehandler-example-1": "Recevoir un courriel de rejet pour traitement avec le contenu « Ceci est un courriel de test ».",
 	"apihelp-bouncehandler-description": "Recevoir un courriel de rejet et le traiter pour gérer le destinataire erroné.",
-	"apihelp-bouncehandler-param-email": "Le courriel rejeté."
+	"apihelp-bouncehandler-param-email": "Le courriel rejeté.",
+	"notification-bouncehandler": "{{GENDER:$1|Votre}} adresse de courriel enregistrée n’est plus valide.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Votre}} adresse de courriel enregistrée $1 a été désinscrite suite à de multiples échecs de livraison de message. Vous pouvez [[Special:ConfirmEmail|vérifier de nouveau {{GENDER:$2|votre}} adresse de courriel]].",
+	"notification-link-text-change-email": "Modifier votre adresse de courriel"
 }
