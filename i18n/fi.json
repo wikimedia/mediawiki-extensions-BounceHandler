@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pitke"
+		]
+	},
+	"notification-bouncehandler": "Sähköpostiosoiteteesi ei ole enää voimassa.",
+	"notification-link-text-change-email": "Vaihda sähköpostiosoitteesi"
+}

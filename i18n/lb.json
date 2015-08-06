@@ -4,5 +4,6 @@
 			"Robby"
 		]
 	},
-	"apihelp-bouncehandler-param-email": "Déi refuséiert E-Mail."
+	"apihelp-bouncehandler-param-email": "Déi refuséiert E-Mail.",
+	"notification-link-text-change-email": "Ännert Är E-Mail-Adress"
 }
