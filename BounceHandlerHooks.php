@@ -12,10 +12,14 @@ class BounceHandlerHooks {
 	 * Function run on startup in $wgExtensionFunctions
 	 */
 	public static function extensionFunction() {
-		global $wgNoReplyAddress, $wgServerName, $wgUnrecognizedBounceNotify, $wgVERPdomainPart;
+		global $wgNoReplyAddress, $wgServerName, $wgUnrecognizedBounceNotify, $wgVERPdomainPart,
+		       $wgEchoDefaultNotificationTypes;
 
 		$wgUnrecognizedBounceNotify = $wgUnrecognizedBounceNotify ? : array( $wgNoReplyAddress );
 		$wgVERPdomainPart = $wgVERPdomainPart ? : $wgServerName;
+
+		//We cannot have additional Echo emails being sent after a user is un-subscribed
+		$wgEchoDefaultNotificationTypes['unsubscribe-bouncehandler']['email'] = false;
 	}
 
 	/**
