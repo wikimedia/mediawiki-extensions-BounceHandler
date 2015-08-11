@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Statix64"
 		]
 	},
 	"bouncehandler-desc": "Aiuta nella gestione delle email di ritorno per MediaWiki",
-	"bouncehandler-notify_subject": "Ritorno di un messaggio di errore temporaneo"
+	"bouncehandler-notify_subject": "Ritorno di un messaggio di errore temporaneo",
+	"notification-link-text-change-email": "Cambia il tuo indirizzo email"
 }
