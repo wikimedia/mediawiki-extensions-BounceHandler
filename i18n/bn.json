@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aftabuzzaman"
+		]
+	},
+	"notification-bouncehandler": "{{GENDER:$1|আপনার}} নিবন্ধীকৃত ইমেল ঠিকানা আর বৈধ নয়।",
+	"notification-link-text-change-email": "আপনার ইমেইল ঠিকানা পরিবর্তন করুন"
+}
