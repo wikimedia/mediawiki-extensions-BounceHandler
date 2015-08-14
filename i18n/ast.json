@@ -8,5 +8,8 @@
 	"bouncehandler-notify_subject": "Devolviendo'l rebote temporal",
 	"apihelp-bouncehandler-example-1": "Recibir un corréu electrónicu rebotáu pa procesar col conteníu «Esti ye un corréu electrónicu de prueba\".",
 	"apihelp-bouncehandler-description": "Recibir un corréu electrónicu rebotáu y procesalu pa xestionar el receptor fallíu.",
-	"apihelp-bouncehandler-param-email": "El corréu electrónicu rebotáu."
+	"apihelp-bouncehandler-param-email": "El corréu electrónicu rebotáu.",
+	"notification-bouncehandler": "La {{GENDER:$1|to}} direición rexistrada de corréu electrónicu yá nun ye válida.",
+	"notification-bouncehandler-flyout": "La {{GENDER:$2|to}} direición rexistrada de corréu electrónicu $1 desuscribióse pola mor de múltiples fallos na entrega de mensaxes. Puedes [[Special:ConfirmEmail|volver a comprobar la direición de corréu electrónicu]].",
+	"notification-link-text-change-email": "Cambiar la to direición de corréu electrónicu"
 }
