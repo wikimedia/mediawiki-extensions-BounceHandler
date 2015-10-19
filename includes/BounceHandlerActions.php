@@ -140,6 +140,7 @@ class BounceHandlerActions {
 				wfDebugLog( 'BounceHandler',
 					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit"
 				);
+				RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.global' );
 			}
 		} else {
 			// Invalidate the email-id of a local user
@@ -149,6 +150,7 @@ class BounceHandlerActions {
 			wfDebugLog( 'BounceHandler',
 				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit"
 			);
+			RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.local' );
 		}
 
 	}
