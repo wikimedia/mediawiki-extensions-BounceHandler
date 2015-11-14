@@ -36,6 +36,7 @@ class BounceHandlerActions {
 	 * @param int $bounceRecordPeriod Time period for which bounce activities are considered before un-subscribing
 	 * @param int $bounceRecordLimit The number of bounce allowed in the bounceRecordPeriod.
 	 * @param bool $bounceHandlerUnconfirmUsers Enable/Disable user un-subscribe action
+	 * @throws Exception
 	 */
 	public function __construct( $wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers ) {
 		if ( $wikiId !== wfWikiID() ) {
@@ -135,7 +136,7 @@ class BounceHandlerActions {
 		// Handle the central account email status (if applicable)
 		if ( class_exists( 'CentralAuthUser') ) {
 			$caUser = CentralAuthUser::getInstance( $user );
-			if ( $caUser->isAttached( $this->wikiId ) ) {
+			if ( $caUser->isAttached() ) {
 				$caUser->setEmailAuthenticationTimestamp( null );
 				$caUser->saveSettings();
 				$this->notifyGlobalUser( $bounceUserId, $originalEmail );

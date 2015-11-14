@@ -77,8 +77,12 @@ abstract class ProcessBounceEmails {
 				$pruneOldRecords->pruneOldRecords( $wikiId );
 			}
 
-			$takeBounceActions = new BounceHandlerActions( $wikiId,
-				$wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers );
+			$takeBounceActions = new BounceHandlerActions(
+				$wikiId,
+				$wgBounceRecordPeriod,
+				$wgBounceRecordLimit,
+				$wgBounceHandlerUnconfirmUsers
+			);
 			$takeBounceActions->handleFailingRecipient( $failedUser, $emailHeaders );
 			return true;
 		} else {
@@ -108,14 +112,20 @@ abstract class ProcessBounceEmails {
 		$hashedVERPPart = explode( '-', $hashedPart[1] );
 		// This would ensure that indexes 0 - 4 in $hashedVERPPart is set
 		if ( isset( $hashedVERPPart[4] ) ) {
-			$hashedData = $hashedVERPPart[0] . '-' . $hashedVERPPart[1] . '-' . $hashedVERPPart[2] . '-' . $hashedVERPPart[3];
+			$hashedData = $hashedVERPPart[0] . '-' . $hashedVERPPart[1] .
+				'-' . $hashedVERPPart[2] . '-' . $hashedVERPPart[3];
 		} else {
-			wfDebugLog( 'BounceHandler', "Error: Received malformed VERP address: $hashedPart[1], cannot extract details." );
+			wfDebugLog(
+				'BounceHandler',
+				"Error: Received malformed VERP address: $hashedPart[1], cannot extract details."
+			);
 			return array();
 		}
 		$bounceTime = base_convert( $hashedVERPPart[3], 36, 10 );
 		// Check if the VERP hash is valid
-		if ( base64_encode( substr( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ), 0, 12 ) ) === $hashedVERPPart[4]
+		if ( base64_encode(
+				substr( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ), 0, 12 )
+			) === $hashedVERPPart[4]
 			&& $currentTime - $bounceTime < $wgVERPAcceptTime
 		) {
 			$failedUser['wikiId'] = str_replace( '.', '-', $hashedVERPPart[1] );
@@ -139,8 +149,8 @@ abstract class ProcessBounceEmails {
 	 * @return string $rawEmail The emailId of the failing recipient
 	 */
 	public function getOriginalEmail( $failedUser ) {
-		// In multiple wiki deployed case, the $wikiId can help correctly identify the user after looking up in
-		// the required database.
+		// In multiple wiki deployed case, the $wikiId can help correctly
+		// identify the user after looking up in the required database.
 		$wikiId = $failedUser['wikiId'];
 		$rawUserId = $failedUser['rawUserId'];
 		$lb = wfGetLB( $wikiId );

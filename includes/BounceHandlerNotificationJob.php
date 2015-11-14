@@ -22,7 +22,12 @@ class BounceHandlerNotificationJob extends Job {
 		$bounceHandlerUnconfirmUsers = $this->params['bounceHandlerUnconfirmUsers'];
 
 		if ( $failedUserEmailAddress && $failedUserId ) {
-			$unsubscribeNotification = new BounceHandlerActions( $wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers );
+			$unsubscribeNotification = new BounceHandlerActions(
+				$wikiId,
+				$bounceRecordPeriod,
+				$bounceRecordLimit,
+				$bounceHandlerUnconfirmUsers
+			);
 			$unsubscribeNotification->createEchoNotification( $failedUserId, $failedUserEmailAddress );
 		}
 

@@ -47,7 +47,8 @@ class VerpAddressGenerator {
 	/**
 	 * Generate VERP address
 	 * The generated hash is cut down to 12 ( 96 bits ) instead of the full 120 bits.
-	 * For attacks attempting to recover the hmac key, this makes the attackers job harder by giving them less information to work from.
+	 * For attacks attempting to recover the hmac key, this makes the attackers job harder by giving
+	 * them less information to work from.
 	 * This makes brute force attacks easier. An attacker would be able to brute force the signature by
 	 * sending an average of 2^95 emails to us. We would (hopefully) notice that.
 	 * This would make finding a collision slightly easier if the secret key was known,
@@ -66,9 +67,12 @@ class VerpAddressGenerator {
 		// wikiId-base36( $UserID )-base36( $Timestamp )-hash( $algorithm, $key, $prefix )@$email_domain
 		// We dont want repeating '-' in our WikiId
 		$wikiId = str_replace( '-', '.', wfWikiID() );
-		$email_prefix = $this->prefix. '-'. $wikiId. '-'. base_convert( $uid, 10, 36). '-'. base_convert( $timeNow, 10, 36);
-		$verp_hash = base64_encode( substr( hash_hmac( $this->algorithm, $email_prefix, $this->secretKey, true ), 0, 12 ) );
-		$returnPath = $email_prefix. '-' .$verp_hash. '@' .$email_domain;
+		$email_prefix = $this->prefix . '-' . $wikiId . '-' . base_convert( $uid, 10, 36) .
+			'-' . base_convert( $timeNow, 10, 36);
+		$verp_hash = base64_encode(
+			substr( hash_hmac( $this->algorithm, $email_prefix, $this->secretKey, true ), 0, 12 )
+		);
+		$returnPath = $email_prefix . '-' . $verp_hash . '@' . $email_domain;
 		return $returnPath;
 	}
 }

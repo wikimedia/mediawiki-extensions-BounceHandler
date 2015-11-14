@@ -13,7 +13,7 @@ class BounceHandlerHooks {
 	 */
 	public static function extensionFunction() {
 		global $wgNoReplyAddress, $wgServerName, $wgUnrecognizedBounceNotify, $wgVERPdomainPart,
-		       $wgEchoDefaultNotificationTypes;
+			$wgEchoDefaultNotificationTypes;
 
 		$wgUnrecognizedBounceNotify = $wgUnrecognizedBounceNotify ? : array( $wgNoReplyAddress );
 		$wgVERPdomainPart = $wgVERPdomainPart ? : $wgServerName;
@@ -101,7 +101,7 @@ class BounceHandlerHooks {
 	 * @return bool
 	 */
 	public static function LoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		$updater->addExtensionTable( 'bounce_records', __DIR__ . '/sql/bounce_records.sql', true );
+		$updater->addExtensionTable( 'bounce_records', __DIR__ . '/sql/bounce_records.sql' );
 		$updater->modifyExtensionField( 'bounce_records', 'br_user', __DIR__ . '/sql/alter_user_column.sql' );
 		$updater->addExtensionIndex( 'bounce_records', 'br_mail_timestamp', __DIR__ .'/sql/create_index_mail_timestamp.sql' );
 		$updater->addExtensionIndex( 'bounce_records', 'br_timestamp', __DIR__ .'/sql/create_index_timestamp.sql' );
