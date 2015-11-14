@@ -43,8 +43,6 @@ class ProcessUnRecognizedBounces {
 				$to[] = new MailAddress( $notifyEmails );
 			}
 			UserMailer::send( $to, $sender, $subject, $email, $sender );
-		} else {
-			wfDebugLog( 'BounceHandler', "Cannot send notification to administrators" );
 		}
 	}
 }
