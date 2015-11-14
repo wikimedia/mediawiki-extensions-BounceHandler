@@ -61,7 +61,7 @@ abstract class ProcessBounceEmails {
 		) {
 			$wikiId = $failedUser['wikiId'];
 			$originalEmail = $failedUser['rawEmail'];
-			$bounceTimestamp= $failedUser['bounceTime'];
+			$bounceTimestamp = $failedUser['bounceTime'];
 			$dbw = self::getBounceRecordDB( DB_MASTER, $wikiId );
 
 			$rowData = array(
@@ -79,7 +79,7 @@ abstract class ProcessBounceEmails {
 
 			$takeBounceActions = new BounceHandlerActions( $wikiId,
 				$wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers );
-			$takeBounceActions->handleFailingRecipient( $failedUser );
+			$takeBounceActions->handleFailingRecipient( $failedUser, $emailHeaders );
 			return true;
 		} else {
 			wfDebugLog( 'BounceHandler', "Error: Failed to extract user details from verp address $to " );

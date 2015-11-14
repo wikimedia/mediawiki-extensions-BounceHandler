@@ -53,9 +53,10 @@ class BounceHandlerActions {
 	 * Perform actions on users who failed to receive emails in a given period
 	 *
 	 * @param array $failedUser The details of the failing user
+	 * @param array $emailHeaders Email headers
 	 * @return bool
 	 */
-	public function handleFailingRecipient( array $failedUser ) {
+	public function handleFailingRecipient( array $failedUser, $emailHeaders ) {
 		if ( $this->bounceHandlerUnconfirmUsers ) {
 			$originalEmail = $failedUser['rawEmail'];
 			$bounceValidPeriod = time() - $this->bounceRecordPeriod; // Unix
@@ -73,7 +74,7 @@ class BounceHandlerActions {
 			);
 
 			if ( $totalBounces >= $this->bounceRecordLimit ) {
-				$this->unSubscribeUser( $failedUser );
+				$this->unSubscribeUser( $failedUser, $emailHeaders );
 			}
 		}
 
@@ -87,7 +88,7 @@ class BounceHandlerActions {
 	 * @param string $email un-subscribed email address used in notification
 	 */
 	public function createEchoNotification( $userId, $email ) {
-		if ( class_exists('EchoEvent') ) {
+		if ( class_exists( 'EchoEvent' ) ) {
 			EchoEvent::create( array(
 				'type' => 'unsubscribe-bouncehandler',
 				'extra' => array(
@@ -123,8 +124,9 @@ class BounceHandlerActions {
 	 * Function to Un-subscribe a failing recipient
 	 *
 	 * @param array $failedUser The details of the failing user
+	 * @param array $emailHeaders Email headers
 	 */
-	public function unSubscribeUser( array $failedUser ) {
+	public function unSubscribeUser( array $failedUser, $emailHeaders ) {
 		//Un-subscribe the user
 		$originalEmail = $failedUser['rawEmail'];
 		$bounceUserId = $failedUser['rawUserId'];
@@ -138,7 +140,8 @@ class BounceHandlerActions {
 				$caUser->saveSettings();
 				$this->notifyGlobalUser( $bounceUserId, $originalEmail );
 				wfDebugLog( 'BounceHandler',
-					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit"
+					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit.\nHeaders:\n" .
+						implode( '\n', $emailHeaders )
 				);
 				RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.global' );
 			}
@@ -148,7 +151,8 @@ class BounceHandlerActions {
 			$user->saveSettings();
 			$this->createEchoNotification( $bounceUserId, $originalEmail );
 			wfDebugLog( 'BounceHandler',
-				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit"
+				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit.\nHeaders:\n" .
+						implode( '\n', $emailHeaders )
 			);
 			RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.local' );
 		}
