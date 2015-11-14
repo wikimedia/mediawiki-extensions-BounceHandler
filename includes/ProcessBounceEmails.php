@@ -23,7 +23,7 @@ abstract class ProcessBounceEmails {
 	 * @return ProcessBounceWithRegex
 	 */
 	public static function getProcessor() {
-	        $bounceProcessor = new ProcessBounceWithRegex();
+		$bounceProcessor = new ProcessBounceWithRegex();
 		return $bounceProcessor;
 	}
 
