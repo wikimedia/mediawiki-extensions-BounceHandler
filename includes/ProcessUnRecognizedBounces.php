@@ -38,7 +38,7 @@ class ProcessUnRecognizedBounces {
 		$subject = 'bouncehandler-notify_subject';
 		$sender = new MailAddress( $this->passwordSender, wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		$to = array();
-		if ( isset( $this->urecognizedBounceNotify ) ) {
+		if ( isset( $this->unrecognizedBounceNotify ) ) {
 			foreach ( $this->unrecognizedBounceNotify as $notifyEmails ) {
 				$to[] = new MailAddress( $notifyEmails );
 			}
