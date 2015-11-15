@@ -32,13 +32,20 @@ class BounceHandlerActions {
 	protected $bounceHandlerUnconfirmUsers;
 
 	/**
+	 * @var string
+	 */
+	protected $emailRaw;
+
+	/**
 	 * @param string $wikiId The database id of the failing recipient
 	 * @param int $bounceRecordPeriod Time period for which bounce activities are considered before un-subscribing
 	 * @param int $bounceRecordLimit The number of bounce allowed in the bounceRecordPeriod.
 	 * @param bool $bounceHandlerUnconfirmUsers Enable/Disable user un-subscribe action
+	 * @param string $emailRaw The raw bounce Email
 	 * @throws Exception
 	 */
-	public function __construct( $wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers ) {
+	public function __construct( $wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers, $emailRaw
+	) {
 		if ( $wikiId !== wfWikiID() ) {
 			// We want to use the User class methods, which make no sense on the wrong wiki
 			throw new Exception( "BounceHandlerActions constructed for a foreign wiki." );
@@ -48,6 +55,7 @@ class BounceHandlerActions {
 		$this->bounceRecordPeriod = $bounceRecordPeriod;
 		$this->bounceRecordLimit = $bounceRecordLimit;
 		$this->bounceHandlerUnconfirmUsers = $bounceHandlerUnconfirmUsers;
+		$this->emailRaw = $emailRaw;
 	}
 
 	/**
@@ -141,8 +149,8 @@ class BounceHandlerActions {
 				$caUser->saveSettings();
 				$this->notifyGlobalUser( $bounceUserId, $originalEmail );
 				wfDebugLog( 'BounceHandler',
-					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit.\nHeaders:\n" .
-						$this->formatHeaders( $emailHeaders )
+					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit.\nProcessed Headers:\n" .
+						$this->formatHeaders( $emailHeaders ) . "\nBounced Email: \n$this->emailRaw"
 				);
 				RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.global' );
 			}
@@ -152,8 +160,8 @@ class BounceHandlerActions {
 			$user->saveSettings();
 			$this->createEchoNotification( $bounceUserId, $originalEmail );
 			wfDebugLog( 'BounceHandler',
-				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit.\nHeaders:\n" .
-					$this->formatHeaders( $emailHeaders )
+				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit.\nProcessed Headers:\n" .
+					$this->formatHeaders( $emailHeaders ). "\nBounced Email: \n$this->emailRaw"
 			);
 			RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.local' );
 		}

@@ -19,7 +19,7 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 		$emailHeaders = $this->extractHeaders( $email );
 		$to = $emailHeaders['to'];
 
-		$processEmail = $this->processEmail( $emailHeaders );
+		$processEmail = $this->processEmail( $emailHeaders, $email );
 		if ( !$processEmail ){
 			$this->handleUnrecognizedBounces( $email, $to );
 		}

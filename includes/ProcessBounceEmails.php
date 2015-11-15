@@ -31,13 +31,15 @@ abstract class ProcessBounceEmails {
 	 * Process bounce email
 	 *
 	 * @param array $emailHeaders
+	 * @param string $emailRaw
+	 *
 	 * @return bool
 	 */
-	public function processEmail( $emailHeaders ) {
+	public function processEmail( $emailHeaders, $emailRaw ) {
 		// The bounceHandler needs to respond only to permanent failures.
 		$isPermanentFailure = $this->checkPermanentFailure( $emailHeaders );
 		if ( $isPermanentFailure ) {
-			return $this->processBounceHeaders( $emailHeaders );
+			return $this->processBounceHeaders( $emailHeaders, $emailRaw );
 		}
 
 		return false;
@@ -47,9 +49,11 @@ abstract class ProcessBounceEmails {
 	 * Process received bounce emails from Job Queue
 	 *
 	 * @param array $emailHeaders
+	 * @param string $emailRaw
+	 *
 	 * @return bool
 	 */
-	public function processBounceHeaders( $emailHeaders ) {
+	public function processBounceHeaders( $emailHeaders, $emailRaw ) {
 		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers, $wgBounceRecordMaxAge;
 		$to = $emailHeaders['to'];
 		$subject = $emailHeaders['subject'];
@@ -81,7 +85,8 @@ abstract class ProcessBounceEmails {
 				$wikiId,
 				$wgBounceRecordPeriod,
 				$wgBounceRecordLimit,
-				$wgBounceHandlerUnconfirmUsers
+				$wgBounceHandlerUnconfirmUsers,
+				$emailRaw
 			);
 			$takeBounceActions->handleFailingRecipient( $failedUser, $emailHeaders );
 			return true;

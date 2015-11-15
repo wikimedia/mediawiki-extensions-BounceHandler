@@ -46,15 +46,16 @@ class UnSubscribeUserTest extends MediaWikiTestCase {
 		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );
 
+		$emailRaw = "This is a test email for logging purpose only";
 		$emailHeaders['to'] = $encodedAddress;
 		$emailHeaders['subject'] = 'Delivery Failed';
 		$emailHeaders['x-failed-recipients'] = $user->getEmail();
 
 		$decodeVERPwithRegex = new ProcessBounceWithRegex();
-		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders );
-		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders );
-		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders );
-		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders );
+		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders, $emailRaw );
+		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders, $emailRaw );
+		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders, $emailRaw );
+		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders, $emailRaw );
 
 		$newUser = User::newFromId( $uid );
 		$this->assertFalse( $newUser->isEmailConfirmed() );
