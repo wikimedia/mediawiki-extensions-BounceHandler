@@ -142,7 +142,7 @@ class BounceHandlerActions {
 				$this->notifyGlobalUser( $bounceUserId, $originalEmail );
 				wfDebugLog( 'BounceHandler',
 					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit.\nHeaders:\n" .
-						implode( "\n", $emailHeaders )
+						$this->formatHeaders( $emailHeaders )
 				);
 				RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.global' );
 			}
@@ -153,11 +153,27 @@ class BounceHandlerActions {
 			$this->createEchoNotification( $bounceUserId, $originalEmail );
 			wfDebugLog( 'BounceHandler',
 				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit.\nHeaders:\n" .
-						implode( "\n", $emailHeaders )
+					$this->formatHeaders( $emailHeaders )
 			);
 			RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.local' );
 		}
+	}
 
+	/**
+	 * Turns a keyed array into "Key: Value" newline split string
+	 *
+	 * @param array $emailHeaders
+	 * @return string
+	 */
+	private function formatHeaders( $emailHeaders ) {
+		return implode(
+			"\n",
+			array_map(
+				function ( $v, $k ) { return "$k: $v"; },
+				$emailHeaders,
+				array_keys( $emailHeaders )
+			)
+		);
 	}
 
 }
