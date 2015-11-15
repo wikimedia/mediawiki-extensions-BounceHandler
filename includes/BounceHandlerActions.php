@@ -149,7 +149,7 @@ class BounceHandlerActions {
 				$caUser->saveSettings();
 				$this->notifyGlobalUser( $bounceUserId, $originalEmail );
 				wfDebugLog( 'BounceHandler',
-					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit.\nProcessed Headers:\n" .
+					"Un-subscribed global user {$caUser->getName()} <$originalEmail> for exceeding Bounce Limit $this->bounceRecordLimit.\nProcessed Headers:\n" .
 						$this->formatHeaders( $emailHeaders ) . "\nBounced Email: \n$this->emailRaw"
 				);
 				RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.global' );
@@ -160,7 +160,7 @@ class BounceHandlerActions {
 			$user->saveSettings();
 			$this->createEchoNotification( $bounceUserId, $originalEmail );
 			wfDebugLog( 'BounceHandler',
-				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit.\nProcessed Headers:\n" .
+				"Un-subscribed {$user->getName()} <$originalEmail> for exceeding Bounce limit $this->bounceRecordLimit.\nProcessed Headers:\n" .
 					$this->formatHeaders( $emailHeaders ). "\nBounced Email: \n$this->emailRaw"
 			);
 			RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.local' );
