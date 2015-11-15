@@ -142,7 +142,7 @@ class BounceHandlerActions {
 				$this->notifyGlobalUser( $bounceUserId, $originalEmail );
 				wfDebugLog( 'BounceHandler',
 					"Un-subscribed global user $originalEmail for exceeding Bounce Limit $this->bounceRecordLimit.\nHeaders:\n" .
-						implode( '\n', $emailHeaders )
+						implode( "\n", $emailHeaders )
 				);
 				RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.global' );
 			}
@@ -153,7 +153,7 @@ class BounceHandlerActions {
 			$this->createEchoNotification( $bounceUserId, $originalEmail );
 			wfDebugLog( 'BounceHandler',
 				"Un-subscribed $originalEmail for exceeding Bounce limit $this->bounceRecordLimit.\nHeaders:\n" .
-						implode( '\n', $emailHeaders )
+						implode( "\n", $emailHeaders )
 			);
 			RequestContext::getMain()->getStats()->increment( 'bouncehandler.unsub.local' );
 		}
