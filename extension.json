@@ -25,7 +25,8 @@
 		"ProcessBounceWithRegex": "includes/ProcessBounceWithRegex.php",
 		"VerpAddressGenerator": "includes/VerpAddressGenerator.php",
 		"PruneOldBounceRecords": "includes/PruneOldBounceRecords.php",
-		"EchoBounceHandlerFormatter": "includes/EchoBounceHandlerFormatter.php"
+		"EchoBounceHandlerFormatter": "includes/EchoBounceHandlerFormatter.php",
+		"EchoBounceHandlerPresentationModel": "includes/EchoBounceHandlerPresentationModel.php"
 	},
 	"config": {
 		"BounceHandlerCluster": false,
