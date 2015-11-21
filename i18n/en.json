@@ -11,5 +11,6 @@
 	"apihelp-bouncehandler-param-email": "The bounced email.",
 	"notification-bouncehandler": "{{GENDER:$1|Your}} registered email address is no longer valid.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Your}} registered email address $1 has been unsubscribed due to multiple message delivery failures. You can [[Special:ConfirmEmail|verify {{GENDER:$2|your}} email address again]].",
-	"notification-link-text-change-email": "Change your email address"
+	"notification-link-text-change-email": "Change your email address",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Your}} registered email address $3 has been unsubscribed due to multiple message delivery failures. You can verify {{GENDER:$4|your}} email address again."
 }

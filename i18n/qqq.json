@@ -11,5 +11,6 @@
 	"apihelp-bouncehandler-param-email": "{{doc-apihelp-param|bouncehandler|email}}",
 	"notification-bouncehandler": "Title message of Echo notification to notify a user of his/her invalid email address. Parameters:\n* $1 is the username of the user whose email address was unsubscribed. Can be used for GENDER.",
 	"notification-bouncehandler-flyout": "Flyout message of Echo notification to notify the user of his/her invalid email address. Parameters:\n* $1 is the unsubscribed email address of the user.\n* $2 is the username of the user whose email address was unsubscribed. Can be used for GENDER.",
-	"notification-link-text-change-email": "Label of the link that points to Special:ConfirmEmail and Special:ChangeEmail wherein the users are asked to again verify their old email address."
+	"notification-link-text-change-email": "Label of the link that points to Special:ConfirmEmail and Special:ChangeEmail wherein the users are asked to again verify their old email address.",
+	"notification-header-unsubscribe-bouncehandler": "Flyout message of Echo notification to notify the user of his/her invalid email address. Parameters:\n* $1 can't be used (there is no agent).\n* $2 can't be used (there is no agent).\n* $3 is the unsubscribed email address of the user.\n* $4 is the username of the user whose email address was unsubscribed. Can be used for GENDER."
 }

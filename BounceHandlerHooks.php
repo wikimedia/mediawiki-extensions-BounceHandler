@@ -117,6 +117,7 @@ class BounceHandlerHooks {
 	 */
 	public static function onBeforeCreateEchoEvent( array &$notifications ) {
 		$notifications['unsubscribe-bouncehandler'] = array(
+			'presentation-model' => 'EchoBounceHandlerPresentationModel',
 			'primary-link' => array(
 				'message' => 'notification-link-text-change-email',
 				'destination' => 'change-email'
