@@ -11,5 +11,6 @@
 	"apihelp-bouncehandler-param-email": "退回的邮件。",
 	"notification-bouncehandler": "{{GENDER:$1|您}}注册时使用的电子邮件地址不再有效。",
 	"notification-bouncehandler-flyout": "由于多次消息递送的失败，{{GENDER:$2|您}}注册时使用的电子邮件地址$1已被退订。您可以[[Special:ConfirmEmail|再次确认{{GENDER:$2|您}}的电子邮件地址]]。",
-	"notification-link-text-change-email": "更改您的电子邮件地址"
+	"notification-link-text-change-email": "更改您的电子邮件地址",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|您}}注册时使用的电子邮箱地址$3，因为多次消息递送失败，现已退订。您可以再次验证{{GENDER:$4|您}}的电子邮件地址。"
 }

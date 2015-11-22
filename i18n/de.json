@@ -14,5 +14,6 @@
 	"apihelp-bouncehandler-param-email": "Der E-Mail-Rückläufer.",
 	"notification-bouncehandler": "{{GENDER:$1|Deine}} registrierte E-Mail-Adresse ist nicht mehr gültig.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Deine}} registrierte E-Mail-Adresse $1 wurde abgemeldet, da mehrere Nachrichtenversendungen fehlschlugen. Du kannst [[Special:ConfirmEmail|erneut {{GENDER:$2|deine}} E-Mail-Adresse verifizieren]].",
-	"notification-link-text-change-email": "Deine E-Mail-Adresse ändern"
+	"notification-link-text-change-email": "Deine E-Mail-Adresse ändern",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Deine}} registrierte E-Mail-Adresse $3 wurde aufgrund mehrerer Nachrichtenversandfehler ausgetragen. Du kannst erneut {{GENDER:$4|deine}} E-Mail-Adresse verifizieren."
 }
