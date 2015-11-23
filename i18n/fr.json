@@ -11,5 +11,6 @@
 	"apihelp-bouncehandler-param-email": "Le courriel rejeté.",
 	"notification-bouncehandler": "{{GENDER:$1|Votre}} adresse de courriel enregistrée n’est plus valide.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Votre}} adresse de courriel enregistrée $1 a été désinscrite suite à de multiples échecs de livraison de message. Vous pouvez [[Special:ConfirmEmail|vérifier de nouveau {{GENDER:$2|votre}} adresse de courriel]].",
-	"notification-link-text-change-email": "Modifier votre adresse de courriel"
+	"notification-link-text-change-email": "Modifier votre adresse de courriel",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Votre}} adresse de courriel enregistrée $3 a été désabonnée du fait de messages d’erreur de livraison répétées. Vous devriez vérifier de nouveau {{GENDER:$4|votre}} adresse de courriel."
 }
