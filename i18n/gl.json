@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Toliño",
-			"Banjo"
+			"Banjo",
+			"Elisardojm"
 		]
 	},
 	"bouncehandler-desc": "Axuda na xestión dos reenvíos de correos electrónicos en MediaWiki",
@@ -12,5 +13,6 @@
 	"apihelp-bouncehandler-param-email": "O correo electrónico rexeitado.",
 	"notification-bouncehandler": "O {{GENDER:$1|seu}} enderezo de correo electrónico rexistrado xa non é válido.",
 	"notification-bouncehandler-flyout": "O {{GENDER:$2|seu}} enderezo de correo electrónico rexistrado $1 viu cancelada a subscrición debido a múltiples mensaxes de erro de envío. Pode [[Special:ConfirmEmail|verificar o {{GENDER:$2|seu}} enderezo de correo electrónico de novo]].",
-	"notification-link-text-change-email": "Cambiar o seu enderezo de correo electrónico"
+	"notification-link-text-change-email": "Cambiar o seu enderezo de correo electrónico",
+	"notification-header-unsubscribe-bouncehandler": "O {{GENDER:$4|seu}} enderezo de correo electrónico rexistrado $3 viu cancelada a subscrición debido a múltiples mensaxes de erro de envío. Pode verificar de novo o {{GENDER:$4|seu}} enderezo de correo electrónico."
 }

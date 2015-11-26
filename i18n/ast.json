@@ -11,5 +11,6 @@
 	"apihelp-bouncehandler-param-email": "El corréu electrónicu rebotáu.",
 	"notification-bouncehandler": "La {{GENDER:$1|to}} direición rexistrada de corréu electrónicu yá nun ye válida.",
 	"notification-bouncehandler-flyout": "La {{GENDER:$2|to}} direición rexistrada de corréu electrónicu $1 desuscribióse pola mor de múltiples fallos na entrega de mensaxes. Puedes [[Special:ConfirmEmail|volver a comprobar la direición de corréu electrónicu]].",
-	"notification-link-text-change-email": "Cambiar la to direición de corréu electrónicu"
+	"notification-link-text-change-email": "Cambiar la to direición de corréu electrónicu",
+	"notification-header-unsubscribe-bouncehandler": "Anulóse la suscripción de {{GENDER:$4|la to}} direición rexistrada de corréu electrónicu $3 pola mor de múltiples fallos na entrega de mensaxes. Puedes comprobar {{GENDER:$4|la to}} direición de corréu electrónicu."
 }
