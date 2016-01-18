@@ -42,7 +42,13 @@ class ProcessUnRecognizedBounces {
 			foreach ( $this->unrecognizedBounceNotify as $notifyEmails ) {
 				$to[] = new MailAddress( $notifyEmails );
 			}
-			UserMailer::send( $to, $sender, $subject, $email, $sender );
+			UserMailer::send(
+				$to,
+				$sender,
+				$subject,
+				$email,
+				array( 'replyTo' => $sender )
+			);
 		}
 	}
 }
