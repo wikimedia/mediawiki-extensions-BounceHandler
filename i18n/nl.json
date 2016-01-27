@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Siebrand"
+			"Siebrand",
+			"Sjoerddebruin"
 		]
 	},
 	"bouncehandler-desc": "Helpt bij het verwerken van teruggestuurde e-mails voor MediaWiki",
 	"bouncehandler-notify_subject": "Retourneren van tijdelijke bounce",
 	"apihelp-bouncehandler-example-1": "Ontvang een bounce e-mail om te verwerken met de inhoud \"This is a test email\".",
 	"apihelp-bouncehandler-description": "Ontvang een bounce e-mail en verwerk deze om de falende ontvanger af te handelen.",
-	"apihelp-bouncehandler-param-email": "De gebouncete e-mail."
+	"apihelp-bouncehandler-param-email": "De gebouncete e-mail.",
+	"notification-link-text-change-email": "Uw e-mailadres wijzigen"
 }
