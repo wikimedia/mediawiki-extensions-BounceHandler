@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki"
+			"Shirayuki",
+			"Otokoume"
 		]
 	},
-	"bouncehandler-desc": "MediaWiki の bounce メール (不達メール) の処理を支援する"
+	"bouncehandler-desc": "MediaWiki の bounce メール (不達メール) の処理を支援する",
+	"notification-bouncehandler": "{{GENDER:$1|あなた}}の登録されたメールアドレスが有効ではありません。",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|あなた}}の登録されたメールアドレス「$1」は、複数のメッセージの送信に失敗しているため、登録が取り消されました。[[Special:ConfirmEmail|もう一度{{GENDER:$2|あなた}}のメールアドレスを確認]]することができます。",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|あなた}}の登録されたメールアドレス「$3」は、複数のメッセージの送信に失敗しているため、登録が取り消されました。もう一度{{GENDER:$4|あなた}}のメールアドレスを確認することができます。"
 }
