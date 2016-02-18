@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата"
+			"Ата",
+			"Piramidion"
 		]
 	},
 	"bouncehandler-desc": "Допомагає в обробці відмов електронної пошти для MediaWiki",
@@ -11,5 +12,6 @@
 	"apihelp-bouncehandler-param-email": "Відхилений ел. лист.",
 	"notification-bouncehandler": "{{GENDER:$1|Ваша}} зареєстрована електронна пошта більше не дійсна.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Ваша}} зареєстрована адреса електронної пошти $1 була відписана через численні невдалі доставки повідомлень. Ви можете [[Special:ConfirmEmail|верифікувати {{GENDER:$2|свою}} електронну пошту знову]].",
-	"notification-link-text-change-email": "Змінити адресу електронної пошти"
+	"notification-link-text-change-email": "Змінити адресу електронної пошти",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Ваша}} зареєстрована адреса електронної пошти  $3 була відписана через численні невдалі доставки повідомлень. Ви можете підтвердити {{GENDER:$4|свою}} адресу електронної пошти ще раз."
 }
