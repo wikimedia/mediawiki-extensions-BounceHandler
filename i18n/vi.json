@@ -11,5 +11,6 @@
 	"apihelp-bouncehandler-param-email": "Thư điện tử bị trả lại.",
 	"notification-bouncehandler": "Địa chỉ thư điện tử đăng ký của {{GENDER:$1}}bạn không còn tác dụng nữa.",
 	"notification-bouncehandler-flyout": "Chúng tôi không còn gửi thư điện tử cho địa chỉ đăng ký của {{GENDER:$2}}bạn, $1, vì nhiều thông điệp đã bị thất bại. Bạn có thể [[Special:ConfirmEmail|xác nhận lại địa chỉ thư điện tử của bạn]].",
-	"notification-link-text-change-email": "Đổi địa chỉ thư điện tử"
+	"notification-link-text-change-email": "Đổi địa chỉ thư điện tử",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4}}Địa chỉ thư điện tử đăng ký $3 đã được bỏ đăng ký vì đã thất bại gửi thông điệp nhiều lần. Bạn có thể xác minh lại địa chỉ thư điện tử của bạn."
 }
