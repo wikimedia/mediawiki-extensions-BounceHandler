@@ -12,14 +12,10 @@ class BounceHandlerHooks {
 	 * Function run on startup in $wgExtensionFunctions
 	 */
 	public static function extensionFunction() {
-		global $wgNoReplyAddress, $wgServerName, $wgUnrecognizedBounceNotify, $wgVERPdomainPart,
-			$wgEchoDefaultNotificationTypes;
+		global $wgNoReplyAddress, $wgServerName, $wgUnrecognizedBounceNotify, $wgVERPdomainPart;
 
 		$wgUnrecognizedBounceNotify = $wgUnrecognizedBounceNotify ? : array( $wgNoReplyAddress );
 		$wgVERPdomainPart = $wgVERPdomainPart ? : $wgServerName;
-
-		//We cannot have additional Echo emails being sent after a user is un-subscribed
-		$wgEchoDefaultNotificationTypes['unsubscribe-bouncehandler']['email'] = false;
 	}
 
 	/**
@@ -124,6 +120,10 @@ class BounceHandlerHooks {
 			),
 			'formatter-class' => 'EchoBounceHandlerFormatter',
 			'category' => 'system',
+
+			//We cannot have additional Echo emails being sent after a user is un-subscribed
+			'notify-type-availability' => array( 'email' => false ),
+
 			'title-message' => 'notification-bouncehandler',
 			'title-params' => array( 'user' ),
 			'flyout-message' => 'notification-bouncehandler-flyout',
