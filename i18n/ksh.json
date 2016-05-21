@@ -11,5 +11,6 @@
 	"apihelp-bouncehandler-param-email": "De retuhr jekumme <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">e-mail</i>.",
 	"notification-bouncehandler": "Ding ennjedrahre Adräß för de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> es nit nih jöltesch.{{GENDER:$1|}}",
 	"notification-bouncehandler-flyout": "Ding ennjedrahre Adräß för de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1</code>“ wohd us de Abbonnänte_eß erus jenumme, weil mer zoh öff nix hen scheke kunnte. Doh kanns se ävver \n[[Special:ConfirmEmail|widder enndrahre lohße]].{{GENDER:$2|}}",
-	"notification-link-text-change-email": "Donn Ding Adräß för de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> ändere"
+	"notification-link-text-change-email": "Donn Ding Adräß för de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> ändere",
+	"notification-header-unsubscribe-bouncehandler": "Ding ennjedrahre Addräß fö_de \n<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> es ußjedrahre woode, weijl et zoh öff ene Fähler beijm afflivvere johv. Di Addräß $3 löht sesch ävver neu beschtähtejje.{{GENDER:$4|}}"
 }
