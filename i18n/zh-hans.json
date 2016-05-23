@@ -5,7 +5,7 @@
 		]
 	},
 	"bouncehandler-desc": "帮助处理MediaWiki的邮件退回",
-	"bouncehandler-notify_subject": "返回暂时下一跳",
+	"bouncehandler-notify_subject": "返回暂时退信",
 	"apihelp-bouncehandler-example-1": "接收带内容“This is a test email”的退回电子邮件以进行处理。",
 	"apihelp-bouncehandler-description": "接收退回的电子邮件并处理它以处理失败的容器。",
 	"apihelp-bouncehandler-param-email": "退回的邮件。",
