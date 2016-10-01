@@ -54,9 +54,6 @@
 		"UserMailerChangeReturnPath": [
 			"BounceHandlerHooks::onVERPAddressGenerate"
 		],
-		"UnitTestsList": [
-			"BounceHandlerHooks::registerUnitTests"
-		],
 		"LoadExtensionSchemaUpdates": [
 			"BounceHandlerHooks::loadExtensionSchemaUpdates"
 		],
