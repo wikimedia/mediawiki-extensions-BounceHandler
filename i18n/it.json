@@ -8,6 +8,6 @@
 	},
 	"bouncehandler-desc": "Aiuta nella gestione delle email di ritorno per MediaWiki",
 	"bouncehandler-notify_subject": "Ritorno di un messaggio di errore temporaneo",
-	"notification-bouncehandler": "{{GENDER:$1|il Tuo}} indirizzo email non è più valido.",
+	"notification-bouncehandler": "{{GENDER:$1|Il tuo}} indirizzo di posta elettronica registrato non è più valido.",
 	"notification-link-text-change-email": "Cambia il tuo indirizzo email"
 }
