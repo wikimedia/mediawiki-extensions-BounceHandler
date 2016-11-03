@@ -23,7 +23,11 @@ class ApiBounceHandler extends ApiBase {
 		}
 		if ( !$inRangeIP ) {
 			wfDebugLog( 'BounceHandler', "POST received from restricted IP $requestIP" );
-			$this->dieUsage( 'This API module is for internal use only.', 'invalid-ip' );
+			if ( is_callable( array( $this, 'dieWithError' ) ) ) {
+				$this->dieWithError( 'apierror-bouncehandler-internalonly', 'invalid-ip' );
+			} else {
+				$this->dieUsage( 'This API module is for internal use only.', 'invalid-ip' );
+			}
 		}
 
 		$params = $this->extractRequestParams();

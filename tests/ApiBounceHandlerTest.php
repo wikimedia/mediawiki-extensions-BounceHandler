@@ -77,10 +77,13 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 *
 	 * @dataProvider provideBounceEmails
 	 * @param $email
-	 * @expectedException UsageException
-	 * @expectedExceptionMessage This API module is for internal use only.
 	 */
 	function testBounceHandlerWithBadIPPasses( $email ) {
+		$this->setExpectedException(
+			class_exists( ApiUsageException::class ) ? ApiUsageException::class : UsageException::class,
+			'This API module is for internal use only.'
+		);
+
 		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '111.111.111.111' ) );
 		$this->doApiRequest( array(
 			'action' => 'bouncehandler',
@@ -90,11 +93,14 @@ class ApiBounceHandlerTest extends ApiTestCase {
 
 	/**
 	 * Tests API request with null 'email' param
-	 *
-	 * @expectedException UsageException
-	 * @expectedExceptionMessage The "email" parameter must be set
 	 */
 	function testBounceHandlerWithNullParams() {
+		if ( class_exists( ApiUsageException::class ) ) {
+			$this->setExpectedException( ApiUsageException::class, 'The "email" parameter must be set.' );
+		} else {
+			$this->setExpectedException( UsageException::class, 'The email parameter must be set' );
+		}
+
 		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
 		$this->doApiRequest( array(
 			'action' => 'bouncehandler',
@@ -108,10 +114,14 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 *
 	 * @dataProvider provideBounceEmails
 	 * @param $email
-	 * @expectedException UsageException
-	 * @expectedExceptionMessage The "email" parameter must be set
 	 */
 	function testBounceHandlerWithWrongParams( $email ) {
+		if ( class_exists( ApiUsageException::class ) ) {
+			$this->setExpectedException( ApiUsageException::class, 'The "email" parameter must be set.' );
+		} else {
+			$this->setExpectedException( UsageException::class, 'The email parameter must be set' );
+		}
+
 		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
 		$this->doApiRequest( array(
 			'action' => 'bouncehandler',
