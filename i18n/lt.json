@@ -4,5 +4,8 @@
 			"Eitvys200"
 		]
 	},
-	"notification-link-text-change-email": "Keisti savo el. pašto adresą"
+	"notification-bouncehandler": "{{GENDER:$1|Jūsų}} registruotas el. pašto adresas nebegalioja.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Jūsų}} registruotas el. pašto adresas $1 buvo išbrauktas iš prenumeratorių sąrašo dėl kelių pranešimų pristatymo klaidų. Galite [[Special:ConfirmEmail|patvirtinti {{GENDER:$2|savo}} el. paštą dar kartą]].",
+	"notification-link-text-change-email": "Keisti savo el. pašto adresą",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Jūsų}} registruotas el. pašto adresas $3 buvo išbrauktas iš prenumeratorių sąrašo dėl kelių pranešimų pristatymo klaidų. Galite patvirtinti {{GENDER:$4|savo}} el. paštą dar kartą."
 }
