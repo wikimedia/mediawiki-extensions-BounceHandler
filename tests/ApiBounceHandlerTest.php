@@ -92,7 +92,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 * Tests API request with null 'email' param
 	 *
 	 * @expectedException UsageException
-	 * @expectedExceptionMessage The email parameter must be set
+	 * @expectedExceptionMessage The "email" parameter must be set
 	 */
 	function testBounceHandlerWithNullParams() {
 		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
@@ -109,7 +109,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 * @dataProvider provideBounceEmails
 	 * @param $email
 	 * @expectedException UsageException
-	 * @expectedExceptionMessage The email parameter must be set
+	 * @expectedExceptionMessage The "email" parameter must be set
 	 */
 	function testBounceHandlerWithWrongParams( $email ) {
 		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
