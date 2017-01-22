@@ -9,6 +9,7 @@
 	"apihelp-bouncehandler-example-1": "Испрати повратно известување по е-пошта за обработка со содржината „Ова е пробно писмо“.",
 	"apihelp-bouncehandler-description": "Испрати повратно известување по е-пошта за обработка за работа со неуспешен прием.",
 	"apihelp-bouncehandler-param-email": "Повратното писмо.",
+	"apierror-bouncehandler-internalonly": "Извршничкиот модул е само за внатрешна употреба.",
 	"notification-bouncehandler": "{{GENDER:$1|Вашата}} регистрирана е-пошта повеќе не е важечка.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Вашата}} регистрирана е-пошта $1 е отстранета поради повеќекратниот неуспех во доставата на пораки. Можете да ја [[Special:ConfirmEmail|потврдите повторно]].",
 	"notification-link-text-change-email": "Смени е-пошта",
