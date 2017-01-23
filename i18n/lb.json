@@ -5,5 +5,6 @@
 		]
 	},
 	"apihelp-bouncehandler-param-email": "Déi refuséiert E-Mail.",
+	"apierror-bouncehandler-internalonly": "Dësen API-Modul ass just fir den interne Gebrauch.",
 	"notification-link-text-change-email": "Ännert Är E-Mail-Adress"
 }

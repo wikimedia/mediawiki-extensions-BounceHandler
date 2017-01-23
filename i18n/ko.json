@@ -2,12 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"아라",
-			"Revi"
+			"Revi",
+			"Ykhwong"
 		]
 	},
 	"bouncehandler-desc": "미디어위키의 이메일 반송을 처리하는 것을 돕습니다",
 	"bouncehandler-notify_subject": "임시 반송을 반환 중",
 	"apihelp-bouncehandler-example-1": "\"This is a test email\" 내용으로 반송된 메일을 받아 처리합니다.",
 	"apihelp-bouncehandler-description": "반송된 이메일을 수신한 후에 수신에 실패한 받는 사람을 위해 메일을 처리합니다.",
-	"apihelp-bouncehandler-param-email": "반송된 이메일입니다."
+	"apihelp-bouncehandler-param-email": "반송된 이메일입니다.",
+	"apierror-bouncehandler-internalonly": "이 API 모듈은 내부 전용입니다."
 }
