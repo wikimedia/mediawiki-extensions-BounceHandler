@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Okras"
+			"Okras",
+			"Alex Great"
 		]
 	},
 	"bouncehandler-desc": "Помогает в обработке возвратов недоставленных сообщений электронной почты для MediaWiki",
-	"bouncehandler-notify_subject": "Возврат временно недоставленных сообщений"
+	"bouncehandler-notify_subject": "Возврат временно недоставленных сообщений",
+	"apierror-bouncehandler-internalonly": "Данный API-модуль только для внутреннего использования."
 }
