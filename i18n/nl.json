@@ -3,7 +3,8 @@
 		"authors": [
 			"Siebrand",
 			"Sjoerddebruin",
-			"Jeleniccz"
+			"Jeleniccz",
+			"Mainframe98"
 		]
 	},
 	"bouncehandler-desc": "Helpt bij het verwerken van teruggestuurde e-mails voor MediaWiki",
@@ -11,6 +12,8 @@
 	"apihelp-bouncehandler-example-1": "Ontvang een bounce e-mail om te verwerken met de inhoud \"This is a test email\".",
 	"apihelp-bouncehandler-description": "Ontvang een bounce e-mail en verwerk deze om de falende ontvanger af te handelen.",
 	"apihelp-bouncehandler-param-email": "De gebouncete e-mail.",
+	"apierror-bouncehandler-internalonly": "Deze API module is alleen voor intern gebruik.",
 	"notification-bouncehandler": "{{GENDER:$1|Uw}} geregistreerd e-mail adres is niet langer geldig.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Uw}} geregistreerd e-mail adres $1 is uitgeschreven door meerdere afleveringsfouten. U kunt [[Special:ConfirmEmail|{{GENDER:$2|uw}} e-mailadres opnieuw verifiëren]].",
 	"notification-link-text-change-email": "Uw e-mailadres wijzigen"
 }
