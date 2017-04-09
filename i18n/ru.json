@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Okras",
-			"Alex Great"
+			"Alex Great",
+			"Mailman"
 		]
 	},
 	"bouncehandler-desc": "Помогает в обработке возвратов недоставленных сообщений электронной почты для MediaWiki",
 	"bouncehandler-notify_subject": "Возврат временно недоставленных сообщений",
-	"apierror-bouncehandler-internalonly": "Данный API-модуль только для внутреннего использования."
+	"apierror-bouncehandler-internalonly": "Данный API-модуль только для внутреннего использования.",
+	"notification-link-text-change-email": "Изменить адрес своей электронной почты"
 }
