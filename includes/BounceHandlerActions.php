@@ -146,7 +146,7 @@ class BounceHandlerActions {
 		$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
 		// Handle the central account email status (if applicable)
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
-			$caUser = CentralAuthUser::getInstance( $user );
+			$caUser = CentralAuthUser::getMasterInstance( $user );
 			if ( $caUser->isAttached() ) {
 				$caUser->setEmailAuthenticationTimestamp( null );
 				$caUser->saveSettings();
