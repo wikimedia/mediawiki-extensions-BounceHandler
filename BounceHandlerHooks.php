@@ -120,7 +120,7 @@ class BounceHandlerHooks {
 			),
 			'formatter-class' => 'EchoBounceHandlerFormatter',
 			'category' => 'system',
-
+			'section' => 'alert',
 			//We cannot have additional Echo emails being sent after a user is un-subscribed
 			'notify-type-availability' => array( 'email' => false ),
 
