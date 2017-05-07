@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hindustanilanguage"
+			"Hindustanilanguage",
+			"Sfic"
 		]
 	},
 	"bouncehandler-desc": "मीडियाविकि द्वारा न पहुँच पा रहे ईमेलों में सहायक है",
 	"bouncehandler-notify_subject": "अस्थाई रूप से वापस सन्देश को लौटाया जा रहा है",
 	"apihelp-bouncehandler-example-1": "लौटाए गए ईमेल को क्रियांवित करने के लिए स्वीकार करना जिसका पाठ है: \"This is a test email\" (यह एक परीक्षण ईमेल है) ।",
 	"apihelp-bouncehandler-description": "लौटाए जा रहे ईमेल को पाना और उसे इस प्रकार क्रियांवित करना कि वह सफल वसूल करने वालों तक पहुँचे।",
-	"apihelp-bouncehandler-param-email": "लौटाया गया ईमेल"
+	"apihelp-bouncehandler-param-email": "लौटाया गया ईमेल",
+	"notification-link-text-change-email": "अपना ई-मेल पता बदलें"
 }
