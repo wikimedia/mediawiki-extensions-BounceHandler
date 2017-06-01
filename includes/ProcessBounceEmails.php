@@ -54,14 +54,16 @@ abstract class ProcessBounceEmails {
 	 * @return bool
 	 */
 	public function processBounceHeaders( $emailHeaders, $emailRaw ) {
-		global $wgBounceRecordPeriod, $wgBounceRecordLimit, $wgBounceHandlerUnconfirmUsers, $wgBounceRecordMaxAge;
+		global $wgBounceRecordPeriod, $wgBounceRecordLimit,
+			$wgBounceHandlerUnconfirmUsers, $wgBounceRecordMaxAge;
+
 		$to = $emailHeaders['to'];
 		$subject = $emailHeaders['subject'];
 
 		// Get original failed user email and wiki details
 		$failedUser = $to ? $this->getUserDetails( $to ) : false;
-		if ( is_array( $failedUser ) && isset( $failedUser['wikiId'] ) && isset( $failedUser['rawEmail'] )
-			&& isset( $failedUser[ 'bounceTime' ] )
+		if ( is_array( $failedUser ) && isset( $failedUser['wikiId'] )
+			&& isset( $failedUser['rawEmail'] ) && isset( $failedUser[ 'bounceTime' ] )
 		) {
 			$wikiId = $failedUser['wikiId'];
 			$originalEmail = $failedUser['rawEmail'];
@@ -91,7 +93,9 @@ abstract class ProcessBounceEmails {
 			$takeBounceActions->handleFailingRecipient( $failedUser, $emailHeaders );
 			return true;
 		} else {
-			wfDebugLog( 'BounceHandler', "Error: Failed to extract user details from verp address $to " );
+			wfDebugLog( 'BounceHandler',
+				"Error: Failed to extract user details from verp address $to"
+			);
 			return false;
 		}
 	}
@@ -111,7 +115,9 @@ abstract class ProcessBounceEmails {
 		$currentTime = wfTimestamp();
 		preg_match( '~(.*?)@~', $hashedEmail, $hashedPart );
 		if ( !isset( $hashedPart[1] ) ) {
-			wfDebugLog( 'BounceHandler', "Error: The received address: $hashedEmail does not match the VERP pattern." );
+			wfDebugLog( 'BounceHandler',
+				"Error: The received address: $hashedEmail does not match the VERP pattern."
+			);
 			return array();
 		}
 		$hashedVERPPart = explode( '-', $hashedPart[1] );
@@ -175,7 +181,9 @@ abstract class ProcessBounceEmails {
 			return $rawEmail;
 		}
 
-		wfDebugLog( 'BounceHandler',"Error fetching email_id of user_id $rawUserId from Database $wikiId." );
+		wfDebugLog( 'BounceHandler',
+			"Error fetching email_id of user_id $rawUserId from Database $wikiId."
+		);
 		return false;
 	}
 
@@ -211,7 +219,8 @@ abstract class ProcessBounceEmails {
 		global $wgUnrecognizedBounceNotify, $wgPasswordSender;
 
 		wfDebugLog( 'BounceHandler', "Received temporary bounce from $to" );
-		$handleUnIdentifiedBounce = new ProcessUnRecognizedBounces( $wgUnrecognizedBounceNotify, $wgPasswordSender );
+		$handleUnIdentifiedBounce = new ProcessUnRecognizedBounces(
+			$wgUnrecognizedBounceNotify, $wgPasswordSender );
 		$handleUnIdentifiedBounce->processUnRecognizedBounces( $email );
 	}
 

@@ -98,9 +98,15 @@ class BounceHandlerHooks {
 	 */
 	public static function LoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$updater->addExtensionTable( 'bounce_records', __DIR__ . '/sql/bounce_records.sql' );
-		$updater->modifyExtensionField( 'bounce_records', 'br_user', __DIR__ . '/sql/alter_user_column.sql' );
-		$updater->addExtensionIndex( 'bounce_records', 'br_mail_timestamp', __DIR__ .'/sql/create_index_mail_timestamp.sql' );
-		$updater->addExtensionIndex( 'bounce_records', 'br_timestamp', __DIR__ .'/sql/create_index_timestamp.sql' );
+		$updater->modifyExtensionField(
+			'bounce_records', 'br_user', __DIR__ . '/sql/alter_user_column.sql'
+		);
+		$updater->addExtensionIndex(
+			'bounce_records', 'br_mail_timestamp', __DIR__ .'/sql/create_index_mail_timestamp.sql'
+		);
+		$updater->addExtensionIndex(
+			'bounce_records', 'br_timestamp', __DIR__ .'/sql/create_index_timestamp.sql'
+		);
 
 		return true;
 	}

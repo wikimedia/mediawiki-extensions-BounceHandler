@@ -21,7 +21,8 @@ class ProcessUnRecognizedBounces {
 	protected $unrecognizedBounceNotify;
 
 	/**
-	 * @param array $unrecognizedBounceNotify The array of admins to be notified on a bounce parse failure
+	 * @param array $unrecognizedBounceNotify The array of admins to be notified
+	 *   on a bounce parse failure
 	 * @param string $passwordSender The default email Return path address
 	 */
 	public function __construct( $unrecognizedBounceNotify, $passwordSender ) {
@@ -36,7 +37,8 @@ class ProcessUnRecognizedBounces {
 	 */
 	public function processUnRecognizedBounces( $email ) {
 		$subject = 'bouncehandler-notify_subject';
-		$sender = new MailAddress( $this->passwordSender, wfMessage( 'emailsender' )->inContentLanguage()->text() );
+		$sender = new MailAddress( $this->passwordSender,
+			wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		$to = array();
 		if ( $this->unrecognizedBounceNotify !== null ) {
 			foreach ( $this->unrecognizedBounceNotify as $notifyEmails ) {
