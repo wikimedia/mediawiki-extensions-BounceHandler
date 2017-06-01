@@ -11,6 +11,8 @@
 class UnSubscribeUserTest extends MediaWikiTestCase {
 
 	function testUnSubscribeUser() {
+		$this->markTestSkipped( 'Broken, needs fixing - see T142134' );
+
 		$user = User::newFromName( 'TestUser' );
 		$user->setEmail( 'bob@example.ext' );
 		$user->addToDatabase();
