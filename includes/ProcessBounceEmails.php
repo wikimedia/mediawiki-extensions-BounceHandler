@@ -76,7 +76,8 @@ abstract class ProcessBounceEmails {
 				'br_reason' => $subject
 			);
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
-			RequestContext::getMain()->getStats()->increment( 'bouncehandler.bounces' );
+			\MediaWiki\MediaWikiServices::getInstance()
+				->getStatsdDataFactory()->increment( 'bouncehandler.bounces' );
 
 			if ( $wgBounceRecordMaxAge ) {
 				$pruneOldRecords = new PruneOldBounceRecords( $wgBounceRecordMaxAge );
