@@ -49,11 +49,12 @@ class VerpAddressGenerator {
 	 * The generated hash is cut down to 12 ( 96 bits ) instead of the full 120 bits.
 	 * For attacks attempting to recover the hmac key, this makes the attackers job harder by giving
 	 * them less information to work from.
-	 * This makes brute force attacks easier. An attacker would be able to brute force the signature by
-	 * sending an average of 2^95 emails to us. We would (hopefully) notice that.
+	 * This makes brute force attacks easier. An attacker would be able to brute force the signature
+	 * by sending an average of 2^95 emails to us. We would (hopefully) notice that.
 	 * This would make finding a collision slightly easier if the secret key was known,
-	 * but the constraints on each segment (wiki id must be valid, timestamp needs to be within a certain limit),
-	 * combined with the difficulty of finding collisions when the key is unknown, makes this virtually impossible.
+	 * but the constraints on each segment (wiki id must be valid, timestamp needs to be within a
+	 * certain limit), combined with the difficulty of finding collisions when the key is unknown,
+	 * makes this virtually impossible.
 	 *
 	 * @param int $uid user-id of the failing user
 	 * @return string $ReturnPath address

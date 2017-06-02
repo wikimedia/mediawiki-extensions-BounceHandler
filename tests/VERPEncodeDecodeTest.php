@@ -53,7 +53,8 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 			$decodeVERPwithPlancake = new ProcessBounceWithPlancake();
 
 			$userDetailsWithPlancake = $decodeVERPwithPlancake->getUserDetails( $encodedAddress );
-			$decodeAddressWithPlancake = $decodeVERPwithPlancake->getOriginalEmail( $userDetailsWithPlancake );
+			$decodeAddressWithPlancake = $decodeVERPwithPlancake->getOriginalEmail(
+				$userDetailsWithPlancake );
 
 			// Check if the source address and the decoded address match
 			$this->assertEquals( $user->getEmail() , $decodeAddressWithPlancake );

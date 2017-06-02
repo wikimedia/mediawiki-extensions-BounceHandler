@@ -100,8 +100,8 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 			$emailHeaders['status'] = $status;
 		}
 
-		// If the x-failed-recipient header or status code was not found, we should fallback to a heuristic scan
-		// of the message for a SMTP status code
+		// If the x-failed-recipient header or status code was not found, we should fallback to
+		// a heuristic scan of the message for a SMTP status code
 		if ( !isset( $emailHeaders['status'] ) && !isset( $emailHeaders['x-failed-recipients'] ) ) {
 			foreach ( $emailLines as $emailLine ) {
 				if ( preg_match( '/\s+(?:(?P<smtp>[1-5]\d{2}).)?' .
