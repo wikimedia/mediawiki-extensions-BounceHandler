@@ -52,7 +52,9 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 	 * @return string|null String that contains the status code or null if it wasn't found
 	 */
 	private function parseDeliveryStatusMessage( $emailLines ) {
+		// @codingStandardsIgnoreStart
 		for ( $i = 0; $i < count( $emailLines ) - 1; ++$i ) {
+		// @codingStandardsIgnoreEnd
 			$line = $emailLines[$i] . "\n" . $emailLines[$i + 1];
 			if ( preg_match( '/Content-Type: multipart\/report;\s*report-type=delivery-status;' .
 				'\s*boundary="(.+?)"/', $line, $contentTypeMatch ) ) {
@@ -75,7 +77,7 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 	 * @return array $emailHeaders
 	 */
 	public function extractHeaders( $email ) {
-		$emailHeaders = array();
+		$emailHeaders = [];
 		$emailLines = preg_split( "/(\r?\n|\r)/", $email );
 		foreach ( $emailLines as $emailLine ) {
 			if ( preg_match( "/^To: (.*)/", $emailLine, $toMatch ) ) {

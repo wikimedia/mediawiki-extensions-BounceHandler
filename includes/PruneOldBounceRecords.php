@@ -36,9 +36,9 @@ class PruneOldBounceRecords {
 			$dbw = ProcessBounceEmails::getBounceRecordDB( DB_MASTER, $wikiId );
 			$dbw->delete(
 				'bounce_records',
-				array (
+				[
 					'br_id' => $idArray
-				),
+				],
 				__METHOD__
 			);
 			wfDebugLog( 'BounceHandler', "Pruned $idArrayCount bounce records from $wikiId wiki." );
@@ -53,18 +53,18 @@ class PruneOldBounceRecords {
 	 * @return int[]
 	 */
 	private function getOldRecords( $wikiId ) {
-		$idArray = array();
+		$idArray = [];
 		$maximumRecordAge = time() - $this->bounceRecordMaxAge;
 		$dbr = ProcessBounceEmails::getBounceRecordDB( DB_SLAVE, $wikiId );
 		$res = $dbr->select(
 			'bounce_records',
-			array( 'br_id' ),
+			[ 'br_id' ],
 			'br_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $maximumRecordAge ) ),
 			__METHOD__,
-			array( 'LIMIT' => 100 )
+			[ 'LIMIT' => 100 ]
 		);
 
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$idArray[] = (int)$row->br_id;
 		}
 

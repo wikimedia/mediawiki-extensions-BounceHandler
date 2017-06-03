@@ -68,8 +68,8 @@ class VerpAddressGenerator {
 		// wikiId-base36( $UserID )-base36( $Timestamp )-hash( $algorithm, $key, $prefix )@$email_domain
 		// We dont want repeating '-' in our WikiId
 		$wikiId = str_replace( '-', '.', wfWikiID() );
-		$email_prefix = $this->prefix . '-' . $wikiId . '-' . base_convert( $uid, 10, 36) .
-			'-' . base_convert( $timeNow, 10, 36);
+		$email_prefix = $this->prefix . '-' . $wikiId . '-' . base_convert( $uid, 10, 36 ) .
+			'-' . base_convert( $timeNow, 10, 36 );
 		$verp_hash = base64_encode(
 			substr( hash_hmac( $this->algorithm, $email_prefix, $this->secretKey, true ), 0, 12 )
 		);

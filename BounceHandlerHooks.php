@@ -14,7 +14,7 @@ class BounceHandlerHooks {
 	public static function extensionFunction() {
 		global $wgNoReplyAddress, $wgServerName, $wgUnrecognizedBounceNotify, $wgVERPdomainPart;
 
-		$wgUnrecognizedBounceNotify = $wgUnrecognizedBounceNotify ? : array( $wgNoReplyAddress );
+		$wgUnrecognizedBounceNotify = $wgUnrecognizedBounceNotify ? : [ $wgNoReplyAddress ];
 		$wgVERPdomainPart = $wgVERPdomainPart ? : $wgServerName;
 	}
 
@@ -77,7 +77,7 @@ class BounceHandlerHooks {
 		/**
 		 * @var SplFileInfo $fileInfo
 		 */
-		$ourFiles = array();
+		$ourFiles = [];
 		foreach ( new RecursiveIteratorIterator( $directoryIterator ) as $fileInfo ) {
 			if ( substr( $fileInfo->getFilename(), -8 ) === 'Test.php' ) {
 				$ourFiles[] = $fileInfo->getPathname();
@@ -118,23 +118,23 @@ class BounceHandlerHooks {
 	 * @return bool
 	 */
 	public static function onBeforeCreateEchoEvent( array &$notifications ) {
-		$notifications['unsubscribe-bouncehandler'] = array(
+		$notifications['unsubscribe-bouncehandler'] = [
 			'presentation-model' => 'EchoBounceHandlerPresentationModel',
-			'primary-link' => array(
+			'primary-link' => [
 				'message' => 'notification-link-text-change-email',
 				'destination' => 'change-email'
-			),
+			],
 			'formatter-class' => 'EchoBounceHandlerFormatter',
 			'category' => 'system',
 			'section' => 'alert',
-			//We cannot have additional Echo emails being sent after a user is un-subscribed
-			'notify-type-availability' => array( 'email' => false ),
+			// We cannot have additional Echo emails being sent after a user is un-subscribed
+			'notify-type-availability' => [ 'email' => false ],
 
 			'title-message' => 'notification-bouncehandler',
-			'title-params' => array( 'user' ),
+			'title-params' => [ 'user' ],
 			'flyout-message' => 'notification-bouncehandler-flyout',
-			'flyout-params' => array( 'failed-email', 'user' ),
-		);
+			'flyout-params' => [ 'failed-email', 'user' ],
+		];
 
 		return true;
 	}

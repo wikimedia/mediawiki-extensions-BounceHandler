@@ -15,7 +15,7 @@ class ApiBounceHandler extends ApiBase {
 
 		$requestIP = $this->getRequest()->getIP();
 		$inRangeIP = false;
-		foreach( $wgBounceHandlerInternalIPs as $internalIP ) {
+		foreach ( $wgBounceHandlerInternalIPs as $internalIP ) {
 			if ( IP::isInRange( $requestIP, $internalIP ) ) {
 				$inRangeIP = true;
 				break;
@@ -23,7 +23,7 @@ class ApiBounceHandler extends ApiBase {
 		}
 		if ( !$inRangeIP ) {
 			wfDebugLog( 'BounceHandler', "POST received from restricted IP $requestIP" );
-			if ( is_callable( array( $this, 'dieWithError' ) ) ) {
+			if ( is_callable( [ $this, 'dieWithError' ] ) ) {
 				$this->dieWithError( 'apierror-bouncehandler-internalonly', 'invalid-ip' );
 			} else {
 				$this->dieUsage( 'This API module is for internal use only.', 'invalid-ip' );
@@ -36,7 +36,7 @@ class ApiBounceHandler extends ApiBase {
 		$bounceProcessor = new ProcessBounceWithRegex();
 		$emailHeaders = $bounceProcessor->extractHeaders( $params['email'] );
 		$to = isset( $emailHeaders['to'] ) ? $emailHeaders['to'] : '';
-		$failedUser = strlen( $to ) ? $bounceProcessor->getUserDetails( $to ) : array();
+		$failedUser = strlen( $to ) ? $bounceProcessor->getUserDetails( $to ) : [];
 
 		// Route the job to the wiki that the email was sent from.
 		// This way it can easily unconfirm the user's email using the User methods.
@@ -48,13 +48,13 @@ class ApiBounceHandler extends ApiBase {
 			$this->getResult()->addValue(
 				null,
 				$this->getModuleName(),
-				array ( 'submitted' => 'job' )
+				[ 'submitted' => 'job' ]
 			);
 		} else {
 			$this->getResult()->addValue(
 				null,
 				$this->getModuleName(),
-				array ( 'submitted' => 'failure' )
+				[ 'submitted' => 'failure' ]
 			);
 		}
 
@@ -79,22 +79,22 @@ class ApiBounceHandler extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'email' => array(
+		return [
+			'email' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
-			)
-		);
+			]
+		];
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	public function getExamplesMessages() {
-		return array(
+		return [
 			'action=bouncehandler&email=This%20is%20a%20test%20email'
 				=> 'apihelp-bouncehandler-example-1'
-		);
+		];
 	}
 
 	public function getHelpUrls() {

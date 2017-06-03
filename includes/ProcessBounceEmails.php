@@ -70,11 +70,11 @@ abstract class ProcessBounceEmails {
 			$bounceTimestamp = $failedUser['bounceTime'];
 			$dbw = self::getBounceRecordDB( DB_MASTER, $wikiId );
 
-			$rowData = array(
+			$rowData = [
 				'br_user_email' => $originalEmail,
 				'br_timestamp' => $dbw->timestamp( $bounceTimestamp ),
 				'br_reason' => $subject
-			);
+			];
 			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 			\MediaWiki\MediaWikiServices::getInstance()
 				->getStatsdDataFactory()->increment( 'bouncehandler.bounces' );
@@ -111,7 +111,7 @@ abstract class ProcessBounceEmails {
 	public function getUserDetails( $hashedEmail ) {
 		global $wgVERPalgorithm, $wgVERPsecret, $wgVERPAcceptTime;
 
-		$failedUser = array();
+		$failedUser = [];
 
 		$currentTime = wfTimestamp();
 		preg_match( '~(.*?)@~', $hashedEmail, $hashedPart );
@@ -119,7 +119,7 @@ abstract class ProcessBounceEmails {
 			wfDebugLog( 'BounceHandler',
 				"Error: The received address: $hashedEmail does not match the VERP pattern."
 			);
-			return array();
+			return [];
 		}
 		$hashedVERPPart = explode( '-', $hashedPart[1] );
 		// This would ensure that indexes 0 - 4 in $hashedVERPPart is set
@@ -131,7 +131,7 @@ abstract class ProcessBounceEmails {
 				'BounceHandler',
 				"Error: Received malformed VERP address: $hashedPart[1], cannot extract details."
 			);
-			return array();
+			return [];
 		}
 		$bounceTime = base_convert( $hashedVERPPart[3], 36, 10 );
 		// Check if the VERP hash is valid
@@ -166,18 +166,18 @@ abstract class ProcessBounceEmails {
 		$wikiId = $failedUser['wikiId'];
 		$rawUserId = $failedUser['rawUserId'];
 		$lb = wfGetLB( $wikiId );
-		$dbr = $lb->getConnection( DB_SLAVE, array(), $wikiId );
+		$dbr = $lb->getConnection( DB_SLAVE, [], $wikiId );
 
 		$res = $dbr->selectRow(
 			'user',
-			array( 'user_email' ),
-			array(
+			[ 'user_email' ],
+			[
 				'user_id' => $rawUserId,
-			),
+			],
 			__METHOD__
 		);
 		$lb->reuseConnection( $dbr );
-		if( $res !== false ) {
+		if ( $res !== false ) {
 			$rawEmail = $res->user_email;
 			return $rawEmail;
 		}
@@ -241,6 +241,6 @@ abstract class ProcessBounceEmails {
 			? wfGetLBFactory()->getExternalLB( $wgBounceHandlerCluster )
 			: wfGetLB( $wiki );
 
-		return $lb->getConnectionRef( $index, array(), $wiki );
+		return $lb->getConnectionRef( $index, [], $wiki );
 	}
 }

@@ -75,13 +75,13 @@ class BounceHandlerActions {
 			$dbr = ProcessBounceEmails::getBounceRecordDB( DB_SLAVE, $this->wikiId );
 
 			$totalBounces = $dbr->selectRowCount( 'bounce_records',
-				array( '*' ),
-				array(
+				[ '*' ],
+				[
 					'br_user_email' => $originalEmail,
 					'br_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $bounceValidPeriod ) )
-				),
+				],
 				__METHOD__,
-				array( 'LIMIT' => $this->bounceRecordLimit )
+				[ 'LIMIT' => $this->bounceRecordLimit ]
 			);
 
 			if ( $totalBounces >= $this->bounceRecordLimit ) {
@@ -100,13 +100,13 @@ class BounceHandlerActions {
 	 */
 	public function createEchoNotification( $userId, $email ) {
 		if ( class_exists( 'EchoEvent' ) ) {
-			EchoEvent::create( array(
+			EchoEvent::create( [
 				'type' => 'unsubscribe-bouncehandler',
-				'extra' => array(
+				'extra' => [
 					'failed-user-id' => $userId,
 					'failed-email' => $email,
-				),
-			) );
+				],
+			] );
 		}
 
 	}
@@ -119,14 +119,14 @@ class BounceHandlerActions {
 	 * @param $originalEmail
 	 */
 	public function notifyGlobalUser( $bounceUserId, $originalEmail ) {
-		$params = array(
+		$params = [
 			'failed-user-id' => $bounceUserId,
 			'failed-email' => $originalEmail,
 			'wikiId' => $this->wikiId,
 			'bounceRecordPeriod' => $this->bounceRecordPeriod,
 			'bounceRecordLimit' => $this->bounceRecordLimit,
 			'bounceHandlerUnconfirmUsers' => $this->bounceHandlerUnconfirmUsers
-		);
+		];
 		$title = Title::newFromText( 'BounceHandler Global user notification Job' );
 		$job = new BounceHandlerNotificationJob( $title, $params );
 		JobQueueGroup::singleton( $this->wikiId )->push( $job );
@@ -139,14 +139,14 @@ class BounceHandlerActions {
 	 * @param array $emailHeaders Email headers
 	 */
 	public function unSubscribeUser( array $failedUser, $emailHeaders ) {
-		//Un-subscribe the user
+		// Un-subscribe the user
 		$originalEmail = $failedUser['rawEmail'];
 		$bounceUserId = $failedUser['rawUserId'];
 
 		$user = User::newFromId( $bounceUserId );
 		$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
 		// Handle the central account email status (if applicable)
-		if ( class_exists( 'CentralAuthUser') ) {
+		if ( class_exists( 'CentralAuthUser' ) ) {
 			$caUser = CentralAuthUser::getInstance( $user );
 			if ( $caUser->isAttached() ) {
 				$caUser->setEmailAuthenticationTimestamp( null );
@@ -183,7 +183,9 @@ class BounceHandlerActions {
 		return implode(
 			"\n",
 			array_map(
-				function ( $v, $k ) { return "$k: $v"; },
+				function ( $v, $k ) {
+					return "$k: $v";
+				},
 				$emailHeaders,
 				array_keys( $emailHeaders )
 			)

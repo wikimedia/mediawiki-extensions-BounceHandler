@@ -25,7 +25,7 @@ class EchoBounceHandlerFormatter extends EchoBasicFormatter {
 	 */
 	protected function getLinkParams( EchoEvent $event, User $user, $destination ) {
 		if ( $destination === 'change-email' ) {
-			return array( SpecialPage::getTitleFor( 'ConfirmEmail' ), array() );
+			return [ SpecialPage::getTitleFor( 'ConfirmEmail' ), [] ];
 		} else {
 			return parent::getLinkParams( $event, $user, $destination );
 		}
