@@ -1,7 +1,7 @@
 <?php
 /**
  * Class ApiBounceHandlerTest
- * 
+ *
  * Tests for API module
  *
  * @group API
@@ -13,7 +13,6 @@
  */
 class ApiBounceHandlerTest extends ApiTestCase {
 
-
 	function setUp() {
 		parent::setUp();
 		$this->doLogin( 'sysop' );
@@ -21,9 +20,9 @@ class ApiBounceHandlerTest extends ApiTestCase {
 
 	public static function provideBounceEmails() {
 		$email = file_get_contents( __DIR__ .'/bounce_emails/email1' );
-		return array (
-			array ( $email )
-		);
+		return [
+			[ $email ]
+		];
 	}
 
 	/**
@@ -46,7 +45,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 		$bounceRecordLimit = 3;
 
 		$this->setMwGlobals(
-			array(
+			[
 				'wgVERPprefix' => $prefix,
 				'wgVERPalgorithm' => $algorithm,
 				'wgVERPsecret' => $secretKey,
@@ -54,20 +53,20 @@ class ApiBounceHandlerTest extends ApiTestCase {
 				'wgBounceHandlerUnconfirmUsers' => true,
 				'wgBounceRecordPeriod' => $bounceRecordPeriod,
 				'wgBounceRecordLimit' => $bounceRecordLimit,
-				'wgBounceHandlerInternalIPs'=> array( '127.0.0.1' )
-			)
+				'wgBounceHandlerInternalIPs'=> [ '127.0.0.1' ]
+			]
 		);
 
 		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );
 
-		$replace = array( "{VERP_ADDRESS}" => $encodedAddress );
+		$replace = [ "{VERP_ADDRESS}" => $encodedAddress ];
 		$email = strtr( $email, $replace );
 
-		list( $apiResult ) = $this->doApiRequest( array(
+		list( $apiResult ) = $this->doApiRequest( [
 			'action' => 'bouncehandler',
 			'email' => $email
-		) );
+		] );
 
 		$this->assertEquals( 'job', $apiResult['bouncehandler']['submitted'] );
 	}
@@ -84,11 +83,11 @@ class ApiBounceHandlerTest extends ApiTestCase {
 			'This API module is for internal use only.'
 		);
 
-		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '111.111.111.111' ) );
-		$this->doApiRequest( array(
+		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', [ '111.111.111.111' ] );
+		$this->doApiRequest( [
 			'action' => 'bouncehandler',
 			'email' => $email
-		) );
+		] );
 	}
 
 	/**
@@ -101,11 +100,11 @@ class ApiBounceHandlerTest extends ApiTestCase {
 			$this->setExpectedException( UsageException::class, 'The email parameter must be set' );
 		}
 
-		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
-		$this->doApiRequest( array(
+		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', [ '127.0.0.1' ] );
+		$this->doApiRequest( [
 			'action' => 'bouncehandler',
 			'email' => ''
-		) );
+		] );
 
 	}
 
@@ -122,11 +121,11 @@ class ApiBounceHandlerTest extends ApiTestCase {
 			$this->setExpectedException( UsageException::class, 'The email parameter must be set' );
 		}
 
-		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', array( '127.0.0.1' ) );
-		$this->doApiRequest( array(
+		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', [ '127.0.0.1' ] );
+		$this->doApiRequest( [
 			'action' => 'bouncehandler',
 			'foo' => $email
-		) );
+		] );
 	}
 
 }

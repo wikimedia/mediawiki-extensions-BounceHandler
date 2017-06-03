@@ -28,7 +28,6 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 		$user->confirmEmail();
 		$user->saveSettings();
 
-
 		$bounceRecordPeriod = 604800;
 		$bounceRecordLimit = 4;
 		$bounceHandlerSharedDB = false;
@@ -41,7 +40,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 		$domain = 'testwiki.org';
 
 		$this->setMwGlobals(
-			array(
+			[
 				'wgBounceHandlerUnconfirmUsers' => $bounceHandlerUnconfirmUsers,
 				'wgBounceRecordPeriod' => $bounceRecordPeriod,
 				'wgBounceRecordLimit' => $bounceRecordLimit,
@@ -52,24 +51,23 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 				'wgVERPalgorithm' => $algorithm,
 				'wgVERPsecret' => $secretKey,
 				'wgVERPdomainPart' => $domain,
-			)
+			]
 		);
 
 		$this->originalEmail = $user->getEmail();
 		$this->wikiId = wfWikiID();
-		$this->tablesUsed = array( 'bounce_records' );
+		$this->tablesUsed = [ 'bounce_records' ];
 	}
 
 	public function testPruneDeleteOldSingleRow() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_SLAVE );
-		//Delete old rows
+		// Delete old rows
 		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
 		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // Delete all rows
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertEquals( $res, 0 ); // We will have 0 elements after pruning
-
 
 		$bounceRecordMaxAge = 3;
 		$this->insertDelayedBounce( 4, $dbw );
@@ -79,7 +77,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 		$this->assertEquals( $res, 1 ); // We have one bounce from above in the DB
 		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // 2 should get deleted
 
-		//reset
+		// reset
 		$bounceRecordMaxAge = -1;
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertEquals( 0,  $res ); // We will have 0 elements after pruning
@@ -92,20 +90,20 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
 		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // Delete all rows
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertEquals( 0 , $res ); // We will have 0 elements
+		$this->assertEquals( 0, $res ); // We will have 0 elements
 
-		//Insert First bounce
+		// Insert First bounce
 		$this->insertDelayedBounce( 4, $dbw ); // Insert with 4 seconds delay
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertEquals( $res, 1 ); // We will have only one bounce in the record
 
-		//Insert Second Bounce
+		// Insert Second Bounce
 		$this->insertDelayedBounce( 0, $dbw ); // Insert with 0 delay
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertEquals( $res, 2 ); // We will have two bounces in the bounce record as of now
 
-		//Insert Third Bounce
-		$this->insertDelayedBounce( 0, $dbw ); //Insert with 0 delay
+		// Insert Third Bounce
+		$this->insertDelayedBounce( 0, $dbw ); // Insert with 0 delay
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertEquals( $res, 3 ); // We will have three bounces in the bounce record as of now
 
@@ -128,11 +126,11 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 	 */
 	protected function insertDelayedBounce( $delayTime, $dbw ) {
 		$bounceTimestamp = wfTimestamp( TS_MW, time() - $delayTime );
-		$rowData = array(
+		$rowData = [
 			'br_user_email' => $this->originalEmail,
 			'br_timestamp' => $dbw->timestamp( $bounceTimestamp ),
 			'br_reason' => $this->subject
-		);
+		];
 
 		$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
 	}
@@ -146,10 +144,10 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 		$maximumRecordAge = time() - $bounceRecordMaxAge;
 		$res = $dbr->selectRowCount(
 			'bounce_records',
-			array( '*' ),
+			[ '*' ],
 			'br_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $maximumRecordAge ) ),
 			__METHOD__,
-			array( 'LIMIT' => 100 )
+			[ 'LIMIT' => 100 ]
 		);
 
 		return $res;

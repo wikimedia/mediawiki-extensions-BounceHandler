@@ -32,7 +32,7 @@ class UnSubscribeUserTest extends MediaWikiTestCase {
 		$bounceRecordLimit = 3;
 
 		$this->setMwGlobals(
-			array(
+			[
 				'wgVERPprefix' => $prefix,
 				'wgVERPalgorithm' => $algorithm,
 				'wgVERPsecret' => $secretKey,
@@ -40,7 +40,7 @@ class UnSubscribeUserTest extends MediaWikiTestCase {
 				'wgBounceHandlerUnconfirmUsers' => true,
 				'wgBounceRecordPeriod' => $bounceRecordPeriod,
 				'wgBounceRecordLimit' => $bounceRecordLimit
-			)
+			]
 		);
 
 		$this->setMwGlobals( 'wgVERPAcceptTime', 259200 );

@@ -27,12 +27,12 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 		$domain = 'testwiki.org';
 
 		$this->setMwGlobals(
-			array(
+			[
 				'wgVERPprefix' => $prefix,
 				'wgVERPalgorithm' => $algorithm,
 				'wgVERPsecret' => $secretKey,
 				'wgVERPdomainPart' => $domain
-			)
+			]
 		);
 		$this->setMwGlobals( 'wgVERPAcceptTime', 259200 );
 
@@ -45,7 +45,7 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 		$decodeAddressWithRegex = $decodeVERPwithRegex->getOriginalEmail( $userDetailsWithRegex );
 
 		// Check if the source address and the decoded address match
-		$this->assertEquals( $user->getEmail() , $decodeAddressWithRegex );
+		$this->assertEquals( $user->getEmail(), $decodeAddressWithRegex );
 
 		if ( !class_exists( 'PlancakeEmailParser' ) ) {
 			$this->markTestSkipped( "This test requires the Plancake Email Parser library" );
@@ -57,7 +57,7 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 				$userDetailsWithPlancake );
 
 			// Check if the source address and the decoded address match
-			$this->assertEquals( $user->getEmail() , $decodeAddressWithPlancake );
+			$this->assertEquals( $user->getEmail(), $decodeAddressWithPlancake );
 
 			// Check if both tests produced the same output
 			$this->assertEquals( $decodeAddressWithPlancake, $decodeAddressWithRegex );
