@@ -10,6 +10,7 @@
 	"bouncehandler-notify_subject": "Devolución dun reenvío temporal",
 	"apihelp-bouncehandler-example-1": "Recibir un correo electrónico rexeitado para procesalo co contido \"Este é un correo electrónico de proba\".",
 	"apihelp-bouncehandler-description": "Recibir un correo electrónico rexeitado e procesalo para xestionar o destinatario erróneo.",
+	"apihelp-bouncehandler-summary": "Recibir un correo electrónico rexeitado e procesalo para xestionar o destinatario erróneo.",
 	"apihelp-bouncehandler-param-email": "O correo electrónico rexeitado.",
 	"apierror-bouncehandler-internalonly": "Este módulo da API é só para uso interno.",
 	"notification-bouncehandler": "O {{GENDER:$1|seu}} enderezo de correo electrónico rexistrado xa non é válido.",
