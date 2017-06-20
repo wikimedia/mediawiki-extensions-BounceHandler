@@ -30,7 +30,6 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 * @param $email
 	 */
 	function testBounceHandlerWithGoodIPPasses( $email ) {
-
 		$user = User::newFromName( 'TestUser' );
 		$user->setEmail( 'bob@example.ext' );
 		$user->addToDatabase();
@@ -105,7 +104,6 @@ class ApiBounceHandlerTest extends ApiTestCase {
 			'action' => 'bouncehandler',
 			'email' => ''
 		] );
-
 	}
 
 	/**

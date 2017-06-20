@@ -32,6 +32,5 @@ class BounceHandlerNotificationJob extends Job {
 		}
 
 		return true;
-
 	}
 }

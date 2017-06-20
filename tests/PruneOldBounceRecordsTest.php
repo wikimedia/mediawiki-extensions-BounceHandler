@@ -117,7 +117,6 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertEquals( $res, 2 );
-
 	}
 
 	/**

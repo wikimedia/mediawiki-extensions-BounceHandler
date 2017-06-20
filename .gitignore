@@ -41,3 +41,5 @@ Thumbs.db
 /.htaccess
 /.htpasswd
 node_modules/
+vendor/
+composer.lock

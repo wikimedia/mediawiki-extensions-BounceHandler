@@ -43,7 +43,6 @@ class PruneOldBounceRecords {
 			);
 			wfDebugLog( 'BounceHandler', "Pruned $idArrayCount bounce records from $wikiId wiki." );
 		}
-
 	}
 
 	/**

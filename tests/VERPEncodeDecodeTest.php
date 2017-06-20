@@ -14,7 +14,6 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 	 * Tests that the extension encodes and decodes the email address correctly
 	 */
 	function testVERPEncodingDecoding() {
-
 		$user = User::newFromName( 'TestUser' );
 		$user->setEmail( 'bob@example.ext' );
 		$user->addToDatabase();

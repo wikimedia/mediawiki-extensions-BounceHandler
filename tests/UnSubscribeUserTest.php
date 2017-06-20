@@ -62,7 +62,6 @@ class UnSubscribeUserTest extends MediaWikiTestCase {
 		$newUser = User::newFromId( $uid );
 		$newUser->load( User::READ_LATEST );
 		$this->assertFalse( $newUser->isEmailConfirmed() );
-
 	}
 
 }
