@@ -9,6 +9,7 @@
 	"bouncehandler-notify_subject": "החזרת דואר קופץ זמני",
 	"apihelp-bouncehandler-example-1": "קבלת דוא\"ל קופץ לעיבוד עם התוכן \"This is a test email\".",
 	"apihelp-bouncehandler-description": "קבלת דוא\"ל קופץ ועיבודו כדי לטפל במקבל כושל.",
+	"apihelp-bouncehandler-summary": "קבלת דוא\"ל קופץ ועיבודו כדי לטפל במקבל כושל.",
 	"apihelp-bouncehandler-param-email": "הדוא\"ל שקפץ.",
 	"apierror-bouncehandler-internalonly": "מודול ה־API הזה מיועד לשימוש פנימי בלבד.",
 	"notification-bouncehandler": "כתובת הדואר האלקטרוני {{GENDER:$1|שלך}} אינה תקינה עוד.",
