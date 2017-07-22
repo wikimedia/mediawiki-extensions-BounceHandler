@@ -10,5 +10,6 @@
 	"apihelp-bouncehandler-example-1": "Receber um e-mail de retorno para o processamento com o conteúdo \"Este é um e-mail de teste\".",
 	"apihelp-bouncehandler-description": "Receber um e-mail de retorno e processá-lo para lidar com o destinatário errado.",
 	"apihelp-bouncehandler-summary": "Receber um e-mail de retorno e processá-lo para lidar com o destinatário errado.",
-	"apihelp-bouncehandler-param-email": "O e-mail devolvido."
+	"apihelp-bouncehandler-param-email": "O e-mail devolvido.",
+	"notification-link-text-change-email": "Mudar o seu endereço de e-mail"
 }
