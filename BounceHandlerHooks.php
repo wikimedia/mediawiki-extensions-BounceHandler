@@ -68,7 +68,7 @@ class BounceHandlerHooks {
 	 *
 	 * @param array &$files
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function registerUnitTests( array &$files ) {
 		// @codeCoverageIgnoreStart
