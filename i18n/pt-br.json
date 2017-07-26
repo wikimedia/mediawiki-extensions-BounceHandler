@@ -11,5 +11,9 @@
 	"apihelp-bouncehandler-description": "Receber um e-mail de retorno e processá-lo para lidar com o destinatário errado.",
 	"apihelp-bouncehandler-summary": "Receber um e-mail de retorno e processá-lo para lidar com o destinatário errado.",
 	"apihelp-bouncehandler-param-email": "O e-mail devolvido.",
-	"notification-link-text-change-email": "Mudar o seu endereço de e-mail"
+	"apierror-bouncehandler-internalonly": "Este módulo API é apenas para uso interno.",
+	"notification-bouncehandler": "{{GENDER:$1|Seu}} endereço de e-mail registrado não é mais válido.",
+	"notification-bouncehandler-flyout": "{{GENDER: $2|Seu}} endereço de e-mail registrado $1 foi cancelado devido a várias falhas de entrega de mensagens. Você pode [[Special:ConfirmEmail|verificar {{GENDER:$2|seu}} endereço de e-mail novamente]].",
+	"notification-link-text-change-email": "Mudar o seu endereço de e-mail",
+	"notification-header-unsubscribe-bouncehandler": "O {{GENDER:$4|seu}} seu endereço de e-mail registrado $3 foi cancelado devido a várias falhas de entrega de mensagens. Você pode verificar {{GENDER:$4|seu}} endereço de e-mail novamente."
 }
