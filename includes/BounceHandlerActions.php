@@ -114,8 +114,8 @@ class BounceHandlerActions {
 	 * Function to inject Echo notification to the last source of bounce for an
 	 * unsubscribed Global user
 	 *
-	 * @param $bounceUserId
-	 * @param $originalEmail
+	 * @param int $bounceUserId
+	 * @param string $originalEmail
 	 */
 	public function notifyGlobalUser( $bounceUserId, $originalEmail ) {
 		$params = [

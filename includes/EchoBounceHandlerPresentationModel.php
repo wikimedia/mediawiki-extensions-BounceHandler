@@ -2,14 +2,14 @@
 
 class EchoBounceHandlerPresentationModel extends EchoEventPresentationModel {
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getIconType() {
 		return 'placeholder';
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getPrimaryLink() {
 		return [
@@ -19,7 +19,7 @@ class EchoBounceHandlerPresentationModel extends EchoEventPresentationModel {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getHeaderMessage() {
 		$msg = parent::getHeaderMessage();

@@ -23,7 +23,7 @@ class BounceHandlerHooks {
 	 * Generating VERP address for a batch of send emails is complex. This feature is hence disabled
 	 *
 	 * @param MailAddress[] $recip Recipient's email array
-	 * @param string $returnPath return-path address
+	 * @param string &$returnPath return-path address
 	 * @return bool
 	 * @throws InvalidArgumentException
 	 */
@@ -40,7 +40,7 @@ class BounceHandlerHooks {
 	 * Process a given $to address and return its VERP return path
 	 *
 	 * @param MailAddress $to
-	 * @param string $returnPath return-path address
+	 * @param string &$returnPath return-path address
 	 * @return bool true
 	 */
 	protected static function generateVerp( MailAddress $to, &$returnPath ) {
@@ -114,7 +114,7 @@ class BounceHandlerHooks {
 	/**
 	 * Add BounceHandler events to Echo
 	 *
-	 * @param array $notifications Echo notifications
+	 * @param array &$notifications Echo notifications
 	 * @return bool
 	 */
 	public static function onBeforeCreateEchoEvent( array &$notifications ) {
@@ -143,7 +143,7 @@ class BounceHandlerHooks {
 	 * Add user to be notified on echo event
 	 *
 	 * @param EchoEvent $event
-	 * @param User[] $users
+	 * @param User[] &$users
 	 * @return bool
 	 */
 	public static function onEchoGetDefaultNotifiedUsers( EchoEvent $event, array &$users ) {

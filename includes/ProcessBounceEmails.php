@@ -228,7 +228,7 @@ abstract class ProcessBounceEmails {
 	/**
 	 * Get a lazy connection to the bounce table
 	 *
-	 * @param integer $index DB_MASTER/DB_SLAVE
+	 * @param int $index DB_MASTER/DB_SLAVE
 	 * @param string $wiki The DB that the bounced email was sent from
 	 * @return IDatabase
 	 */

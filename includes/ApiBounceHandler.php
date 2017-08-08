@@ -89,6 +89,7 @@ class ApiBounceHandler extends ApiBase {
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
+	 * @return array
 	 */
 	public function getExamplesMessages() {
 		return [
