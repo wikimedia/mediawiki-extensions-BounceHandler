@@ -52,7 +52,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 				'wgBounceHandlerUnconfirmUsers' => true,
 				'wgBounceRecordPeriod' => $bounceRecordPeriod,
 				'wgBounceRecordLimit' => $bounceRecordLimit,
-				'wgBounceHandlerInternalIPs'=> [ '127.0.0.1' ]
+				'wgBounceHandlerInternalIPs' => [ '127.0.0.1' ]
 			]
 		);
 
