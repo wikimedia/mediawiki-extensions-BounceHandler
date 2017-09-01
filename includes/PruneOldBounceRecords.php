@@ -54,7 +54,7 @@ class PruneOldBounceRecords {
 	private function getOldRecords( $wikiId ) {
 		$idArray = [];
 		$maximumRecordAge = time() - $this->bounceRecordMaxAge;
-		$dbr = ProcessBounceEmails::getBounceRecordDB( DB_SLAVE, $wikiId );
+		$dbr = ProcessBounceEmails::getBounceRecordDB( DB_REPLICA, $wikiId );
 		$res = $dbr->select(
 			'bounce_records',
 			[ 'br_id' ],

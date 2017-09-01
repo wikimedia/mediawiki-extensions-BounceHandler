@@ -72,7 +72,7 @@ class BounceHandlerActions {
 			$originalEmail = $failedUser['rawEmail'];
 			$bounceValidPeriod = time() - $this->bounceRecordPeriod; // Unix
 
-			$dbr = ProcessBounceEmails::getBounceRecordDB( DB_SLAVE, $this->wikiId );
+			$dbr = ProcessBounceEmails::getBounceRecordDB( DB_REPLICA, $this->wikiId );
 
 			$totalBounces = $dbr->selectRowCount( 'bounce_records',
 				[ '*' ],

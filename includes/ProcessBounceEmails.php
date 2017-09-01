@@ -166,7 +166,7 @@ abstract class ProcessBounceEmails {
 		$wikiId = $failedUser['wikiId'];
 		$rawUserId = $failedUser['rawUserId'];
 		$lb = wfGetLB( $wikiId );
-		$dbr = $lb->getConnection( DB_SLAVE, [], $wikiId );
+		$dbr = $lb->getConnection( DB_REPLICA, [], $wikiId );
 
 		$res = $dbr->selectRow(
 			'user',
@@ -228,7 +228,7 @@ abstract class ProcessBounceEmails {
 	/**
 	 * Get a lazy connection to the bounce table
 	 *
-	 * @param int $index DB_MASTER/DB_SLAVE
+	 * @param int $index DB_MASTER/DB_REPLICA
 	 * @param string $wiki The DB that the bounced email was sent from
 	 * @return IDatabase
 	 */
