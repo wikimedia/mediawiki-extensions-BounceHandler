@@ -4,5 +4,6 @@
 			"Ladsgroup"
 		]
 	},
+	"apierror-bouncehandler-internalonly": "این پودمان API فقط برای استفاده داخلی است.",
 	"notification-link-text-change-email": "آدرس رایانامه‌تان را تغییر دهید"
 }
