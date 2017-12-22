@@ -230,7 +230,7 @@ abstract class ProcessBounceEmails {
 	 *
 	 * @param int $index DB_MASTER/DB_REPLICA
 	 * @param string $wiki The DB that the bounced email was sent from
-	 * @return IDatabase
+	 * @return \Wikimedia\Rdbms\IDatabase
 	 */
 	public static function getBounceRecordDB( $index, $wiki ) {
 		global $wgBounceHandlerCluster, $wgBounceHandlerSharedDB;

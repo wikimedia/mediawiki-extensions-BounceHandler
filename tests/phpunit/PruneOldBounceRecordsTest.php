@@ -121,7 +121,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 
 	/**
 	 * @param $delayTime
-	 * @param DatabaseBase $dbw
+	 * @param \Wikimedia\Rdbms\IDatabase $dbw
 	 */
 	protected function insertDelayedBounce( $delayTime, $dbw ) {
 		$bounceTimestamp = wfTimestamp( TS_MW, time() - $delayTime );
@@ -136,7 +136,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 
 	/**
 	 * @param $bounceRecordMaxAge
-	 * @param DatabaseBase $dbr
+	 * @param \Wikimedia\Rdbms\IDatabase $dbr
 	 * @return int
 	 */
 	protected function getOldRecordsCount( $bounceRecordMaxAge, $dbr ) {
