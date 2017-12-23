@@ -3,11 +3,16 @@
 		"authors": [
 			"Okras",
 			"Alex Great",
-			"Mailman"
+			"Mailman",
+			"Facenapalm"
 		]
 	},
 	"bouncehandler-desc": "Помогает в обработке возвратов недоставленных сообщений электронной почты для MediaWiki",
 	"bouncehandler-notify_subject": "Возврат временно недоставленных сообщений",
+	"apihelp-bouncehandler-param-email": "Возвращённое письмо.",
 	"apierror-bouncehandler-internalonly": "Данный API-модуль только для внутреннего использования.",
-	"notification-link-text-change-email": "Изменить адрес своей электронной почты"
+	"notification-bouncehandler": "{{GENDER:$1|Ваш}} адрес электронной почты больше не действителен.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Ваш}} адрес электронной почты $1 был отписан из-за многократных проблем с доставкой писем. Вы можете [[Special:ConfirmEmail|подтвердить {{GENDER:$2|ваш}} адрес снова]].",
+	"notification-link-text-change-email": "Изменить адрес своей электронной почты",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Ваш}} адрес электронной почты $3 был отписан из-за многократных проблем с доставкой писем. Вы можете подтвердить {{GENDER:$4|ваш}} адрес снова."
 }
