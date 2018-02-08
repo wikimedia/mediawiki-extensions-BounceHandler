@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Class ProcessBounceEmails
  *
@@ -165,7 +168,7 @@ abstract class ProcessBounceEmails {
 		// identify the user after looking up in the required database.
 		$wikiId = $failedUser['wikiId'];
 		$rawUserId = $failedUser['rawUserId'];
-		$lb = wfGetLB( $wikiId );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getMainLB( $wikiId );
 		$dbr = $lb->getConnection( DB_REPLICA, [], $wikiId );
 
 		$res = $dbr->selectRow(
@@ -237,9 +240,10 @@ abstract class ProcessBounceEmails {
 
 		$wiki = $wgBounceHandlerSharedDB ?: $wiki;
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = $wgBounceHandlerCluster
-			? wfGetLBFactory()->getExternalLB( $wgBounceHandlerCluster )
-			: wfGetLB( $wiki );
+			? $lbFactory->getExternalLB( $wgBounceHandlerCluster )
+			: $lbFactory->getMainLB( $wiki );
 
 		return $lb->getConnectionRef( $index, [], $wiki );
 	}
