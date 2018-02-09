@@ -45,22 +45,6 @@ class VERPEncodeDecodeTest extends MediaWikiTestCase {
 
 		// Check if the source address and the decoded address match
 		$this->assertEquals( $user->getEmail(), $decodeAddressWithRegex );
-
-		if ( !class_exists( 'PlancakeEmailParser' ) ) {
-			$this->markTestSkipped( "This test requires the Plancake Email Parser library" );
-		} else {
-			$decodeVERPwithPlancake = new ProcessBounceWithPlancake();
-
-			$userDetailsWithPlancake = $decodeVERPwithPlancake->getUserDetails( $encodedAddress );
-			$decodeAddressWithPlancake = $decodeVERPwithPlancake->getOriginalEmail(
-				$userDetailsWithPlancake );
-
-			// Check if the source address and the decoded address match
-			$this->assertEquals( $user->getEmail(), $decodeAddressWithPlancake );
-
-			// Check if both tests produced the same output
-			$this->assertEquals( $decodeAddressWithPlancake, $decodeAddressWithRegex );
-		}
 	}
 
 }
