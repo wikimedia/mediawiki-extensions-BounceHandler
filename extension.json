@@ -15,7 +15,7 @@
 		"bouncehandler": "ApiBounceHandler"
 	},
 	"AutoloadClasses": {
-		"BounceHandlerHooks": "BounceHandlerHooks.php",
+		"BounceHandlerHooks": "includes/BounceHandlerHooks.php",
 		"ApiBounceHandler": "includes/ApiBounceHandler.php",
 		"BounceHandlerJob": "includes/BounceHandlerJob.php",
 		"BounceHandlerNotificationJob": "includes/BounceHandlerNotificationJob.php",
