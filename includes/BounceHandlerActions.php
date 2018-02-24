@@ -99,7 +99,7 @@ class BounceHandlerActions {
 	 * @param string $email un-subscribed email address used in notification
 	 */
 	public function createEchoNotification( $userId, $email ) {
-		if ( class_exists( 'EchoEvent' ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			EchoEvent::create( [
 				'type' => 'unsubscribe-bouncehandler',
 				'extra' => [
@@ -145,7 +145,7 @@ class BounceHandlerActions {
 		$user = User::newFromId( $bounceUserId );
 		$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
 		// Handle the central account email status (if applicable)
-		if ( class_exists( 'CentralAuthUser' ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
 			$caUser = CentralAuthUser::getInstance( $user );
 			if ( $caUser->isAttached() ) {
 				$caUser->setEmailAuthenticationTimestamp( null );
