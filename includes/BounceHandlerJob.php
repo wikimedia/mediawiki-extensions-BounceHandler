@@ -7,7 +7,7 @@
  * @file
  * @ingroup JobQueue
  * @author Tony Thomas
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ * @license GPL-2.0-or-later
  */
 class BounceHandlerJob extends Job {
 	public function __construct( Title $title, array $params ) {
