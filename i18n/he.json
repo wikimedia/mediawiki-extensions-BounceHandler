@@ -5,7 +5,7 @@
 			"Guycn2"
 		]
 	},
-	"bouncehandler-desc": "עזרה בטיפול בדואר אלקטרוני קופץ במדיה־ויקי",
+	"bouncehandler-desc": "עזרה בטיפול בדואר אלקטרוני קופץ בתוכנת מדיה־ויקי",
 	"bouncehandler-notify_subject": "החזרת דואר קופץ זמני",
 	"apihelp-bouncehandler-example-1": "קבלת דוא\"ל קופץ לעיבוד עם התוכן \"This is a test email\".",
 	"apihelp-bouncehandler-description": "קבלת דוא\"ל קופץ ועיבודו כדי לטפל במקבל כושל.",
