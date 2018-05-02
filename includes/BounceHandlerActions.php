@@ -124,7 +124,8 @@ class BounceHandlerActions {
 			'wikiId' => $this->wikiId,
 			'bounceRecordPeriod' => $this->bounceRecordPeriod,
 			'bounceRecordLimit' => $this->bounceRecordLimit,
-			'bounceHandlerUnconfirmUsers' => $this->bounceHandlerUnconfirmUsers
+			'bounceHandlerUnconfirmUsers' => $this->bounceHandlerUnconfirmUsers,
+			'emailRaw' => $this->emailRaw,
 		];
 		$title = Title::newFromText( 'BounceHandler Global user notification Job' );
 		$job = new BounceHandlerNotificationJob( $title, $params );
