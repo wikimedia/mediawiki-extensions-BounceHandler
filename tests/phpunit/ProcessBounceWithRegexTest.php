@@ -20,7 +20,7 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 		return [
 			[
 				$email1, [ 'x-failed-recipients' => 'bounceduserfortest@gmail.com',
-				'to' => 'wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org',
+				'to' => 'wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.test',
 				'subject' => 'Mail delivery failed: returning message to sender',
 				'date' => 'Wed, 03 Dec 2014 16:00:19 +0000' ]
 			],
@@ -31,7 +31,7 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 				'status' => '5.5.0' ]
 			],
 			[
-				$email3, [ 'to' => 'wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org',
+				$email3, [ 'to' => 'wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.test',
 				'date' => 'Wed, 03 Dec 2014 16:00:19 +0000',
 				'subject' => 'Mail delivery failed: returning message to sender',
 				'smtp-code' => '550' ]

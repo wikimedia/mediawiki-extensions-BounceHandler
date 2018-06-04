@@ -1,13 +1,13 @@
 From MAILER-DAEMON Wed Dec 03 16:00:19 2014
-Received: from Debian-exim by deployment-mx.eqiad.wmflabs with local (Exim 4.82)
+Received: from Debian-exim by mx0.test.localhost with local (Exim 4.82)
         id 1XwCLj-0004eu-R3
-        for wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org; Wed, 03 Dec 2014 16:00:19 +0000
+        for wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.test; Wed, 03 Dec 2014 16:00:19 +0000
 X-Failed-Recipients: bounceduserfortest@gmail.com
 Auto-Submitted: auto-replied
-From: Mail Delivery System <Mailer-Daemon@deployment-mx.eqiad.wmflabs>
-To: wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org
+From: Mail Delivery System <Mailer-Daemon@mx0.test.localhost>
+To: wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.test
 Subject: Mail delivery failed: returning message to sender
-Message-Id: <E1XwCLj-0004eu-R3@deployment-mx.eqiad.wmflabs>
+Message-Id: <E1XwCLj-0004eu-R3@mx0.test.localhost>
 Date: Wed, 03 Dec 2014 16:00:19 +0000
 
 This message was created automatically by mail delivery software.
@@ -25,14 +25,14 @@ recipients. This is a permanent error. The following address(es) failed:
 
 ------ This is a copy of the message, including all the headers. ------
 
-Return-path: <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org>
-Received: from mediawiki-verp.eqiad.wmflabs ([10.68.17.11]:2307)
-        by deployment-mx.eqiad.wmflabs with esmtp (Exim 4.82)
-        (envelope-from <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org>)
+Return-path: <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.test>
+Received: from mediawiki-verp.test.localhost ([10.68.17.11]:2307)
+        by mx0.test.localhost with esmtp (Exim 4.82)
+        (envelope-from <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.test>)
         id 1XwCLj-0004eq-HB
         for bounceduserfortest@gmail.com; Wed, 03 Dec 2014 16:00:19 +0000
-Received: from www-data by mediawiki-verp.eqiad.wmflabs with local (Exim 4.82)
-        (envelope-from <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.wmflabs.org>)
+Received: from www-data by mediawiki-verp.test.localhost with local (Exim 4.82)
+        (envelope-from <wiki-testwiki-2-ng0kgh-4UPcJ1Ejt0cA3hkR@mediawiki-verp.test>)
         id 1XwCLh-0006A8-Tw
         for bounceduserfortest@gmail.com; Wed, 03 Dec 2014 16:00:17 +0000
 To: Router123 <bounceduserfortest@gmail.com>
@@ -40,7 +40,7 @@ Subject: testwiki email from user "01tonythomas"
 X-PHP-Originating-Script: 0:UserMailer.php
 From: 01tonythomas <01tonythomas@gmail.com>
 Date: Wed, 03 Dec 2014 16:00:17 +0000
-Message-ID: <testwiki.547f3391df5b44.92919571@mediawiki-verp.wmflabs.org>
+Message-ID: <testwiki.547f3391df5b44.92919571@mediawiki-verp.test>
 X-Mailer: MediaWiki mailer
 MIME-Version: 1.0
 Content-type: text/plain; charset=UTF-8
