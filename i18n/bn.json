@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aftabuzzaman"
+			"Aftabuzzaman",
+			"আফতাবুজ্জামান"
 		]
 	},
 	"notification-bouncehandler": "{{GENDER:$1|আপনার}} নিবন্ধীকৃত ইমেল ঠিকানা আর বৈধ নয়।",
