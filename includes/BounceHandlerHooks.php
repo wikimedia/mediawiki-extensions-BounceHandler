@@ -12,10 +12,9 @@ class BounceHandlerHooks {
 	 * Function run on startup in $wgExtensionFunctions
 	 */
 	public static function extensionFunction() {
-		global $wgNoReplyAddress, $wgServerName, $wgUnrecognizedBounceNotify, $wgVERPdomainPart;
+		global $wgNoReplyAddress, $wgUnrecognizedBounceNotify;
 
 		$wgUnrecognizedBounceNotify = $wgUnrecognizedBounceNotify ? : [ $wgNoReplyAddress ];
-		$wgVERPdomainPart = $wgVERPdomainPart ? : $wgServerName;
 	}
 
 	/**
@@ -44,7 +43,7 @@ class BounceHandlerHooks {
 	 * @return bool true
 	 */
 	protected static function generateVerp( MailAddress $to, &$returnPath ) {
-		global $wgVERPprefix, $wgVERPalgorithm, $wgVERPsecret, $wgVERPdomainPart;
+		global $wgVERPprefix, $wgVERPalgorithm, $wgVERPsecret, $wgVERPdomainPart, $wgServerName;
 		$user = User::newFromName( $to->name );
 		if ( !$user ) {
 			return true;
@@ -55,8 +54,9 @@ class BounceHandlerHooks {
 		} else {
 			return true;
 		}
+		$domainPart = $wgVERPdomainPart ?? $wgServerName;
 		$verpAddress = new VerpAddressGenerator( $wgVERPprefix,
-			$wgVERPalgorithm, $wgVERPsecret, $wgVERPdomainPart );
+			$wgVERPalgorithm, $wgVERPsecret, $domainPart );
 		$returnPath = $verpAddress->generateVERP( $uid );
 
 		return true;
