@@ -42,16 +42,13 @@
 		"BounceRecordMaxAge": 5184000,
 		"BounceRecordPeriod": 604800,
 		"GenerateVERP": true,
-		"UnrecognizedBounceNotify": null,
+		"UnrecognizedBounceNotify": [],
 		"VERPAcceptTime": 259200,
 		"VERPalgorithm": "md5",
 		"VERPdomainPart": null,
 		"VERPprefix": "wiki",
 		"VERPsecret": "MediawikiVERP"
 	},
-	"ExtensionFunctions": [
-		"BounceHandlerHooks::extensionFunction"
-	],
 	"Hooks": {
 		"UserMailerChangeReturnPath": [
 			"BounceHandlerHooks::onVERPAddressGenerate"
