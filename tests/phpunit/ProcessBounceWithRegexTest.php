@@ -12,10 +12,10 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 	}
 
 	public static function provideBounceStatusEmails() {
-		$email1 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus1' );
-		$email2 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus2' );
-		$email3 = file_get_contents( __DIR__ .'/bounce_emails/emailStatus3' );
-		$email4 = file_get_contents( __DIR__ .'/bounce_emails/oracle7' );
+		$email1 = file_get_contents( __DIR__ . '/bounce_emails/emailStatus1' );
+		$email2 = file_get_contents( __DIR__ . '/bounce_emails/emailStatus2' );
+		$email3 = file_get_contents( __DIR__ . '/bounce_emails/emailStatus3' );
+		$email4 = file_get_contents( __DIR__ . '/bounce_emails/oracle7' );
 
 		return [
 			[

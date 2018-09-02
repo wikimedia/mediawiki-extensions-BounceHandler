@@ -167,7 +167,7 @@ class BounceHandlerActions {
 			wfDebugLog( 'BounceHandler',
 				"Un-subscribed {$user->getName()} <$originalEmail> for exceeding Bounce limit " .
 					"$this->bounceRecordLimit.\nProcessed Headers:\n" .
-					$this->formatHeaders( $emailHeaders ). "\nBounced Email: \n$this->emailRaw"
+					$this->formatHeaders( $emailHeaders ) . "\nBounced Email: \n$this->emailRaw"
 			);
 			$stats->increment( 'bouncehandler.unsub.local' );
 		}
