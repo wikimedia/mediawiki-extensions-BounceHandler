@@ -9,5 +9,9 @@
 	"bouncehandler-notify_subject": "Dočasné hlášení o problému",
 	"apihelp-bouncehandler-example-1": "Přijmout ke zpracování vrácený e-mail s obsahem „This is a test email“.",
 	"apihelp-bouncehandler-description": "Přijmout vrácený e-mail a zpracovat ho, aby se vyřešil nefunkční příjemce.",
-	"apihelp-bouncehandler-param-email": "Vrácený e-mail."
+	"apihelp-bouncehandler-param-email": "Vrácený e-mail.",
+	"notification-bouncehandler": "{{GENDER:$1|Vaše}} registrovaná e-mailová adresa už není platná.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Vaše}} registrovaná e-mailová adresa $1 byla odhlášena kvůli opakovaným chybám doručení. Můžete si [[Special:ConfirmEmail|svou e-mailovou adresu znovu ověřit]].",
+	"notification-link-text-change-email": "Změnit e-mailovou adresu",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Vaše}} registrovaná e-mailová adresa $3 byla odhlášena kvůli opakovaným chybám doručení. Můžete si svou e-mailovou adresu znovu ověřit."
 }
