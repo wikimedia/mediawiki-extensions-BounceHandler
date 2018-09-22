@@ -96,7 +96,6 @@ class BounceHandlerHooks {
 				'message' => 'notification-link-text-change-email',
 				'destination' => 'change-email'
 			],
-			'formatter-class' => 'EchoBounceHandlerFormatter',
 			'category' => 'system',
 			'section' => 'alert',
 			// We cannot have additional Echo emails being sent after a user is un-subscribed
