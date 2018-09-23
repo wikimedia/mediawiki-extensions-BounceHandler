@@ -146,9 +146,11 @@ class BounceHandlerActions {
 		$user = User::newFromId( $bounceUserId );
 		$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
 		// Handle the central account email status (if applicable)
+		$unsubscribeLocalUser = true;
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
 			$caUser = CentralAuthUser::getMasterInstance( $user );
 			if ( $caUser->isAttached() ) {
+				$unsubscribeLocalUser = false;
 				$caUser->setEmailAuthenticationTimestamp( null );
 				$caUser->saveSettings();
 				$this->notifyGlobalUser( $bounceUserId, $originalEmail );
@@ -159,7 +161,8 @@ class BounceHandlerActions {
 				);
 				$stats->increment( 'bouncehandler.unsub.global' );
 			}
-		} else {
+		}
+		if ( $unsubscribeLocalUser ) {
 			// Invalidate the email-id of a local user
 			$user->setEmailAuthenticationTimestamp( null );
 			$user->saveSettings();
