@@ -5,6 +5,7 @@
 			"Zoranzoki21"
 		]
 	},
+	"bouncehandler-desc": "Помаже у обради електронске поште за Медијавики",
 	"apierror-bouncehandler-internalonly": "Овај АПИ модул је само за интерну употребу.",
 	"notification-link-text-change-email": "Промените Вашу имејл адресу"
 }
