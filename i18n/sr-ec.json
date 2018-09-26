@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Сербијана",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"BadDog"
 		]
 	},
-	"bouncehandler-desc": "Помаже у обради електронске поште за Медијавики",
+	"bouncehandler-desc": "Помаже у обради имејла за Медијавики",
 	"apierror-bouncehandler-internalonly": "Овај АПИ модул је само за интерну употребу.",
 	"notification-link-text-change-email": "Промените Вашу имејл адресу"
 }
