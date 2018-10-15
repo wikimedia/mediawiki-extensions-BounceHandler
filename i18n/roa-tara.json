@@ -12,5 +12,7 @@
 	"apihelp-bouncehandler-param-email": "'A mail zumbate.",
 	"apierror-bouncehandler-internalonly": "Stu module de API jè sulamende pe ause 'nderne.",
 	"notification-bouncehandler": "'U 'ndirizze {{GENDER:$1|tune}} de poste elettroneche reggistrate non g'è cchiù valide.",
-	"notification-link-text-change-email": "Cange 'u 'ndirizze email tune"
+	"notification-bouncehandler-flyout": "L'indirizze email {{GENDER:$2|tune}} ca è reggistrate $1 ha state luate purcé onne state mannate 'nu sbuènne de messàgge scettate. Puè [[Special:ConfirmEmail|condrollà 'u 'ndirizze mail {{GENDER:$2|tune}} arrete]].",
+	"notification-link-text-change-email": "Cange 'u 'ndirizze email tune",
+	"notification-header-unsubscribe-bouncehandler": "L'indirizze email {{GENDER:$4|tune}} ca è reggistrate $3 ha state luate purcé onne state mannate 'nu sbuènne de messàgge scettate. Puè condrollà 'u 'ndirizze mail {{GENDER:$4|tune}} arrete."
 }
