@@ -10,7 +10,7 @@
  */
 class UnSubscribeUserTest extends MediaWikiTestCase {
 
-	function testUnSubscribeUser() {
+	public function testUnSubscribeUser() {
 		$user = User::newFromName( 'TestUser' );
 		$user->setEmail( 'bob@example.ext' );
 		$user->addToDatabase();
