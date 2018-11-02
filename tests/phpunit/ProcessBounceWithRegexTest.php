@@ -7,9 +7,6 @@
  * @license GPL-2.0-or-later
  */
 class ProcessBounceWithRegexTest extends MediaWikiTestCase {
-	function setUp() {
-		parent::setUp();
-	}
 
 	public static function provideBounceStatusEmails() {
 		$email1 = file_get_contents( __DIR__ . '/bounce_emails/emailStatus1' );
