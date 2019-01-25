@@ -16,5 +16,6 @@
 	"apierror-bouncehandler-internalonly": "Deze API-module is alleen voor intern gebruik.",
 	"notification-bouncehandler": "{{GENDER:$1|Uw}} geregistreerd e-mailadres is niet langer geldig.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Uw}} geregistreerd e-mailadres $1 is uitgeschreven door meerdere afleveringsfouten. U kunt [[Special:ConfirmEmail|{{GENDER:$2|uw}} e-mailadres opnieuw verifiëren]].",
-	"notification-link-text-change-email": "Uw e-mailadres wijzigen"
+	"notification-link-text-change-email": "Uw e-mailadres wijzigen",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Uw}} geregistreerd e-mailadres $3 is uitgeschreven door meerdere afleveringsfouten. U kunt {{GENDER:$4|uw}} e-mailadres opnieuw verifiëren."
 }
