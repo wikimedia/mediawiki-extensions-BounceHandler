@@ -25,7 +25,7 @@ class ProcessUnRecognizedBounces {
 	 *   on a bounce parse failure
 	 * @param string $passwordSender The default email Return path address
 	 */
-	public function __construct( $unrecognizedBounceNotify, $passwordSender ) {
+	public function __construct( array $unrecognizedBounceNotify, $passwordSender ) {
 		$this->unrecognizedBounceNotify = $unrecognizedBounceNotify;
 		$this->passwordSender = $passwordSender;
 	}
@@ -36,21 +36,22 @@ class ProcessUnRecognizedBounces {
 	 * @param string $email The received email bounce
 	 */
 	public function processUnRecognizedBounces( $email ) {
+		if ( !$this->unrecognizedBounceNotify ) {
+			return;
+		}
 		$subject = 'bouncehandler-notify_subject';
 		$sender = new MailAddress( $this->passwordSender,
 			wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		$to = [];
-		if ( $this->unrecognizedBounceNotify !== null ) {
-			foreach ( $this->unrecognizedBounceNotify as $notifyEmails ) {
-				$to[] = new MailAddress( $notifyEmails );
-			}
-			UserMailer::send(
-				$to,
-				$sender,
-				$subject,
-				$email,
-				[ 'replyTo' => $sender ]
-			);
+		foreach ( $this->unrecognizedBounceNotify as $notifyEmails ) {
+			$to[] = new MailAddress( $notifyEmails );
 		}
+		UserMailer::send(
+			$to,
+			$sender,
+			$subject,
+			$email,
+			[ 'replyTo' => $sender ]
+		);
 	}
 }

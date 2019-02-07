@@ -9,15 +9,6 @@
  */
 class BounceHandlerHooks {
 	/**
-	 * Function run on startup in $wgExtensionFunctions
-	 */
-	public static function extensionFunction() {
-		global $wgNoReplyAddress, $wgUnrecognizedBounceNotify;
-
-		$wgUnrecognizedBounceNotify = $wgUnrecognizedBounceNotify ? : [ $wgNoReplyAddress ];
-	}
-
-	/**
 	 * This function generates the VERP address on UserMailer::send()
 	 * Generating VERP address for a batch of send emails is complex. This feature is hence disabled
 	 *
