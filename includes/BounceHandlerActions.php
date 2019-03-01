@@ -75,7 +75,7 @@ class BounceHandlerActions {
 			$dbr = ProcessBounceEmails::getBounceRecordDB( DB_REPLICA, $this->wikiId );
 
 			$totalBounces = $dbr->selectRowCount( 'bounce_records',
-				[ '*' ],
+				'*',
 				[
 					'br_user_email' => $originalEmail,
 					'br_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $bounceValidPeriod ) )
