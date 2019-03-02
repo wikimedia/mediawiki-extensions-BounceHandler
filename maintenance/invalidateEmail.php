@@ -74,5 +74,5 @@ class InvalidateEmail extends Maintenance {
 	}
 }
 
-$maintClass = "InvalidateEmail";
+$maintClass = InvalidateEmail::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
