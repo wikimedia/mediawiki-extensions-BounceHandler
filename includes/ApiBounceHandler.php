@@ -31,7 +31,7 @@ class ApiBounceHandler extends ApiBase {
 		// Extract the wiki ID from the Verp address (also verifies the hash)
 		$bounceProcessor = new ProcessBounceWithRegex();
 		$emailHeaders = $bounceProcessor->extractHeaders( $params['email'] );
-		$to = isset( $emailHeaders['to'] ) ? $emailHeaders['to'] : '';
+		$to = $emailHeaders['to'] ?? '';
 		$failedUser = strlen( $to ) ? $bounceProcessor->getUserDetails( $to ) : [];
 
 		// Route the job to the wiki that the email was sent from.
