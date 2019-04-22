@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Mormegil",
-			"Polda18"
+			"Polda18",
+			"Patriccck"
 		]
 	},
 	"bouncehandler-desc": "Pomáhá v MediaWiki řešit nedoručené e-maily",
@@ -11,7 +12,7 @@
 	"apihelp-bouncehandler-description": "Přijmout vrácený e-mail a zpracovat ho, aby se vyřešil nefunkční příjemce.",
 	"apihelp-bouncehandler-param-email": "Vrácený e-mail.",
 	"notification-bouncehandler": "{{GENDER:$1|Vaše}} registrovaná e-mailová adresa už není platná.",
-	"notification-bouncehandler-flyout": "{{GENDER:$2|Vaše}} registrovaná e-mailová adresa $1 byla odhlášena kvůli opakovaným chybám doručení. Můžete si [[Special:ConfirmEmail|svou e-mailovou adresu znovu ověřit]].",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Vaše}} registrovaná e-mailová adresa $1 byla odhlášena kvůli opakovaným chybám doručení. Můžete si [[Speciální:Potvrdit e-mail|svou e-mailovou adresu znovu ověřit]].",
 	"notification-link-text-change-email": "Změnit e-mailovou adresu",
 	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Vaše}} registrovaná e-mailová adresa $3 byla odhlášena kvůli opakovaným chybám doručení. Můžete si svou e-mailovou adresu znovu ověřit."
 }
