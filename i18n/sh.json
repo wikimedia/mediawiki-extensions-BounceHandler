@@ -10,6 +10,9 @@
 	"apihelp-bouncehandler-description": "Pošalji povratne informacije putem e-pošte da bi obrada mogla raditi s neuspješnim upisom.",
 	"apihelp-bouncehandler-summary": "Pošalji povratne informacije putem e-pošte da bi obrada mogla raditi s neuspješnim upisom.",
 	"apihelp-bouncehandler-param-email": "Povratno pismo.",
+	"apierror-bouncehandler-internalonly": "Izvršnički modul samo je za internu uporabu.",
 	"notification-bouncehandler": "{{GENDER:$1|Vaša}} registrirana adresa e-pošte više nije važeća.",
-	"notification-link-text-change-email": "Smijeni adresu e-pošte"
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Vaša}} registrirana e-pošta $1 je uklonjena zbog višestrukoga neuspjeha u isporuci poruka. Možete je [[Special:ConfirmEmail|potvrditi ponovo]].",
+	"notification-link-text-change-email": "Smijeni adresu e-pošte",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Vaša}} registrirana e-pošta $3 je otpisana zbog višestrukoga neuspjeha u isporuci poruka. Možete ponovno {{GENDER:$4|je}} potvrditi."
 }
