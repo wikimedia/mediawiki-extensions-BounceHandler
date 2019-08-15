@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mormegil"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "Přijmout ke zpracování vrácený e-mail s obsahem „This is a test email“.",
+	"apihelp-bouncehandler-description": "Přijmout vrácený e-mail a zpracovat ho, aby se vyřešil nefunkční příjemce.",
+	"apihelp-bouncehandler-param-email": "Vrácený e-mail."
+}

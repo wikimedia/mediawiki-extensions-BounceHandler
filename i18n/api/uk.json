@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Piramidion",
+			"Ата"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "Отримати відмову для ел. листа з вмістом «Це тестовий лист».",
+	"apihelp-bouncehandler-description": "Отримувати електронний лист-відмову і обробляти його для обробки невдалого одержувача.",
+	"apihelp-bouncehandler-summary": "Отримувати електронний лист-відмову і обробляти його для обробки невдалого одержувача.",
+	"apihelp-bouncehandler-param-email": "Відхилений ел. лист.",
+	"apierror-bouncehandler-internalonly": "Цей модуль API призначений лише для внутрішнього використання."
+}

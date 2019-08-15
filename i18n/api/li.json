@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ooswesthoesbes"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "Óntvange 'ne bounce-email veur te verwirke mit d'n inhawd \"This is a test email\".",
+	"apihelp-bouncehandler-description": "Óntvang 'ne bounce-email en verwirk deze veur de foutgaondje óntvanger aaf te hanjele.",
+	"apihelp-bouncehandler-summary": "Óntvang 'ne bounce-email en verwirk 't veur de foutgaondje óntvanger aaf te hanjele.",
+	"apihelp-bouncehandler-param-email": "De gebounceden e-mail.",
+	"apierror-bouncehandler-internalonly": "Dees API-moduul is allein veur intern gebroek."
+}

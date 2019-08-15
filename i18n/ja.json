@@ -7,7 +7,6 @@
 		]
 	},
 	"bouncehandler-desc": "MediaWiki の bounce メール (不達メール) の処理を支援する",
-	"apierror-bouncehandler-internalonly": "このAPIモジュールは、内部使用のみを目的としています。",
 	"notification-bouncehandler": "{{GENDER:$1|あなた}}の登録されたメールアドレスが有効ではありません。",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|あなた}}の登録されたメールアドレス「$1」は、複数のメッセージの送信に失敗しているため、登録が取り消されました。[[Special:ConfirmEmail|もう一度{{GENDER:$2|あなた}}のメールアドレスを確認]]することができます。",
 	"notification-link-text-change-email": "メールアドレスを変更する",

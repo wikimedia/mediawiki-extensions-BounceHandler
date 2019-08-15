@@ -8,7 +8,6 @@
 	},
 	"bouncehandler-desc": "Aiuta nella gestione delle email di ritorno per MediaWiki",
 	"bouncehandler-notify_subject": "Ritorno di un messaggio di errore temporaneo",
-	"apierror-bouncehandler-internalonly": "Questo modulo API è solo per uso interno.",
 	"notification-bouncehandler": "{{GENDER:$1|Il tuo}} indirizzo di posta elettronica registrato non è più valido.",
 	"notification-link-text-change-email": "Cambia il tuo indirizzo email"
 }

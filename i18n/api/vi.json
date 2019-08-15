@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Minh Nguyen"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "Nhận một thư điện tử trả lại để xử lý với nội dung “Đây là thư điện tử thử nghiệm”.",
+	"apihelp-bouncehandler-description": "Nhận một thư điện tử trả lại và xử lý người không nhận được nó.",
+	"apihelp-bouncehandler-param-email": "Thư điện tử bị trả lại."
+}

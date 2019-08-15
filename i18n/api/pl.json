@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrumps"
+		]
+	},
+	"apierror-bouncehandler-internalonly": "Ten moduł API jest przeznaczony tylko do użytku wewnętrznego."
+}

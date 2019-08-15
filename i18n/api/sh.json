@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "Pošalji povratne informacije e-poštom za obradu s sadržajem \"Ovo je probna pošta\".",
+	"apihelp-bouncehandler-description": "Pošalji povratne informacije putem e-pošte da bi obrada mogla raditi s neuspješnim upisom.",
+	"apihelp-bouncehandler-summary": "Pošalji povratne informacije putem e-pošte da bi obrada mogla raditi s neuspješnim upisom.",
+	"apihelp-bouncehandler-param-email": "Povratno pismo.",
+	"apierror-bouncehandler-internalonly": "Izvršnički modul samo je za internu uporabu."
+}

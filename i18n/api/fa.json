@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ladsgroup"
+		]
+	},
+	"apierror-bouncehandler-internalonly": "این پودمان API فقط برای استفاده داخلی است."
+}

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "Receber um correio de devolução para processamento, com o conteúdo \"This is a test email\".",
+	"apihelp-bouncehandler-description": "Receber um correio de devolução e processá-lo, para lidar com o erro de destinatário.",
+	"apihelp-bouncehandler-summary": "Receber um correio de devolução e processá-lo, para lidar com o erro de destinatário.",
+	"apihelp-bouncehandler-param-email": "O correio devolvido.",
+	"apierror-bouncehandler-internalonly": "Este módulo da API é só para uso interno."
+}

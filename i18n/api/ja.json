@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yusuke1109"
+		]
+	},
+	"apierror-bouncehandler-internalonly": "このAPIモジュールは、内部使用のみを目的としています。"
+}
