@@ -30,8 +30,7 @@ class InvalidateEmail extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->requireExtension( 'BounceHandler' );
-		$this->mDescription =
-			"Invalidate a user's email address and leave them a message.";
+		$this->addDescription( "Invalidate a user's email address and leave them a message." );
 		$this->addOption( 'userlist',
 			'List of usernames to invalidate, one per line', true, true );
 		$this->addOption( 'dry-run', 'Do not invalidate addresses' );
