@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gomoko"
+			"Gomoko",
+			"Thibaut120094"
 		]
 	},
-	"apihelp-bouncehandler-example-1": "Recevoir un courriel de rejet pour traitement avec le contenu « Ceci est un courriel de test ».",
+	"apihelp-bouncehandler-example-1": "Recevoir un courriel de rejet pour traitement avec le contenu « Ceci est un courriel de test ».",
 	"apihelp-bouncehandler-description": "Recevoir un courriel de rejet et le traiter pour gérer le destinataire erroné.",
 	"apihelp-bouncehandler-summary": "Recevoir un courriel de rebond et le traiter pour gérer le destinataire erroné.",
 	"apihelp-bouncehandler-param-email": "Le courriel rejeté.",

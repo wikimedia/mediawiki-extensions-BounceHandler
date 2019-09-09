@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gomoko"
+			"Gomoko",
+			"Thibaut120094"
 		]
 	},
-	"bouncehandler-desc": "Aide à gérer les rebonds de courriel pour MédiaWiki",
+	"bouncehandler-desc": "Aide à gérer les rebonds de courriel pour MediaWiki",
 	"bouncehandler-notify_subject": "Renvoi d’un rebond temporaire",
 	"notification-bouncehandler": "{{GENDER:$1|Votre}} adresse de courriel enregistrée n’est plus valide.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Votre}} adresse de courriel enregistrée $1 a été désinscrite suite à de multiples échecs de livraison de message. Vous pouvez [[Special:ConfirmEmail|vérifier de nouveau {{GENDER:$2|votre}} adresse de courriel]].",
