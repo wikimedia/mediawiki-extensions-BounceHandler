@@ -18,7 +18,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 	protected $originalEmail;
 	protected $subject = "Bounce Email";
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$user = User::newFromName( 'OldUser' );
