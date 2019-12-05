@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"BaRaN6161 TURK"
+		]
+	},
+	"bouncehandler-desc": "MediaWiki için e-posta sıçramalarını işlemeye yardımcı olur",
+	"bouncehandler-notify_subject": "Geçici hemen çıkma döndürülüyor",
+	"notification-bouncehandler": "{{GENDER:$1|Sizin}} kayıtlı e-posta adresiniz artık geçerli değil.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Sizin}} kayıtlı e-posta adresiniz $1, birden fazla mesaj gönderim hatası nedeniyle iptal edildi. [[Special:ConfirmEmail|{{GENDER:$2|Sizin}} e-posta adresini tekrar doğrulayabilirsiniz]].",
+	"notification-link-text-change-email": "E posta adresini değiştir",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Sizin}} kayıtlı e-posta adresiniz $3, birden fazla mesaj gönderim hatası nedeniyle iptal edildi. {{GENDER:$4|Sizin}} e-posta adresini tekrar doğrulayabilirsiniz."
+}

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"BaRaN6161 TURK"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "\"Bu bir test e-postası\" içeriğiyle işlenmek üzere bir sıçrama e-postası alın.",
+	"apihelp-bouncehandler-description": "Bir sıçrama e-postası alın ve başarısız alıcıyı ele almak için işleme koyun.",
+	"apihelp-bouncehandler-summary": "Bir sıçrama e-postası alın ve başarısız alıcıyı ele almak için işleme koyun.",
+	"apihelp-bouncehandler-param-email": "Zıplayan e-posta.",
+	"apierror-bouncehandler-internalonly": "Bu API modülü sadece dahili kullanım içindir."
+}
