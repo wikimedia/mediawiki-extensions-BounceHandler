@@ -161,7 +161,7 @@ abstract class ProcessBounceEmails {
 	 * Generate Original Email Id from a hashed emailId
 	 *
 	 * @param array $failedUser The failed user details
-	 * @return string $rawEmail The emailId of the failing recipient
+	 * @return string|false $rawEmail The emailId of the failing recipient
 	 */
 	public function getOriginalEmail( $failedUser ) {
 		// In multiple wiki deployed case, the $wikiId can help correctly
