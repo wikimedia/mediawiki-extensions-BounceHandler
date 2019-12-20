@@ -116,7 +116,7 @@ abstract class ProcessBounceEmails {
 
 		$failedUser = [];
 
-		$currentTime = wfTimestamp();
+		$currentTime = (int)wfTimestamp();
 		preg_match( '~(.*?)@~', $hashedEmail, $hashedPart );
 		if ( !isset( $hashedPart[1] ) ) {
 			wfDebugLog( 'BounceHandler',
@@ -136,7 +136,7 @@ abstract class ProcessBounceEmails {
 			);
 			return [];
 		}
-		$bounceTime = base_convert( $hashedVERPPart[3], 36, 10 );
+		$bounceTime = (int)base_convert( $hashedVERPPart[3], 36, 10 );
 		// Check if the VERP hash is valid
 		if ( base64_encode(
 				substr( hash_hmac( $wgVERPalgorithm, $hashedData, $wgVERPsecret, true ), 0, 12 )
