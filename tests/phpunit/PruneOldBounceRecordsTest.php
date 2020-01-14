@@ -80,7 +80,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 		// reset
 		$bounceRecordMaxAge = -1;
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertEquals( 0,  $res ); // We will have 0 elements after pruning
+		$this->assertSame( 0,  $res ); // We will have 0 elements after pruning
 	}
 
 	public function testMultipleOldRows() {
@@ -90,7 +90,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
 		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // Delete all rows
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertEquals( 0, $res ); // We will have 0 elements
+		$this->assertSame( 0, $res ); // We will have 0 elements
 
 		// Insert First bounce
 		$this->insertDelayedBounce( 4, $dbw ); // Insert with 4 seconds delay

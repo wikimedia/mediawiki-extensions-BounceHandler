@@ -61,7 +61,7 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 				$partIndices = array_keys( $emailLines, "--$contentTypeMatch[1]" );
 				foreach ( $partIndices as $index ) {
 					$result = $this->parseMessagePart( array_slice( $emailLines, $index ) );
-					if ( !is_null( $result ) ) {
+					if ( $result !== null ) {
 						return $result;
 					}
 				}
@@ -98,7 +98,7 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 			}
 		}
 		$status = $this->parseDeliveryStatusMessage( $emailLines );
-		if ( !is_null( $status ) ) {
+		if ( $status !== null ) {
 			$emailHeaders['status'] = $status;
 		}
 
