@@ -6,8 +6,8 @@
 	},
 	"bouncehandler-desc": "Помага во работата на МедијаВики со неуспешно доставена е-пошта",
 	"bouncehandler-notify_subject": "Повраток на привремено недоставени пораки",
-	"notification-bouncehandler": "{{GENDER:$1|Вашата}} регистрирана е-пошта повеќе не е важечка.",
-	"notification-bouncehandler-flyout": "{{GENDER:$2|Вашата}} регистрирана е-пошта $1 е отстранета поради повеќекратниот неуспех во доставата на пораки. Можете да ја [[Special:ConfirmEmail|потврдите повторно]].",
+	"notification-bouncehandler": "{{GENDER:$1|Вашата}} пријавена е-пошта повеќе не е важечка.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Вашата}} пријавена е-пошта $1 е отстранета поради повеќекратниот неуспех во доставата на пораки. Можете да ја [[Special:ConfirmEmail|потврдите повторно]].",
 	"notification-link-text-change-email": "Смени е-пошта",
-	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Вашата}} регистрирана е-пошта $3 е отпишана поради повеќекратниот неуспех во доставата на пораки. Можете да {{GENDER:$4|ја}} потврдите повторно."
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Вашата}} пријавена е-пошта $3 е отпишана поради повеќекратниот неуспех во доставата на пораки. Можете да {{GENDER:$4|ја}} потврдите повторно."
 }
