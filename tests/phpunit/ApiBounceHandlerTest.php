@@ -13,11 +13,6 @@
  */
 class ApiBounceHandlerTest extends ApiTestCase {
 
-	protected function setUp() : void {
-		parent::setUp();
-		$this->doLogin( 'sysop' );
-	}
-
 	public static function provideBounceEmails() {
 		$email = file_get_contents( __DIR__ . '/bounce_emails/email1' );
 		return [
