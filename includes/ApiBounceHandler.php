@@ -9,6 +9,9 @@
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later
  */
+
+use Wikimedia\IPUtils;
+
 class ApiBounceHandler extends ApiBase {
 	public function execute() {
 		global $wgBounceHandlerInternalIPs;
@@ -16,7 +19,7 @@ class ApiBounceHandler extends ApiBase {
 		$requestIP = $this->getRequest()->getIP();
 		$inRangeIP = false;
 		foreach ( $wgBounceHandlerInternalIPs as $internalIP ) {
-			if ( IP::isInRange( $requestIP, $internalIP ) ) {
+			if ( IPUtils::isInRange( $requestIP, $internalIP ) ) {
 				$inRangeIP = true;
 				break;
 			}
