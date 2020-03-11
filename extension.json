@@ -78,18 +78,10 @@
 		}
 	},
 	"Hooks": {
-		"UserMailerChangeReturnPath": [
-			"BounceHandlerHooks::onVERPAddressGenerate"
-		],
-		"LoadExtensionSchemaUpdates": [
-			"BounceHandlerHooks::loadExtensionSchemaUpdates"
-		],
-		"BeforeCreateEchoEvent": [
-			"BounceHandlerHooks::onBeforeCreateEchoEvent"
-		],
-		"EchoGetDefaultNotifiedUsers": [
-			"BounceHandlerHooks::onEchoGetDefaultNotifiedUsers"
-		]
+		"UserMailerChangeReturnPath": "BounceHandlerHooks::onVERPAddressGenerate",
+		"LoadExtensionSchemaUpdates": "BounceHandlerHooks::loadExtensionSchemaUpdates",
+		"BeforeCreateEchoEvent": "BounceHandlerHooks::onBeforeCreateEchoEvent",
+		"EchoGetDefaultNotifiedUsers": "BounceHandlerHooks::onEchoGetDefaultNotifiedUsers"
 	},
 	"JobClasses": {
 		"BounceHandlerJob": "BounceHandlerJob",
