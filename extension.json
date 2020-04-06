@@ -79,7 +79,7 @@
 	},
 	"Hooks": {
 		"UserMailerChangeReturnPath": "BounceHandlerHooks::onVERPAddressGenerate",
-		"LoadExtensionSchemaUpdates": "BounceHandlerHooks::loadExtensionSchemaUpdates",
+		"LoadExtensionSchemaUpdates": "BounceHandlerHooks::onLoadExtensionSchemaUpdates",
 		"BeforeCreateEchoEvent": "BounceHandlerHooks::onBeforeCreateEchoEvent",
 		"EchoGetDefaultNotifiedUsers": "BounceHandlerHooks::onEchoGetDefaultNotifiedUsers"
 	},
