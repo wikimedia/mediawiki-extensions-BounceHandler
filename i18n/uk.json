@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата",
-			"Piramidion"
+			"Piramidion",
+			"Ата"
 		]
 	},
 	"bouncehandler-desc": "Допомагає в обробці відмов електронної пошти для MediaWiki",

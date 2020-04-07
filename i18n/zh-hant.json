@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Cwlin0416",
-			"Liuxinyu970226",
+			"Kly",
 			"LNDDYL",
-			"Kly"
+			"Liuxinyu970226"
 		]
 	},
 	"bouncehandler-desc": "協助處理 MediaWiki 的電子郵件退回",

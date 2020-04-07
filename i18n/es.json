@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Themasterriot",
+			"Dgstranz",
 			"Fitoschido",
-			"Ryo567",
 			"Macofe",
-			"Dgstranz"
+			"Ryo567",
+			"Themasterriot"
 		]
 	},
 	"bouncehandler-desc": "Ayuda en el manejo de rebotes de correo electrónico para MediaWiki",

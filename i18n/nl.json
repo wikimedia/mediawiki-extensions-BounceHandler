@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Siebrand",
-			"Sjoerddebruin",
 			"Jeleniccz",
 			"Mainframe98",
-			"Ooswesthoesbes"
+			"Ooswesthoesbes",
+			"Siebrand",
+			"Sjoerddebruin"
 		]
 	},
 	"bouncehandler-desc": "Helpt bij het verwerken van teruggestuurde e-mails voor MediaWiki",

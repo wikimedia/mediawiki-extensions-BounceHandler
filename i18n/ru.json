@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Okras",
 			"Alex Great",
-			"Mailman",
 			"Facenapalm",
-			"Mouse21"
+			"Mailman",
+			"Mouse21",
+			"Okras"
 		]
 	},
 	"bouncehandler-desc": "Помогает в обработке возвратов недоставленных сообщений электронной почты для MediaWiki",

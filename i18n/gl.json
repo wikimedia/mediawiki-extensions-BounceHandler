@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Toliño",
 			"Banjo",
-			"Elisardojm"
+			"Elisardojm",
+			"Toliño"
 		]
 	},
 	"bouncehandler-desc": "Axuda na xestión dos reenvíos de correos electrónicos en MediaWiki",
