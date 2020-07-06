@@ -8,5 +8,5 @@
 	"apihelp-bouncehandler-description": "Bir sıçrama e-postası alın ve başarısız alıcıyı ele almak için işleme koyun.",
 	"apihelp-bouncehandler-summary": "Bir sıçrama e-postası alın ve başarısız alıcıyı ele almak için işleme koyun.",
 	"apihelp-bouncehandler-param-email": "Zıplayan e-posta.",
-	"apierror-bouncehandler-internalonly": "Bu API modülü sadece dahili kullanım içindir."
+	"apierror-bouncehandler-internalonly": "Bu API modülü yalnızca dahili kullanım içindir."
 }
