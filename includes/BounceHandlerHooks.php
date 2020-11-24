@@ -59,18 +59,20 @@ class BounceHandlerHooks {
 	 * @param DatabaseUpdater $updater
 	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		$isPostgreSQL = ( $updater->getDB()->getType() === 'postgres' );
-		$mainSchemaFile = $isPostgreSQL ? 'bounce_records.postgres.sql' : 'bounce_records.sql';
-		$updater->addExtensionTable( 'bounce_records', __DIR__ . '/../sql/' . $mainSchemaFile );
-		if ( !$isPostgreSQL ) {
+		$type = $updater->getDB()->getType();
+		$path = dirname( __DIR__ ) . '/sql';
+
+		$updater->addExtensionTable( 'bounce_records', "$path/$type/tables-generated.sql" );
+
+		if ( $updater->getDB()->getType() !== 'postgres' ) {
 			$updater->modifyExtensionField(
-				'bounce_records', 'br_user', __DIR__ . '/../sql/alter_user_column.sql'
+				'bounce_records', 'br_user', "$path/alter_user_column.sql"
 			);
 			$updater->addExtensionIndex(
-				'bounce_records', 'br_mail_timestamp', __DIR__ . '/../sql/create_index_mail_timestamp.sql'
+				'bounce_records', 'br_mail_timestamp', "$path/create_index_mail_timestamp.sql"
 			);
 			$updater->addExtensionIndex(
-				'bounce_records', 'br_timestamp', __DIR__ . '/../sql/create_index_timestamp.sql'
+				'bounce_records', 'br_timestamp', "$path/create_index_timestamp.sql"
 			);
 		}
 	}
