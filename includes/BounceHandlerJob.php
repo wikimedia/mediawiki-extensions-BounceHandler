@@ -10,10 +10,12 @@
  * @license GPL-2.0-or-later
  */
 class BounceHandlerJob extends Job {
+	/** @inheritDoc */
 	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'BounceHandlerJob', $title, $params );
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$email = $this->params['email'];
 

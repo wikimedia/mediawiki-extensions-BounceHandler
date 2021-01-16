@@ -22,7 +22,6 @@ class ApiBounceHandlerTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideBounceEmails
-	 * @param $email
 	 */
 	public function testBounceHandlerWithGoodIPPasses( $email ) {
 		$user = User::newFromName( 'TestUser' );
@@ -69,7 +68,6 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 * Tests API request from an unknown IP
 	 *
 	 * @dataProvider provideBounceEmails
-	 * @param $email
 	 */
 	public function testBounceHandlerWithBadIPPasses( $email ) {
 		$this->expectException( ApiUsageException::class );
@@ -100,7 +98,6 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 * Tests API with Wrong params
 	 *
 	 * @dataProvider provideBounceEmails
-	 * @param $email
 	 */
 	public function testBounceHandlerWithWrongParams( $email ) {
 		$this->expectException( ApiUsageException::class );
