@@ -9,10 +9,12 @@
  * @license GPL-2.0-or-later
  */
 class BounceHandlerNotificationJob extends Job {
+	/** @inheritDoc */
 	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'BounceHandlerNotificationJob', $title, $params );
 	}
 
+	/** @inheritDoc */
 	public function run() {
 		$failedUserId = $this->params['failed-user-id'];
 		$failedUserEmailAddress = $this->params['failed-email'];

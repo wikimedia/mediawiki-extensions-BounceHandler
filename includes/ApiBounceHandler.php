@@ -69,14 +69,17 @@ class ApiBounceHandler extends ApiBase {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function isWriteMode() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'email' => [
@@ -97,6 +100,7 @@ class ApiBounceHandler extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHelpUrls() {
 		return "https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:BounceHandler#API";
 	}

@@ -11,11 +11,11 @@
  */
 class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 
-	protected $encodedAddress;
-	protected $emailHeaders;
+	/** @var string */
 	protected $wikiId;
-	protected $userId;
+	/** @var string */
 	protected $originalEmail;
+	/** @var string */
 	protected $subject = "Bounce Email";
 
 	protected function setUp() : void {
@@ -120,7 +120,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $delayTime
+	 * @param int $delayTime
 	 * @param \Wikimedia\Rdbms\IDatabase $dbw
 	 */
 	protected function insertDelayedBounce( $delayTime, $dbw ) {
@@ -135,7 +135,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $bounceRecordMaxAge
+	 * @param int $bounceRecordMaxAge
 	 * @param \Wikimedia\Rdbms\IDatabase $dbr
 	 * @return int
 	 */

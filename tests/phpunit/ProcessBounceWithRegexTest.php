@@ -44,8 +44,6 @@ class ProcessBounceWithRegexTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBounceStatusEmails
-	 * @param $emailStatus
-	 * @param $expected
 	 */
 	public function testExtractHeadersWithStatus( $emailStatus, $expected ) {
 		$regexClass = new ProcessBounceWithRegex;
