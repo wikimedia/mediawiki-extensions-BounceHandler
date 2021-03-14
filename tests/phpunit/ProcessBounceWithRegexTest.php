@@ -1,8 +1,11 @@
 <?php
+
+use MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex;
+
 /**
  * Class ProcessBounceWithRegexTest
  *
- * @covers ProcessBounceWithRegex
+ * @covers \MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */

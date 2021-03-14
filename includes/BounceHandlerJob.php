@@ -1,4 +1,10 @@
 <?php
+
+namespace MediaWiki\Extension\BounceHandler;
+
+use Job;
+use Title;
+
 /**
  * Class BounceHandlerJob
  *

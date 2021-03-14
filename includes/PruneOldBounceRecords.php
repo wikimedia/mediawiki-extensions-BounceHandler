@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extension\BounceHandler;
+
 /**
  * Class PruneOldBounceRecords
  *

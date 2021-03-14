@@ -1,10 +1,13 @@
 <?php
 
+use MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex;
+use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
+
 /**
  * Class VERPEncodeDecodeTest
  *
  * @group Database
- * @covers VerpAddressGenerator
+ * @covers \MediaWiki\Extension\BounceHandler\VerpAddressGenerator
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */

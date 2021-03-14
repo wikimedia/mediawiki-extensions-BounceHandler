@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Extension\BounceHandler;
+
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class ProcessBounceEmails
@@ -26,8 +29,7 @@ abstract class ProcessBounceEmails {
 	 * @return ProcessBounceWithRegex
 	 */
 	public static function getProcessor() {
-		$bounceProcessor = new ProcessBounceWithRegex();
-		return $bounceProcessor;
+		return new ProcessBounceWithRegex();
 	}
 
 	/**
@@ -145,7 +147,7 @@ abstract class ProcessBounceEmails {
 		) {
 			$failedUser['wikiId'] = str_replace( '.', '-', $hashedVERPPart[1] );
 			$failedUser['rawUserId'] = base_convert( $hashedVERPPart[2], 36, 10 );
-			$failedEmail = self::getOriginalEmail( $failedUser );
+			$failedEmail = $this->getOriginalEmail( $failedUser );
 			$failedUser['rawEmail'] = $failedEmail ? : null;
 			$failedUser['bounceTime'] = wfTimestamp( TS_MW, $bounceTime );
 		} else {
@@ -181,8 +183,7 @@ abstract class ProcessBounceEmails {
 		);
 		$lb->reuseConnection( $dbr );
 		if ( $res !== false ) {
-			$rawEmail = $res->user_email;
-			return $rawEmail;
+			return $res->user_email;
 		}
 
 		wfDebugLog( 'BounceHandler',
@@ -233,7 +234,7 @@ abstract class ProcessBounceEmails {
 	 *
 	 * @param int $index DB_MASTER/DB_REPLICA
 	 * @param string $wiki The DB that the bounced email was sent from
-	 * @return \Wikimedia\Rdbms\IDatabase
+	 * @return IDatabase
 	 */
 	public static function getBounceRecordDB( $index, $wiki ) {
 		global $wgBounceHandlerCluster, $wgBounceHandlerSharedDB;

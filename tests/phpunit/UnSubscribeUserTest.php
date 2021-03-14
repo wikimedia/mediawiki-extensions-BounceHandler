@@ -1,10 +1,13 @@
 <?php
 
+use MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex;
+use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
+
 /**
  * Class UnSubscribeUserTest
  *
  * @group Database
- * @covers BounceHandlerActions
+ * @covers \MediaWiki\Extension\BounceHandler\BounceHandlerActions
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */

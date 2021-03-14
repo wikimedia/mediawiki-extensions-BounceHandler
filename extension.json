@@ -15,20 +15,10 @@
 		"MediaWiki": ">= 1.35.0"
 	},
 	"APIModules": {
-		"bouncehandler": "ApiBounceHandler"
+		"bouncehandler": "MediaWiki\\Extension\\BounceHandler\\ApiBounceHandler"
 	},
-	"AutoloadClasses": {
-		"BounceHandlerHooks": "includes/BounceHandlerHooks.php",
-		"ApiBounceHandler": "includes/ApiBounceHandler.php",
-		"BounceHandlerJob": "includes/BounceHandlerJob.php",
-		"BounceHandlerNotificationJob": "includes/BounceHandlerNotificationJob.php",
-		"ProcessBounceEmails": "includes/ProcessBounceEmails.php",
-		"BounceHandlerActions": "includes/BounceHandlerActions.php",
-		"ProcessUnRecognizedBounces": "includes/ProcessUnRecognizedBounces.php",
-		"ProcessBounceWithRegex": "includes/ProcessBounceWithRegex.php",
-		"VerpAddressGenerator": "includes/VerpAddressGenerator.php",
-		"PruneOldBounceRecords": "includes/PruneOldBounceRecords.php",
-		"EchoBounceHandlerPresentationModel": "includes/EchoBounceHandlerPresentationModel.php"
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\BounceHandler\\": "includes/"
 	},
 	"config": {
 		"BounceHandlerCluster": {
@@ -78,14 +68,14 @@
 		}
 	},
 	"Hooks": {
-		"UserMailerChangeReturnPath": "BounceHandlerHooks::onVERPAddressGenerate",
-		"LoadExtensionSchemaUpdates": "BounceHandlerHooks::onLoadExtensionSchemaUpdates",
-		"BeforeCreateEchoEvent": "BounceHandlerHooks::onBeforeCreateEchoEvent",
-		"EchoGetDefaultNotifiedUsers": "BounceHandlerHooks::onEchoGetDefaultNotifiedUsers"
+		"UserMailerChangeReturnPath": "MediaWiki\\Extension\\BounceHandler\\Hooks::onVERPAddressGenerate",
+		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\BounceHandler\\Hooks::onLoadExtensionSchemaUpdates",
+		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\BounceHandler\\Hooks::onBeforeCreateEchoEvent",
+		"EchoGetDefaultNotifiedUsers": "MediaWiki\\Extension\\BounceHandler\\Hooks::onEchoGetDefaultNotifiedUsers"
 	},
 	"JobClasses": {
-		"BounceHandlerJob": "BounceHandlerJob",
-		"BounceHandlerNotificationJob": "BounceHandlerNotificationJob"
+		"BounceHandlerJob": "MediaWiki\\Extension\\BounceHandler\\BounceHandlerJob",
+		"BounceHandlerNotificationJob": "MediaWiki\\Extension\\BounceHandler\\BounceHandlerNotificationJob"
 	},
 	"MessagesDirs": {
 		"BounceHandler": [

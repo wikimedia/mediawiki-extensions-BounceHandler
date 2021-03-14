@@ -10,15 +10,18 @@
  * @license GPL-2.0-or-later
  */
 
+namespace MediaWiki\Extension\BounceHandler;
+
+use ApiBase;
+use JobQueueGroup;
+use Title;
 use Wikimedia\IPUtils;
 
 class ApiBounceHandler extends ApiBase {
 	public function execute() {
-		global $wgBounceHandlerInternalIPs;
-
 		$requestIP = $this->getRequest()->getIP();
 		$inRangeIP = false;
-		foreach ( $wgBounceHandlerInternalIPs as $internalIP ) {
+		foreach ( $this->getConfig()->get( 'BounceHandlerInternalIPs' ) as $internalIP ) {
 			if ( IPUtils::isInRange( $requestIP, $internalIP ) ) {
 				$inRangeIP = true;
 				break;

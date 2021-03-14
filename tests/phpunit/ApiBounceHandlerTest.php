@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
+
 /**
  * Class ApiBounceHandlerTest
  *
@@ -7,7 +10,7 @@
  * @group API
  * @group medium
  * @group Database
- * @covers ApiBounceHandler
+ * @covers \MediaWiki\Extension\BounceHandler\ApiBounceHandler
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */

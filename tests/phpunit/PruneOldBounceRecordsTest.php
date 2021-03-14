@@ -1,11 +1,13 @@
 <?php
 
+use MediaWiki\Extension\BounceHandler\PruneOldBounceRecords;
+
 /**
  * Class PruneOldBounceRecordsTest
  *
  * @group Database
  * @group medium
- * @covers PruneOldBounceRecords
+ * @covers \MediaWiki\Extension\BounceHandler\PruneOldBounceRecords
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */

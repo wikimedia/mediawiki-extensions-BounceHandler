@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extension\BounceHandler;
+
 /**
  * Class VerpAddressGenerator
  *
@@ -73,7 +76,7 @@ class VerpAddressGenerator {
 		$verp_hash = base64_encode(
 			substr( hash_hmac( $this->algorithm, $email_prefix, $this->secretKey, true ), 0, 12 )
 		);
-		$returnPath = $email_prefix . '-' . $verp_hash . '@' . $email_domain;
-		return $returnPath;
+
+		return $email_prefix . '-' . $verp_hash . '@' . $email_domain;
 	}
 }

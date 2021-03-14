@@ -1,4 +1,12 @@
 <?php
+namespace MediaWiki\Extension\BounceHandler;
+
+use DatabaseUpdater;
+use EchoEvent;
+use InvalidArgumentException;
+use MailAddress;
+use User;
+
 /**
  * Hooks used by BounceHandler
  *
@@ -7,7 +15,7 @@
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later
  */
-class BounceHandlerHooks {
+class Hooks {
 	/**
 	 * This function generates the VERP address on UserMailer::send()
 	 * Generating VERP address for a batch of send emails is complex. This feature is hence disabled

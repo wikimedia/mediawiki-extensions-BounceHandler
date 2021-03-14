@@ -1,4 +1,15 @@
 <?php
+
+namespace MediaWiki\Extension\BounceHandler;
+
+use CentralAuthUser;
+use EchoEvent;
+use Exception;
+use ExtensionRegistry;
+use JobQueueGroup;
+use Title;
+use User;
+
 /**
  * Class BounceHandlerActions
  *

@@ -1,4 +1,10 @@
 <?php
+
+namespace MediaWiki\Extension\BounceHandler;
+
+use MailAddress;
+use UserMailer;
+
 /**
  * Class ProcessUnRecognizedBounces
  *

@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Extension\BounceHandler;
+
+use EchoEventPresentationModel;
+use SpecialPage;
+
 class EchoBounceHandlerPresentationModel extends EchoEventPresentationModel {
 	/**
 	 * @inheritDoc
