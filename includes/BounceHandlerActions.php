@@ -197,7 +197,7 @@ class BounceHandlerActions {
 		return implode(
 			"\n",
 			array_map(
-				function ( $v, $k ) {
+				static function ( $v, $k ) {
 					return "$k: $v";
 				},
 				$emailHeaders,
