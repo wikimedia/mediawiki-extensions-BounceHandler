@@ -62,7 +62,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 	}
 
 	public function testPruneDeleteOldSingleRow() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
 		// Delete old rows
 		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
@@ -86,7 +86,7 @@ class PruneOldBounceRecordsTest extends MediaWikiTestCase {
 	}
 
 	public function testMultipleOldRows() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
 		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );

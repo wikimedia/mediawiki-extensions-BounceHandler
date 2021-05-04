@@ -36,7 +36,7 @@ class PruneOldBounceRecords {
 		$idArray = $this->getOldRecords( $wikiId );
 		$idArrayCount = count( $idArray );
 		if ( $idArrayCount > 0 ) {
-			$dbw = ProcessBounceEmails::getBounceRecordDB( DB_MASTER, $wikiId );
+			$dbw = ProcessBounceEmails::getBounceRecordDB( DB_PRIMARY, $wikiId );
 			$dbw->delete(
 				'bounce_records',
 				[

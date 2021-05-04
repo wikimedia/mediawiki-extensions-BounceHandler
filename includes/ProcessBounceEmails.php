@@ -73,7 +73,7 @@ abstract class ProcessBounceEmails {
 			$wikiId = $failedUser['wikiId'];
 			$originalEmail = $failedUser['rawEmail'];
 			$bounceTimestamp = $failedUser['bounceTime'];
-			$dbw = self::getBounceRecordDB( DB_MASTER, $wikiId );
+			$dbw = self::getBounceRecordDB( DB_PRIMARY, $wikiId );
 
 			$rowData = [
 				'br_user_email' => $originalEmail,
@@ -232,7 +232,7 @@ abstract class ProcessBounceEmails {
 	/**
 	 * Get a lazy connection to the bounce table
 	 *
-	 * @param int $index DB_MASTER/DB_REPLICA
+	 * @param int $index DB_PRIMARY/DB_REPLICA
 	 * @param string $wiki The DB that the bounced email was sent from
 	 * @return IDatabase
 	 */
