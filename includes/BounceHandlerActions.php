@@ -159,7 +159,7 @@ class BounceHandlerActions {
 		// Handle the central account email status (if applicable)
 		$unsubscribeLocalUser = true;
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
-			$caUser = CentralAuthUser::getMasterInstance( $user );
+			$caUser = CentralAuthUser::getPrimaryInstance( $user );
 			if ( $caUser->isAttached() ) {
 				$unsubscribeLocalUser = false;
 				$caUser->setEmailAuthenticationTimestamp( null );
