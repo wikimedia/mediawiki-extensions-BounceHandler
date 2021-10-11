@@ -11,7 +11,7 @@ use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */
-class UnSubscribeUserTest extends MediaWikiTestCase {
+class UnSubscribeUserTest extends MediaWikiIntegrationTestCase {
 
 	public function testUnSubscribeUser() {
 		$user = User::newFromName( 'TestUser' );

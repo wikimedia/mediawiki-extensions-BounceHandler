@@ -11,7 +11,7 @@ use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */
-class VERPEncodeDecodeTest extends MediaWikiTestCase {
+class VERPEncodeDecodeTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Tests that the extension encodes and decodes the email address correctly

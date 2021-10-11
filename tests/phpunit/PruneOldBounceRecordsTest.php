@@ -11,7 +11,7 @@ use MediaWiki\Extension\BounceHandler\PruneOldBounceRecords;
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */
-class PruneOldBounceRecordsTest extends MediaWikiTestCase {
+class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 
 	/** @var string */
 	protected $wikiId;

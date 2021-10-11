@@ -9,7 +9,7 @@ use MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex;
  * @author Tony Thomas
  * @license GPL-2.0-or-later
  */
-class ProcessBounceWithRegexTest extends MediaWikiTestCase {
+class ProcessBounceWithRegexTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideBounceStatusEmails() {
 		$email1 = file_get_contents( __DIR__ . '/bounce_emails/emailStatus1' );
