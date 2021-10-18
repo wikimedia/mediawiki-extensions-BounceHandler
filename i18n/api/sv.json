@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ayaibrahim",
 			"Lokal Profil"
 		]
 	},
-	"apihelp-bouncehandler-example-1": "Få ett studsat e-post för bearbetning med innehållet \"This is a test email\".",
-	"apihelp-bouncehandler-description": "Få ett studsat e-post och bearbeta det för hantera den misslyckade mottagaren.",
-	"apihelp-bouncehandler-param-email": "Den studsade e-posten."
+	"apihelp-bouncehandler-example-1": "Få ett retur mail för bearbeta med innehållet \"Detta är ett test meddelande\".",
+	"apihelp-bouncehandler-description": "Få ett retur mail för bearbeta med innehållet för hantera den misslyckade mottagaren.",
+	"apihelp-bouncehandler-summary": "Få ett studsat e-post meddelande och bearbeta detta för att hantera den misslyckade mottagaren.",
+	"apihelp-bouncehandler-param-email": "Retur mailet",
+	"apierror-bouncehandler-internalonly": "Denna API-modul är endast för intern användning."
 }
