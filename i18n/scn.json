@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"notification-bouncehandler": "{{GENDER:$1|Lu tò}} nnirizzu email riggistratu nun è cchiù vàliddu.",
+	"notification-link-text-change-email": "Cancia lu tò nnirizzu email"
+}

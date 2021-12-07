@@ -1,9 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lokal Profil"
+			"Lokal Profil",
+			"Ayaibrahim"
 		]
 	},
-	"bouncehandler-desc": "Hjälper till att hantera studsande e-post för MediaWiki",
-	"bouncehandler-notify_subject": "Skickar tillbaka tillfällig studs"
+	"bouncehandler-desc": "Hjälper till att hantera returposter för MediaWiki",
+	"bouncehandler-notify_subject": "Skickar tillbaka tillfällig retur",
+	"notification-bouncehandler": "{{GENDER:$1|Your}} den regsitrerade e-postadressen är inte längre giltig.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Your}} registrerade e-postadressen $1 har blivit avregsistrerad på grund av flertalet misslyckade leveranser. Du kan [[Special:ConfirmEmail|bekräfta{{GENDER:$2|your}} bekräfta din e-postadress på nytt]].",
+	"notification-link-text-change-email": "Byt din e-post adress",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Your}} registrerad e-postadress $3 har blivit avregistrerad pågrund av flertalet misslyckade meddelanden. Du kan verifiera {{GENDER:$4|your}} e-postadressen på nytt."
 }
