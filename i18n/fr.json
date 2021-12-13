@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Verdy p"
 		]
 	},
 	"bouncehandler-desc": "Aide à gérer les rebonds de courriel pour MediaWiki",
 	"bouncehandler-notify_subject": "Renvoi d’un rebond temporaire",
-	"notification-bouncehandler": "{{GENDER:$1|Votre}} adresse de courriel enregistrée n’est plus valide.",
-	"notification-bouncehandler-flyout": "{{GENDER:$2|Votre}} adresse de courriel enregistrée $1 a été désinscrite suite à de multiples échecs de livraison de message. Vous pouvez [[Special:ConfirmEmail|vérifier de nouveau {{GENDER:$2|votre}} adresse de courriel]].",
+	"notification-bouncehandler": "{{GENDER:$1|}}Votre adresse de courriel enregistrée n’est plus valide.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|}}Votre adresse de courriel enregistrée $1 a été désinscrite suite à de multiples échecs de livraison de message. Vous devriez [[Special:ConfirmEmail|vérifier à nouveau {{GENDER:$2|}}votre adresse de courriel]].",
 	"notification-link-text-change-email": "Modifier votre adresse de courriel",
-	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Votre}} adresse de courriel enregistrée $3 a été désabonnée du fait de messages d’erreur de livraison répétées. Vous devriez vérifier de nouveau {{GENDER:$4|votre}} adresse de courriel."
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|}}Votre adresse de courriel enregistrée $3 a été désabonnée suite à de multiples échecs de livraison de message. Vous devriez vérifier à nouveau {{GENDER:$4|}}votre adresse de courriel."
 }

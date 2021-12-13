@@ -10,5 +10,5 @@
 	"notification-bouncehandler": "כתובת הדואר האלקטרוני {{GENDER:$1|שלך}} אינה תקינה עוד.",
 	"notification-bouncehandler-flyout": "המינוי לכתובת הדואר האלקטרוני $1 בוטל בשל כישלונות רבים בשליחת הודעות. באפשרותך [[Special:ConfirmEmail|לאמת את כתובת הדואר האלקטרוני {{GENDER:$2|שלך}} שוב]].",
 	"notification-link-text-change-email": "שינוי כתובת הדוא\"ל שלך",
-	"notification-header-unsubscribe-bouncehandler": "המינוי של הכתובת הדוא\"ל הרשומה {{GENDER:$4|שלך}} $3 בוטל בגלל מספר כישלונות במסירה. אפשר לאמת את כתובת הדוא\"ל שלך מחדש."
+	"notification-header-unsubscribe-bouncehandler": "המינוי של הכתובת הדוא\"ל הרשומה {{GENDER:$4|שלך}} $3 בוטל בגלל כישלונות מרובים במסירה. אפשר לאמת את כתובת הדוא\"ל שלך מחדש."
 }

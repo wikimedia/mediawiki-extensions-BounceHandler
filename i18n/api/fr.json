@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Verdy p"
 		]
 	},
-	"apihelp-bouncehandler-example-1": "Recevoir un courriel de rejet pour traitement avec le contenu « Ceci est un courriel de test ».",
+	"apihelp-bouncehandler-example-1": "Recevoir un courriel de rejet pour traitement avec le contenu « Ceci est un courriel de test ».",
 	"apihelp-bouncehandler-description": "Recevoir un courriel de rejet et le traiter pour gérer le destinataire erroné.",
 	"apihelp-bouncehandler-summary": "Recevoir un courriel de rebond et le traiter pour gérer le destinataire erroné.",
-	"apihelp-bouncehandler-param-email": "Le courriel rejeté.",
-	"apierror-bouncehandler-internalonly": "Le module de l’API est uniquement destiné à un usage interne."
+	"apihelp-bouncehandler-param-email": "Le courriel en rebond.",
+	"apierror-bouncehandler-internalonly": "Ce module de l’API est uniquement destiné à un usage interne."
 }
