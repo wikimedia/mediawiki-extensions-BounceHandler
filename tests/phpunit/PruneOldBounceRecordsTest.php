@@ -57,7 +57,7 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->originalEmail = $user->getEmail();
-		$this->wikiId = wfWikiID();
+		$this->wikiId = WikiMap::getCurrentWikiId();
 		$this->tablesUsed = [ 'bounce_records' ];
 	}
 

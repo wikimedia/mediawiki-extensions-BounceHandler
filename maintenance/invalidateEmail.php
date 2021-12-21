@@ -50,7 +50,7 @@ class InvalidateEmail extends Maintenance {
 			exit( 1 );
 		}
 		$bounce = new BounceHandlerActions(
-			wfWikiID(), 0, 0, false, 'Email invalidated manually.' );
+			WikiMap::getCurrentWikiId(), 0, 0, false, 'Email invalidated manually.' );
 		// phpcs:ignore MediaWiki.ControlStructures.AssignmentInControlStructures
 		while ( strlen( $username = trim( fgets( $file ) ) ) ) {
 			$this->output( "Invalidate email for: {$username}\n" );

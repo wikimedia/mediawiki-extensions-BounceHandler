@@ -9,6 +9,7 @@ use ExtensionRegistry;
 use JobQueueGroup;
 use Title;
 use User;
+use WikiMap;
 
 /**
  * Class BounceHandlerActions
@@ -59,7 +60,7 @@ class BounceHandlerActions {
 	public function __construct(
 		$wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers, $emailRaw
 	) {
-		if ( $wikiId !== wfWikiID() ) {
+		if ( $wikiId !== WikiMap::getCurrentWikiId() ) {
 			// We want to use the User class methods, which make no sense on the wrong wiki
 			throw new Exception( "BounceHandlerActions constructed for a foreign wiki." );
 		}
