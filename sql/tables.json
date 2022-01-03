@@ -15,8 +15,8 @@
 			},
 			{
 				"name": "br_timestamp",
-				"type": "binary",
-				"options": { "length": 14, "notnull": true }
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
 			},
 			{
 				"name": "br_reason",

@@ -1,0 +1,85 @@
+{
+	"comment": "Use fixed binary for timestamp and use mediawiki timestamp type",
+	"before": {
+		"name": "bounce_records",
+		"columns": [
+			{
+				"name": "br_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "br_user_email",
+				"comment": "Email address of the failing recipient",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "br_timestamp",
+				"type": "binary",
+				"options": { "length": 14, "notnull": true }
+			},
+			{
+				"name": "br_reason",
+				"comment": "Failure reason",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "br_mail_timestamp",
+				"columns": [ "br_user_email", "br_timestamp" ],
+				"options": { "lengths": [ 50, null ] },
+				"unique": false
+			},
+			{
+				"name": "br_timestamp",
+				"columns": [ "br_timestamp" ],
+				"unique": false
+			}
+		],
+		"pk": [ "br_id" ]
+	},
+	"after": {
+		"name": "bounce_records",
+		"columns": [
+			{
+				"name": "br_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "br_user_email",
+				"comment": "Email address of the failing recipient",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "br_timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "br_reason",
+				"comment": "Failure reason",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "br_mail_timestamp",
+				"columns": [ "br_user_email", "br_timestamp" ],
+				"options": { "lengths": [ 50, null ] },
+				"unique": false
+			},
+			{
+				"name": "br_timestamp",
+				"columns": [ "br_timestamp" ],
+				"unique": false
+			}
+		],
+		"pk": [ "br_id" ]
+	}
+}

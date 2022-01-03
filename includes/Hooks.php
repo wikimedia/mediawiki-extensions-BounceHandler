@@ -72,7 +72,7 @@ class Hooks {
 
 		$updater->addExtensionTable( 'bounce_records', "$path/$type/tables-generated.sql" );
 
-		if ( $updater->getDB()->getType() !== 'postgres' ) {
+		if ( $type !== 'postgres' ) {
 			$updater->modifyExtensionField(
 				'bounce_records', 'br_user', "$path/alter_user_column.sql"
 			);
@@ -81,6 +81,11 @@ class Hooks {
 			);
 			$updater->addExtensionIndex(
 				'bounce_records', 'br_timestamp', "$path/create_index_timestamp.sql"
+			);
+		}
+		if ( $type !== 'sqlite' ) {
+			$updater->modifyExtensionField(
+				'bounce_records', 'br_timestamp', "$path/$type/patch-bounce_records-br_timestamp.sql"
 			);
 		}
 	}

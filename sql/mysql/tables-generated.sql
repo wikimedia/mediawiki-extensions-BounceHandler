@@ -5,7 +5,7 @@
 CREATE TABLE /*_*/bounce_records (
   br_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
   br_user_email VARCHAR(255) NOT NULL,
-  br_timestamp VARBINARY(14) NOT NULL,
+  br_timestamp BINARY(14) NOT NULL,
   br_reason VARCHAR(255) NOT NULL,
   INDEX br_mail_timestamp (
     br_user_email(50),

@@ -5,7 +5,7 @@
 CREATE TABLE bounce_records (
   br_id SERIAL NOT NULL,
   br_user_email VARCHAR(255) NOT NULL,
-  br_timestamp TEXT NOT NULL,
+  br_timestamp TIMESTAMPTZ NOT NULL,
   br_reason VARCHAR(255) NOT NULL,
   PRIMARY KEY(br_id)
 );
