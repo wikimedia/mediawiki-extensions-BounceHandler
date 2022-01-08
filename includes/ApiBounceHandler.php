@@ -13,11 +13,30 @@
 namespace MediaWiki\Extension\BounceHandler;
 
 use ApiBase;
-use JobQueueGroup;
+use ApiMain;
+use MediaWiki\JobQueue\JobQueueGroupFactory;
 use Title;
 use Wikimedia\IPUtils;
 
 class ApiBounceHandler extends ApiBase {
+
+	/** @var JobQueueGroupFactory */
+	private $jobQueueGroupFactory;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param JobQueueGroupFactory $jobQueueGroupFactory
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		JobQueueGroupFactory $jobQueueGroupFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->jobQueueGroupFactory = $jobQueueGroupFactory;
+	}
+
 	public function execute() {
 		$requestIP = $this->getRequest()->getIP();
 		$inRangeIP = false;
@@ -45,7 +64,7 @@ class ApiBounceHandler extends ApiBase {
 		if ( isset( $failedUser['wikiId'] ) ) {
 			$title = Title::newFromText( 'BounceHandler Job' );
 			$job = new BounceHandlerJob( $title, $params );
-			JobQueueGroup::singleton( $failedUser['wikiId'] )->push( $job );
+			$this->jobQueueGroupFactory->makeJobQueueGroup( $failedUser['wikiId'] )->push( $job );
 
 			$this->getResult()->addValue(
 				null,

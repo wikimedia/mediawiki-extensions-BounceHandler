@@ -6,7 +6,7 @@ use CentralAuthUser;
 use EchoEvent;
 use Exception;
 use ExtensionRegistry;
-use JobQueueGroup;
+use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 use WikiMap;
@@ -141,7 +141,7 @@ class BounceHandlerActions {
 		];
 		$title = Title::newFromText( 'BounceHandler Global user notification Job' );
 		$job = new BounceHandlerNotificationJob( $title, $params );
-		JobQueueGroup::singleton( $this->wikiId )->push( $job );
+		MediaWikiServices::getInstance()->getJobQueueGroupFactory()->makeJobQueueGroup( $this->wikiId )->push( $job );
 	}
 
 	/**

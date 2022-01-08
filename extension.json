@@ -15,7 +15,12 @@
 		"MediaWiki": ">= 1.37.0"
 	},
 	"APIModules": {
-		"bouncehandler": "MediaWiki\\Extension\\BounceHandler\\ApiBounceHandler"
+		"bouncehandler": {
+			"class": "MediaWiki\\Extension\\BounceHandler\\ApiBounceHandler",
+			"services": [
+				"JobQueueGroupFactory"
+			]
+		}
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\BounceHandler\\": "includes/"
