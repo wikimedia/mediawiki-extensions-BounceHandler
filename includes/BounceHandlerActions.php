@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\BounceHandler;
 
-use CentralAuthUser;
 use EchoEvent;
 use Exception;
 use ExtensionRegistry;
+use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use Title;
 use User;
