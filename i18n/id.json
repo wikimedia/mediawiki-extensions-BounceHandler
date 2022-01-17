@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Daud I.F. Argana"
+		]
+	},
+	"bouncehandler-desc": "Membantu menangani pesan elektronik tidak terkirim untuk MediaWiki",
+	"bouncehandler-notify_subject": "Pesan tidak terkirim",
+	"notification-bouncehandler": "Alamat surel yang {{GENDER:$1|Anda}} daftarkan sekarang tidak sah.",
+	"notification-bouncehandler-flyout": "Alamat surel yang {{GENDER:$2|Anda}} daftarkan $1 telah berhenti berlangganan dikarenakan beberapa kegagalan mengirimkan pesan. Anda bisa [[Special:ConfirmEmail|memverifikasi alamat surel {{GENDER:$2|Anda}} kembali]].",
+	"notification-link-text-change-email": "Ubah alamat surel Anda",
+	"notification-header-unsubscribe-bouncehandler": "Alamat surel yang {{GENDER:$4|Anda}} daftarkan $3 telah berhenti berlangganan dikarenakan beberapa kegagalan mengirimkan pesan. Anda bisa memverifikasi alamat surel {{GENDER:$4|Anda}} kembali."
+}
