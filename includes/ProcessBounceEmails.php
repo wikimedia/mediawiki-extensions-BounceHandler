@@ -171,7 +171,7 @@ abstract class ProcessBounceEmails {
 		$wikiId = $failedUser['wikiId'];
 		$rawUserId = $failedUser['rawUserId'];
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getMainLB( $wikiId );
-		$dbr = $lb->getConnection( DB_REPLICA, [], $wikiId );
+		$dbr = $lb->getConnectionRef( DB_REPLICA, [], $wikiId );
 
 		$res = $dbr->selectRow(
 			'user',
@@ -181,7 +181,6 @@ abstract class ProcessBounceEmails {
 			],
 			__METHOD__
 		);
-		$lb->reuseConnection( $dbr );
 		if ( $res !== false ) {
 			return $res->user_email;
 		}
