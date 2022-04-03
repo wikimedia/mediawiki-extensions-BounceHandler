@@ -17,6 +17,7 @@ use ApiMain;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use Title;
 use Wikimedia\IPUtils;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiBounceHandler extends ApiBase {
 
@@ -105,8 +106,8 @@ class ApiBounceHandler extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'email' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true
 			]
 		];
 	}
