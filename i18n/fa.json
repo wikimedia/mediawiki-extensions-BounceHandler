@@ -1,9 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Jeeputer",
 			"Ladsgroup"
 		]
 	},
+	"bouncehandler-desc": "به مدیریت بازگشت رایانامه برای مدیاویکی کمک می‌کند",
+	"bouncehandler-notify_subject": "بازگردانی بازگشت موقت",
 	"notification-bouncehandler": "نشانی ایمیل {{GENDER:$1|شما}} دیگر معتبر نیست.",
-	"notification-link-text-change-email": "آدرس رایانامه‌تان را تغییر دهید"
+	"notification-bouncehandler-flyout": "$1، نشانی ایمیل ثبت‌شدهٔ {{GENDER:$2|شما}}، با توجه به چندین ارسال ناموفق پیام، لغو اشتراک شده است. می‌توانید [[Special:ConfirmEmail|نشانی ایمیل {{GENDER:$2|خود}} را دوباره تأیید کنید]].",
+	"notification-link-text-change-email": "آدرس رایانامه‌تان را تغییر دهید",
+	"notification-header-unsubscribe-bouncehandler": "$3، نشانی ایمیل ثبت‌شدهٔ {{GENDER:$4|شما}}، با توجه به چندین ارسال ناموفق پیام، لغو اشتراک شده است. می‌توانید نشانی ایمیل {{GENDER:$4|خود}} را دوباره تأیید کنید."
 }
