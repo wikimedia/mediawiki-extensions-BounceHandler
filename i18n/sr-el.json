@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Kizule"
 		]
 	},
-	"bouncehandler-desc": "Pomaže u obradi elektronske pošte za Medijaviki"
+	"bouncehandler-desc": "Pomaže u obradi imejla za Medijaviki",
+	"notification-link-text-change-email": "Promenite Vašu imejl adresu"
 }
