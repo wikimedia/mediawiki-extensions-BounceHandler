@@ -5,5 +5,9 @@
 		]
 	},
 	"bouncehandler-desc": "Pomaga pri ravnanju z vrnjenimi e-poštnimi sporočili MediaWiki",
-	"notification-link-text-change-email": "Spremeni svoj e-poštni naslov"
+	"bouncehandler-notify_subject": "Vračanje začasne odklonitve",
+	"notification-bouncehandler": "{{GENDER:$1|Vaš}} registrirani e-poštni naslov ni več veljaven.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Vaš}} registrirani e-poštni naslov $1 je bil zaradi številnih napak pri dostavi sporočil odnaročen. Svoj e-poštni naslov lahko [[Special:ConfirmEmail|znova {{GENDER:$2|preverite}}]].",
+	"notification-link-text-change-email": "Spremeni svoj e-poštni naslov",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4| Vaš}} registrirani e-poštni naslov $3 je bil zaradi številnih napak pri dostavi sporočil odnaročen.Svoj e-poštni naslov lahko znova {{GENDER:$4|potrdite}}."
 }
