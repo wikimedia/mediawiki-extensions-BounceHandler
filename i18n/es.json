@@ -4,6 +4,7 @@
 			"Dgstranz",
 			"Fitoschido",
 			"Macofe",
+			"MarcoAurelio",
 			"Ryo567",
 			"Themasterriot"
 		]
@@ -12,5 +13,6 @@
 	"bouncehandler-notify_subject": "Devolución de rebote temporal",
 	"notification-bouncehandler": "{{GENDER:$1|Tu}} dirección de correo electrónico registrada ya no es válida.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Tu}} dirección de correo electrónico registrada $1 fue desuscrita debido a múltiples fallos de entrega de mensajes. Puedes [[Special:ConfirmEmail|volver a verificar {{GENDER:$2|tu}} dirección de correo electrónico]].",
-	"notification-link-text-change-email": "Cambiar tu dirección de correo electrónico"
+	"notification-link-text-change-email": "Cambiar tu dirección de correo electrónico",
+	"notification-header-unsubscribe-bouncehandler": "Se ha eliminado la suscripción de {{GENDER:$4|tu}} dirección de correo electrónico registrada, «$3», debido a múltiples errores en la entrega de mensajes. Puedes verificarla de nuevo si lo deseas."
 }
