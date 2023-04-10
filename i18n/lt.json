@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eitvys200"
+			"Eitvys200",
+			"Nokeoo"
 		]
 	},
 	"notification-bouncehandler": "{{GENDER:$1|Jūsų}} registruotas el. pašto adresas nebegalioja.",
