@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Extension\BounceHandler\PruneOldBounceRecords;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * Class PruneOldBounceRecordsTest

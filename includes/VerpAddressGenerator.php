@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\BounceHandler;
 
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * Class VerpAddressGenerator
