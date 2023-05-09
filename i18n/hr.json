@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"MaGa"
+			"MaGa",
+			"Ponor"
 		]
 	},
-	"notification-link-text-change-email": "Promijenite vašu adresu e-pošte"
+	"notification-link-text-change-email": "Promijenite svoju adresu e-pošte"
 }
