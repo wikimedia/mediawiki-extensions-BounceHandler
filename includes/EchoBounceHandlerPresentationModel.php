@@ -18,7 +18,7 @@ class EchoBounceHandlerPresentationModel extends EchoEventPresentationModel {
 	 */
 	public function getPrimaryLink() {
 		return [
-			'url' => SpecialPage::getTitleFor( 'ConfirmEmail' )->getFullURL(),
+			'url' => SpecialPage::getTitleFor( 'Confirmemail' )->getFullURL(),
 			'label' => $this->msg( 'notification-link-text-change-email' )->text(),
 		];
 	}
