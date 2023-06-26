@@ -7,7 +7,6 @@
 		]
 	},
 	"apihelp-bouncehandler-example-1": "Ruft eine Rückläufer-E-Mail zur Verarbeitung mit dem Inhalt „Dies ist eine Test-E-Mail“ ab.",
-	"apihelp-bouncehandler-description": "Ruft eine Rückläufer-E-Mail ab und verarbeitet sie zur Bearbeitung des fehlgeschlagenen Empfängers.",
 	"apihelp-bouncehandler-summary": "Ruft eine Rückläufer-E-Mail ab und verarbeitet sie zur Bearbeitung des fehlgeschlagenen Empfängers.",
 	"apihelp-bouncehandler-param-email": "Der E-Mail-Rückläufer.",
 	"apierror-bouncehandler-internalonly": "Dieses API-Modul ist nur zur internen Verwendung."

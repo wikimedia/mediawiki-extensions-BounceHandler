@@ -7,7 +7,6 @@
 		]
 	},
 	"apihelp-bouncehandler-example-1": "Получите отсканированное письмо для обработки с содержимым «Это тестовое письмо».",
-	"apihelp-bouncehandler-description": "Получите сообщение об отказе и обработайте его для обработки отказавшего получателя.",
 	"apihelp-bouncehandler-summary": "Получите сообщение об отказе и обработайте его для обработки отказавшего получателя.",
 	"apihelp-bouncehandler-param-email": "Возвращённое письмо.",
 	"apierror-bouncehandler-internalonly": "Данный API-модуль только для внутреннего использования."

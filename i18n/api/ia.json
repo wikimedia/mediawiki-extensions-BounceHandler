@@ -5,7 +5,6 @@
 		]
 	},
 	"apihelp-bouncehandler-example-1": "Reciper un message non livrate a processar con le contento \"Isto es un message de test\".",
-	"apihelp-bouncehandler-description": "Reciper un message non livrate e processar lo pro gerer le destinatario fallite.",
 	"apihelp-bouncehandler-summary": "Reciper un message retrosaltate e processar lo pro gerer le destinatario fallite.",
 	"apihelp-bouncehandler-param-email": "Le message retrosaltate.",
 	"apierror-bouncehandler-internalonly": "Iste modulo API es solo pro uso interne."
