@@ -1,8 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Piano1forte2"
-		]
-	},
-	"apihelp-bouncehandler-example-1": "Receive a bounce email for processing with the content 'This is a test email'."
-}
