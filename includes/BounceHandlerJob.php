@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\BounceHandler;
 
 use Job;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * Class BounceHandlerJob
