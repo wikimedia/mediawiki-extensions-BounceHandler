@@ -73,10 +73,18 @@
 		}
 	},
 	"Hooks": {
-		"UserMailerChangeReturnPath": "MediaWiki\\Extension\\BounceHandler\\Hooks::onVERPAddressGenerate",
-		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\BounceHandler\\Hooks::onLoadExtensionSchemaUpdates",
+		"UserMailerChangeReturnPath": "main",
+		"LoadExtensionSchemaUpdates": "schema",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\BounceHandler\\Hooks::onBeforeCreateEchoEvent",
 		"EchoGetDefaultNotifiedUsers": "MediaWiki\\Extension\\BounceHandler\\Hooks::onEchoGetDefaultNotifiedUsers"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\BounceHandler\\Hooks"
+		},
+		"schema": {
+			"class": "MediaWiki\\Extension\\BounceHandler\\SchemaHooks"
+		}
 	},
 	"JobClasses": {
 		"BounceHandlerJob": "MediaWiki\\Extension\\BounceHandler\\BounceHandlerJob",

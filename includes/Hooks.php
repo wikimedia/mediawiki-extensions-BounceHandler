@@ -1,10 +1,10 @@
 <?php
 namespace MediaWiki\Extension\BounceHandler;
 
-use DatabaseUpdater;
 use EchoEvent;
 use InvalidArgumentException;
 use MailAddress;
+use MediaWiki\Hook\UserMailerChangeReturnPathHook;
 use User;
 
 /**
@@ -15,23 +15,20 @@ use User;
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later
  */
-class Hooks {
+class Hooks implements UserMailerChangeReturnPathHook {
 	/**
 	 * This function generates the VERP address on UserMailer::send()
 	 * Generating VERP address for a batch of send emails is complex. This feature is hence disabled
 	 *
 	 * @param MailAddress[] $recip Recipient's email array
 	 * @param string &$returnPath return-path address
-	 * @return bool
 	 * @throws InvalidArgumentException
 	 */
-	public static function onVERPAddressGenerate( array $recip, &$returnPath ) {
+	public function onUserMailerChangeReturnPath( $recip, &$returnPath ) {
 		global $wgGenerateVERP;
 		if ( $wgGenerateVERP && count( $recip ) === 1 ) {
 			self::generateVerp( $recip[0], $returnPath );
 		}
-
-		return true;
 	}
 
 	/**
@@ -59,25 +56,6 @@ class Hooks {
 		$returnPath = $verpAddress->generateVERP( $uid );
 
 		return true;
-	}
-
-	/**
-	 * Add tables to the database
-	 *
-	 * @param DatabaseUpdater $updater
-	 */
-	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		$type = $updater->getDB()->getType();
-		$path = dirname( __DIR__ ) . '/sql';
-
-		$updater->addExtensionTable( 'bounce_records', "$path/$type/tables-generated.sql" );
-
-		if ( $type !== 'sqlite' ) {
-			// 1.38
-			$updater->modifyExtensionField(
-				'bounce_records', 'br_timestamp', "$path/$type/patch-bounce_records-br_timestamp.sql"
-			);
-		}
 	}
 
 	/**
