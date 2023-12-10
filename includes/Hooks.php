@@ -5,7 +5,7 @@ use EchoEvent;
 use InvalidArgumentException;
 use MailAddress;
 use MediaWiki\Hook\UserMailerChangeReturnPathHook;
-use User;
+use MediaWiki\User\User;
 
 /**
  * Hooks used by BounceHandler

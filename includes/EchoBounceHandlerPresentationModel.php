@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\BounceHandler;
 
 use EchoEventPresentationModel;
-use SpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 
 class EchoBounceHandlerPresentationModel extends EchoEventPresentationModel {
 	/**

@@ -2,6 +2,7 @@
 
 use MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex;
 use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
+use MediaWiki\User\User;
 
 /**
  * Class VERPEncodeDecodeTest

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
+use MediaWiki\User\User;
 
 /**
  * Class ApiBounceHandlerTest

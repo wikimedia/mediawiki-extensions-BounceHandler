@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Extension\BounceHandler\BounceHandlerActions;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
