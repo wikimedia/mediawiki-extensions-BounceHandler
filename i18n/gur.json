@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Akakiiri"
+		]
+	},
+	"bouncehandler-desc": "Suŋɛ email zanlega 'bounces' bo MediaWiki",
+	"bouncehandler-notify_subject": "Malum lebegera 'temporary bounce'",
+	"notification-bouncehandler": "{{GENDER:$1|Your}} 'regiseta email aderisi ka le dɛna 'valid'.",
+	"notification-link-text-change-email": "Tee fu email aderisi",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Your}} regisita email aderisi $3 de la 'unsubscribed' se'ere zuo n sɔi la sɔɔleŋa zo'e zo'e sooleŋo ka kiŋɛ. Fu ta'am 'verify' {{GENDER:$4|your}} email aderisi le yɛ'ɛsa."
+}
