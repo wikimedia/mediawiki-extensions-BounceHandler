@@ -60,7 +60,6 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 
 		$this->originalEmail = $user->getEmail();
 		$this->wikiId = WikiMap::getCurrentWikiId();
-		$this->tablesUsed = [ 'bounce_records' ];
 	}
 
 	public function testPruneDeleteOldSingleRow() {
