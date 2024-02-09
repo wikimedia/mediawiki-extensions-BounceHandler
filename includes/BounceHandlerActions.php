@@ -3,8 +3,8 @@
 namespace MediaWiki\Extension\BounceHandler;
 
 use EchoEvent;
-use Exception;
 use ExtensionRegistry;
+use InvalidArgumentException;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -55,14 +55,13 @@ class BounceHandlerActions {
 	 * @param int $bounceRecordLimit The number of bounce allowed in the bounceRecordPeriod.
 	 * @param bool $bounceHandlerUnconfirmUsers Enable/Disable user un-subscribe action
 	 * @param string $emailRaw The raw bounce Email
-	 * @throws Exception
 	 */
 	public function __construct(
 		$wikiId, $bounceRecordPeriod, $bounceRecordLimit, $bounceHandlerUnconfirmUsers, $emailRaw
 	) {
 		if ( $wikiId !== WikiMap::getCurrentWikiId() ) {
 			// We want to use the User class methods, which make no sense on the wrong wiki
-			throw new Exception( "BounceHandlerActions constructed for a foreign wiki." );
+			throw new InvalidArgumentException( "BounceHandlerActions constructed for a foreign wiki." );
 		}
 
 		$this->wikiId = $wikiId;
