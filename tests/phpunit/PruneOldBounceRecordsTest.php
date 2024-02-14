@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Extension\BounceHandler\PruneOldBounceRecords;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -63,8 +64,9 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testPruneDeleteOldSingleRow() {
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbr = wfGetDB( DB_REPLICA );
+		$icp = MediaWikiServices::getInstance()->getConnectionProvider();
+		$dbw = $icp->getPrimaryDatabase();
+		$dbr = $icp->getReplicaDatabase();
 		// Delete old rows
 		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
@@ -87,8 +89,9 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testMultipleOldRows() {
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbr = wfGetDB( DB_REPLICA );
+		$icp = MediaWikiServices::getInstance()->getConnectionProvider();
+		$dbw = $icp->getPrimaryDatabase();
+		$dbr = $icp->getReplicaDatabase();
 		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
 		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // Delete all rows
