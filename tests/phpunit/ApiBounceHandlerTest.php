@@ -60,7 +60,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 		$replace = [ "{VERP_ADDRESS}" => $encodedAddress ];
 		$email = strtr( $email, $replace );
 
-		list( $apiResult ) = $this->doApiRequest( [
+		[ $apiResult ] = $this->doApiRequest( [
 			'action' => 'bouncehandler',
 			'email' => $email
 		] );

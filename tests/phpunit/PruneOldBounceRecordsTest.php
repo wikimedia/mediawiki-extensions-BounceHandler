@@ -85,7 +85,7 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 		// reset
 		$bounceRecordMaxAge = -1;
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertSame( 0,  $res ); // We will have 0 elements after pruning
+		$this->assertSame( 0, $res ); // We will have 0 elements after pruning
 	}
 
 	public function testMultipleOldRows() {
