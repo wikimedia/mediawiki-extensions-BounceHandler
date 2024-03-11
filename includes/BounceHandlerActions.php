@@ -85,15 +85,15 @@ class BounceHandlerActions {
 
 			$dbr = ProcessBounceEmails::getBounceRecordDB( DB_REPLICA, $this->wikiId );
 
-			$totalBounces = $dbr->selectRowCount( 'bounce_records',
-				'*',
-				[
+			$totalBounces = $dbr->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'bounce_records' )
+				->where( [
 					'br_user_email' => $originalEmail,
-					'br_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $bounceValidPeriod ) )
-				],
-				__METHOD__,
-				[ 'LIMIT' => $this->bounceRecordLimit ]
-			);
+					$dbr->expr( 'br_timestamp', '>=', $dbr->timestamp( $bounceValidPeriod ) )
+				] )
+				->limit( $this->bounceRecordLimit )
+				->caller( __METHOD__ )->fetchRowCount();
 
 			if ( $totalBounces >= $this->bounceRecordLimit ) {
 				$this->unSubscribeUser( $failedUser, $emailHeaders );

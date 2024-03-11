@@ -58,13 +58,12 @@ class PruneOldBounceRecords {
 		$idArray = [];
 		$maximumRecordAge = time() - $this->bounceRecordMaxAge;
 		$dbr = ProcessBounceEmails::getBounceRecordDB( DB_REPLICA, $wikiId );
-		$res = $dbr->select(
-			'bounce_records',
-			[ 'br_id' ],
-			'br_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $maximumRecordAge ) ),
-			__METHOD__,
-			[ 'LIMIT' => 100 ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'br_id' ] )
+			->from( 'bounce_records' )
+			->where( $dbr->expr( 'br_timestamp', '<', $dbr->timestamp( $maximumRecordAge ) ) )
+			->limit( 100 )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$idArray[] = (int)$row->br_id;

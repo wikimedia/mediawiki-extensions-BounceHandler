@@ -147,13 +147,12 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 	 */
 	protected function getOldRecordsCount( $bounceRecordMaxAge, $dbr ) {
 		$maximumRecordAge = time() - $bounceRecordMaxAge;
-		$res = $dbr->selectRowCount(
-			'bounce_records',
-			[ '*' ],
-			'br_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $maximumRecordAge ) ),
-			__METHOD__,
-			[ 'LIMIT' => 100 ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'bounce_records' )
+			->where( $dbr->expr( 'br_timestamp', '<', $dbr->timestamp( $maximumRecordAge ) ) )
+			->limit( 100 )
+			->caller( __METHOD__ )->fetchRowCount();
 
 		return $res;
 	}

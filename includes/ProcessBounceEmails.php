@@ -173,14 +173,12 @@ abstract class ProcessBounceEmails {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getMainLB( $wikiId );
 		$dbr = $lb->getConnection( DB_REPLICA, [], $wikiId );
 
-		$res = $dbr->selectRow(
-			'user',
-			[ 'user_email' ],
-			[
-				'user_id' => $rawUserId,
-			],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'user_email' ] )
+			->from( 'user' )
+			->where( [ 'user_id' => $rawUserId, ] )
+			->caller( __METHOD__ )->fetchRow();
+
 		if ( $res !== false ) {
 			return $res->user_email;
 		}
