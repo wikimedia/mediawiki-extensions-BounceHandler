@@ -137,7 +137,11 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 			'br_reason' => $this->subject
 		];
 
-		$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'bounce_records' )
+			->row( $rowData )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**

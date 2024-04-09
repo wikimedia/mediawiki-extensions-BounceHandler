@@ -37,13 +37,13 @@ class PruneOldBounceRecords {
 		$idArrayCount = count( $idArray );
 		if ( $idArrayCount > 0 ) {
 			$dbw = ProcessBounceEmails::getBounceRecordDB( DB_PRIMARY, $wikiId );
-			$dbw->delete(
-				'bounce_records',
-				[
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'bounce_records' )
+				->where( [
 					'br_id' => $idArray
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 			wfDebugLog( 'BounceHandler', "Pruned $idArrayCount bounce records from $wikiId wiki." );
 		}
 	}

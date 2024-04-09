@@ -80,7 +80,11 @@ abstract class ProcessBounceEmails {
 				'br_timestamp' => $dbw->timestamp( $bounceTimestamp ),
 				'br_reason' => $subject
 			];
-			$dbw->insert( 'bounce_records', $rowData, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'bounce_records' )
+				->row( $rowData )
+				->caller( __METHOD__ )
+				->execute();
 			\MediaWiki\MediaWikiServices::getInstance()
 				->getStatsdDataFactory()->increment( 'bouncehandler.bounces' );
 
