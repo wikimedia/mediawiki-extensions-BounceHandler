@@ -85,8 +85,11 @@ abstract class ProcessBounceEmails {
 				->row( $rowData )
 				->caller( __METHOD__ )
 				->execute();
-			\MediaWiki\MediaWikiServices::getInstance()
-				->getStatsdDataFactory()->increment( 'bouncehandler.bounces' );
+			\MediaWiki\MediaWikiServices::getInstance()->getStatsFactory()
+				->withComponent( 'BounceHandler' )
+				->getCounter( 'bounces_total' )
+				->copyToStatsdAt( 'bouncehandler.bounces' )
+				->increment();
 
 			if ( $wgBounceRecordMaxAge ) {
 				$pruneOldRecords = new PruneOldBounceRecords( $wgBounceRecordMaxAge );

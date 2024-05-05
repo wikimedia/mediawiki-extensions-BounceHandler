@@ -155,7 +155,10 @@ class BounceHandlerActions {
 		$bounceUserId = $failedUser['rawUserId'];
 
 		$user = User::newFromId( $bounceUserId );
-		$stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$metric = \MediaWiki\MediaWikiServices::getInstance()->getStatsFactory()
+			->withComponent( 'BounceHandler' )
+			->getCounter( 'unsubscribed_total' );
+
 		// Handle the central account email status (if applicable)
 		$unsubscribeLocalUser = true;
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
@@ -170,7 +173,9 @@ class BounceHandlerActions {
 						"exceeding Bounce Limit $this->bounceRecordLimit.\nProcessed Headers:\n" .
 						$this->formatHeaders( $emailHeaders ) . "\nBounced Email: \n$this->emailRaw"
 				);
-				$stats->increment( 'bouncehandler.unsub.global' );
+				$metric->setLabel( 'from', 'global' )
+					->copyToStatsdAt( 'bouncehandler.unsub.global' )
+					->increment();
 			}
 		}
 		if ( $unsubscribeLocalUser ) {
@@ -183,7 +188,9 @@ class BounceHandlerActions {
 					"$this->bounceRecordLimit.\nProcessed Headers:\n" .
 					$this->formatHeaders( $emailHeaders ) . "\nBounced Email: \n$this->emailRaw"
 			);
-			$stats->increment( 'bouncehandler.unsub.local' );
+			$metric->setLabel( 'from', 'local' )
+				->copyToStatsdAt( 'bouncehandler.unsub.local' )
+				->increment();
 		}
 	}
 
