@@ -1,9 +1,9 @@
 <?php
 namespace MediaWiki\Extension\BounceHandler;
 
-use EchoEvent;
 use InvalidArgumentException;
 use MailAddress;
+use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Hook\UserMailerChangeReturnPathHook;
 use MediaWiki\User\User;
 
@@ -87,11 +87,11 @@ class Hooks implements UserMailerChangeReturnPathHook {
 	/**
 	 * Add user to be notified on echo event
 	 *
-	 * @param EchoEvent $event
+	 * @param Event $event
 	 * @param User[] &$users
 	 * @return bool
 	 */
-	public static function onEchoGetDefaultNotifiedUsers( EchoEvent $event, array &$users ) {
+	public static function onEchoGetDefaultNotifiedUsers( Event $event, array &$users ) {
 		if ( $event->getExtraParam( 'failed-user-id' ) === null ) {
 			return true;
 		}

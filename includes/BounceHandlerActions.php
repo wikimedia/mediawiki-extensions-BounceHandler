@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\BounceHandler;
 
-use EchoEvent;
 use ExtensionRegistry;
 use InvalidArgumentException;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
+use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -111,7 +111,7 @@ class BounceHandlerActions {
 	 */
 	public function createEchoNotification( $userId, $email ) {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			EchoEvent::create( [
+			Event::create( [
 				'type' => 'unsubscribe-bouncehandler',
 				'extra' => [
 					'failed-user-id' => $userId,

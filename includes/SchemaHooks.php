@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Extension\BounceHandler;
 
-use DatabaseUpdater;
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 
 /**
