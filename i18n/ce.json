@@ -4,5 +4,10 @@
 			"Умар"
 		]
 	},
-	"bouncehandler-desc": "MediaWiki электронан поштан дӀа ца кхаьчна хаамаш йухаберзош тобарехь гӀо до"
+	"bouncehandler-desc": "MediaWiki электронан поштан дӀа ца кхаьчна хаамаш йухаберзош тобарехь гӀо до",
+	"bouncehandler-notify_subject": "Цхьана ханна дӀа ца кхачийна хаамаш йухаберзор",
+	"notification-bouncehandler": "{{GENDER:$1|Хьан}} электронан адрес хӀинца лелаш дац.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Хьан}} $1 электронан поштан адрес дӀайаьккхина йух-йуха хаамаш дӀакхачоран проблемаш бахьана долуш. Хьан йиш йу [[Special:ConfirmEmail|йуха а тӀечӀагӀдан {{GENDER:$2Ӏхьан}} адрес]].",
+	"notification-link-text-change-email": "Хьайн электронан поштан адрес хийца",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Хьан}} $3 электронан поштан адрес дӀайаьккхина, йух-йуха хаамаш дӀакхачоран проблемаш бахьана долуш. Ахьа йуха а тӀечӀагӀдан мегар ду {{GENDER:$4|хьан}} адрес."
 }
