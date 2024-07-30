@@ -44,20 +44,18 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 		$secretKey = 'mySecret';
 		$domain = 'testwiki.org';
 
-		$this->setMwGlobals(
-			[
-				'wgBounceHandlerUnconfirmUsers' => $bounceHandlerUnconfirmUsers,
-				'wgBounceRecordPeriod' => $bounceRecordPeriod,
-				'wgBounceRecordLimit' => $bounceRecordLimit,
-				'wgBounceHandlerSharedDB' => $bounceHandlerSharedDB,
-				'wgBounceHandlerCluster' => $bounceHandlerCluster,
-				'wgVERPAcceptTime' => 259200,
-				'wgVERPprefix' => $prefix,
-				'wgVERPalgorithm' => $algorithm,
-				'wgVERPsecret' => $secretKey,
-				'wgVERPdomainPart' => $domain,
-			]
-		);
+		$this->overrideConfigValues( [
+			'BounceHandlerUnconfirmUsers' => $bounceHandlerUnconfirmUsers,
+			'BounceRecordPeriod' => $bounceRecordPeriod,
+			'BounceRecordLimit' => $bounceRecordLimit,
+			'BounceHandlerSharedDB' => $bounceHandlerSharedDB,
+			'BounceHandlerCluster' => $bounceHandlerCluster,
+			'VERPAcceptTime' => 259200,
+			'VERPprefix' => $prefix,
+			'VERPalgorithm' => $algorithm,
+			'VERPsecret' => $secretKey,
+			'VERPdomainPart' => $domain,
+		] );
 
 		$this->originalEmail = $user->getEmail();
 		$this->wikiId = WikiMap::getCurrentWikiId();

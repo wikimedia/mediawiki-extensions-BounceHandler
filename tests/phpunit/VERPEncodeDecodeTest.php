@@ -29,15 +29,13 @@ class VERPEncodeDecodeTest extends MediaWikiIntegrationTestCase {
 		$secretKey = 'mySecret';
 		$domain = 'testwiki.org';
 
-		$this->setMwGlobals(
-			[
-				'wgVERPprefix' => $prefix,
-				'wgVERPalgorithm' => $algorithm,
-				'wgVERPsecret' => $secretKey,
-				'wgVERPdomainPart' => $domain
-			]
-		);
-		$this->setMwGlobals( 'wgVERPAcceptTime', 259200 );
+		$this->overrideConfigValues( [
+			'VERPprefix' => $prefix,
+			'VERPalgorithm' => $algorithm,
+			'VERPsecret' => $secretKey,
+			'VERPdomainPart' => $domain,
+			'VERPAcceptTime' => 259200,
+		] );
 
 		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );

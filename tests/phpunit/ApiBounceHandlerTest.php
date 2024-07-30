@@ -42,18 +42,16 @@ class ApiBounceHandlerTest extends ApiTestCase {
 		$bounceRecordPeriod = 604800;
 		$bounceRecordLimit = 3;
 
-		$this->setMwGlobals(
-			[
-				'wgVERPprefix' => $prefix,
-				'wgVERPalgorithm' => $algorithm,
-				'wgVERPsecret' => $secretKey,
-				'wgVERPdomainPart' => $domain,
-				'wgBounceHandlerUnconfirmUsers' => true,
-				'wgBounceRecordPeriod' => $bounceRecordPeriod,
-				'wgBounceRecordLimit' => $bounceRecordLimit,
-				'wgBounceHandlerInternalIPs' => [ '127.0.0.1' ]
-			]
-		);
+		$this->overrideConfigValues( [
+			'VERPprefix' => $prefix,
+			'VERPalgorithm' => $algorithm,
+			'VERPsecret' => $secretKey,
+			'VERPdomainPart' => $domain,
+			'BounceHandlerUnconfirmUsers' => true,
+			'BounceRecordPeriod' => $bounceRecordPeriod,
+			'BounceRecordLimit' => $bounceRecordLimit,
+			'BounceHandlerInternalIPs' => [ '127.0.0.1' ],
+		] );
 
 		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );
@@ -78,7 +76,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'This API module is for internal use only.' );
 
-		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', [ '111.111.111.111' ] );
+		$this->overrideConfigValue( 'BounceHandlerInternalIPs', [ '111.111.111.111' ] );
 		$this->doApiRequest( [
 			'action' => 'bouncehandler',
 			'email' => $email
@@ -92,7 +90,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'The "email" parameter must be set.' );
 
-		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', [ '127.0.0.1' ] );
+		$this->overrideConfigValue( 'BounceHandlerInternalIPs', [ '127.0.0.1' ] );
 		$this->doApiRequest( [
 			'action' => 'bouncehandler',
 			'email' => ''
@@ -108,7 +106,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'The "email" parameter must be set.' );
 
-		$this->setMwGlobals( 'wgBounceHandlerInternalIPs', [ '127.0.0.1' ] );
+		$this->overrideConfigValue( 'BounceHandlerInternalIPs', [ '127.0.0.1' ] );
 		$this->doApiRequest( [
 			'action' => 'bouncehandler',
 			'foo' => $email

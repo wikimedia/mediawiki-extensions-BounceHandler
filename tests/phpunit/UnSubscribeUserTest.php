@@ -33,19 +33,16 @@ class UnSubscribeUserTest extends MediaWikiIntegrationTestCase {
 		$bounceRecordPeriod = 604800;
 		$bounceRecordLimit = 3;
 
-		$this->setMwGlobals(
-			[
-				'wgVERPprefix' => $prefix,
-				'wgVERPalgorithm' => $algorithm,
-				'wgVERPsecret' => $secretKey,
-				'wgVERPdomainPart' => $domain,
-				'wgBounceHandlerUnconfirmUsers' => true,
-				'wgBounceRecordPeriod' => $bounceRecordPeriod,
-				'wgBounceRecordLimit' => $bounceRecordLimit
-			]
-		);
-
-		$this->setMwGlobals( 'wgVERPAcceptTime', 259200 );
+		$this->overrideConfigValues( [
+			'VERPprefix' => $prefix,
+			'VERPalgorithm' => $algorithm,
+			'VERPsecret' => $secretKey,
+			'VERPdomainPart' => $domain,
+			'BounceHandlerUnconfirmUsers' => true,
+			'BounceRecordPeriod' => $bounceRecordPeriod,
+			'BounceRecordLimit' => $bounceRecordLimit,
+			'VERPAcceptTime' => 259200,
+		] );
 
 		$encodeVERP = new VerpAddressGenerator( $prefix, $algorithm, $secretKey, $domain );
 		$encodedAddress = $encodeVERP->generateVERP( $uid );
