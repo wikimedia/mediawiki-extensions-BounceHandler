@@ -3,8 +3,10 @@ namespace MediaWiki\Extension\BounceHandler;
 
 use InvalidArgumentException;
 use MailAddress;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Hook\UserMailerChangeReturnPathHook;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 
 /**
@@ -16,6 +18,14 @@ use MediaWiki\User\User;
  * @license GPL-2.0-or-later
  */
 class Hooks implements UserMailerChangeReturnPathHook {
+	private Config $config;
+
+	public function __construct(
+		Config $config
+	) {
+		$this->config = $config;
+	}
+
 	/**
 	 * This function generates the VERP address on UserMailer::send()
 	 * Generating VERP address for a batch of send emails is complex. This feature is hence disabled
@@ -25,9 +35,8 @@ class Hooks implements UserMailerChangeReturnPathHook {
 	 * @throws InvalidArgumentException
 	 */
 	public function onUserMailerChangeReturnPath( $recip, &$returnPath ) {
-		global $wgGenerateVERP;
-		if ( $wgGenerateVERP && count( $recip ) === 1 ) {
-			self::generateVerp( $recip[0], $returnPath );
+		if ( $this->config->get( 'GenerateVERP' ) && count( $recip ) === 1 ) {
+			$this->generateVerp( $recip[0], $returnPath );
 		}
 	}
 
@@ -38,8 +47,7 @@ class Hooks implements UserMailerChangeReturnPathHook {
 	 * @param string &$returnPath return-path address
 	 * @return bool true
 	 */
-	protected static function generateVerp( MailAddress $to, &$returnPath ) {
-		global $wgVERPprefix, $wgVERPalgorithm, $wgVERPsecret, $wgVERPdomainPart, $wgServerName;
+	protected function generateVerp( MailAddress $to, &$returnPath ) {
 		$user = User::newFromName( $to->name );
 		if ( !$user ) {
 			return true;
@@ -50,9 +58,14 @@ class Hooks implements UserMailerChangeReturnPathHook {
 		} else {
 			return true;
 		}
-		$domainPart = $wgVERPdomainPart ?? $wgServerName;
-		$verpAddress = new VerpAddressGenerator( $wgVERPprefix,
-			$wgVERPalgorithm, $wgVERPsecret, $domainPart );
+		$domainPart = $this->config->get( 'VERPdomainPart' ) ??
+			$this->config->get( MainConfigNames::ServerName );
+		$verpAddress = new VerpAddressGenerator(
+			$this->config->get( 'VERPprefix' ),
+			$this->config->get( 'VERPalgorithm' ),
+			$this->config->get( 'VERPsecret' ),
+			$domainPart
+		);
 		$returnPath = $verpAddress->generateVERP( $uid );
 
 		return true;

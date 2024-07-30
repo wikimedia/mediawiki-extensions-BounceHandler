@@ -80,7 +80,10 @@
 	},
 	"HookHandlers": {
 		"main": {
-			"class": "MediaWiki\\Extension\\BounceHandler\\Hooks"
+			"class": "MediaWiki\\Extension\\BounceHandler\\Hooks",
+			"services": [
+				"MainConfig"
+			]
 		},
 		"schema": {
 			"class": "MediaWiki\\Extension\\BounceHandler\\SchemaHooks"
