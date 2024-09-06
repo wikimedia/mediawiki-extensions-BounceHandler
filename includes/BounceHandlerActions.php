@@ -6,15 +6,14 @@ use ExtensionRegistry;
 use InvalidArgumentException;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\Extension\Notifications\Model\Event;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * Class BounceHandlerActions
- *
- * Actions to be done on finding out a failing recipient
+ * Actions to perform after we receive an email bounce
  *
  * @file
  * @ingroup Extensions
@@ -140,58 +139,57 @@ class BounceHandlerActions {
 		];
 		$title = Title::newFromText( 'BounceHandler Global user notification Job' );
 		$job = new BounceHandlerNotificationJob( $title, $params );
-		MediaWikiServices::getInstance()->getJobQueueGroupFactory()->makeJobQueueGroup( $this->wikiId )->push( $job );
+		MediaWikiServices::getInstance()->getJobQueueGroupFactory()
+			->makeJobQueueGroup( $this->wikiId )
+			->push( $job );
 	}
 
 	/**
-	 * Function to Un-subscribe a failing recipient
+	 * Un-subscribe a failing recipient
 	 *
 	 * @param array $failedUser The details of the failing user
 	 * @param array $emailHeaders Email headers
 	 */
 	public function unSubscribeUser( array $failedUser, $emailHeaders ) {
-		// Un-subscribe the user
 		$originalEmail = $failedUser['rawEmail'];
 		$bounceUserId = $failedUser['rawUserId'];
 
 		$user = User::newFromId( $bounceUserId );
-		$metric = \MediaWiki\MediaWikiServices::getInstance()->getStatsFactory()
-			->withComponent( 'BounceHandler' )
-			->getCounter( 'unsubscribed_total' );
-
-		// Handle the central account email status (if applicable)
-		$unsubscribeLocalUser = true;
+		$caUser = null;
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
-			$caUser = CentralAuthUser::getPrimaryInstance( $user );
-			if ( $caUser->isAttached() ) {
-				$unsubscribeLocalUser = false;
-				$caUser->setEmailAuthenticationTimestamp( null );
-				$caUser->saveSettings();
-				$this->notifyGlobalUser( $bounceUserId, $originalEmail );
-				wfDebugLog( 'BounceHandler',
-					"Un-subscribed global user {$caUser->getName()} <$originalEmail> for " .
-						"exceeding Bounce Limit $this->bounceRecordLimit.\nProcessed Headers:\n" .
-						$this->formatHeaders( $emailHeaders ) . "\nBounced Email: \n$this->emailRaw"
-				);
-				$metric->setLabel( 'from', 'global' )
-					->copyToStatsdAt( 'bouncehandler.unsub.global' )
-					->increment();
+			$instance = CentralAuthUser::getPrimaryInstance( $user );
+			if ( $instance->isAttached() ) {
+				$caUser = $instance;
 			}
 		}
-		if ( $unsubscribeLocalUser ) {
-			// Invalidate the email-id of a local user
+
+		if ( $caUser ) {
+			// Invalidate gu_email_authenticated in the CentralAuth database
+			$caUser->setEmailAuthenticationTimestamp( null );
+			$caUser->saveSettings();
+			$this->notifyGlobalUser( $bounceUserId, $originalEmail );
+		} else {
+			// Invalidate user_email_authenticated in the local user table
 			$user->setEmailAuthenticationTimestamp( null );
 			$user->saveSettings();
 			$this->createEchoNotification( $bounceUserId, $originalEmail );
-			wfDebugLog( 'BounceHandler',
-				"Un-subscribed {$user->getName()} <$originalEmail> for exceeding Bounce limit " .
-					"$this->bounceRecordLimit.\nProcessed Headers:\n" .
-					$this->formatHeaders( $emailHeaders ) . "\nBounced Email: \n$this->emailRaw"
-			);
-			$metric->setLabel( 'from', 'local' )
-				->copyToStatsdAt( 'bouncehandler.unsub.local' )
-				->increment();
 		}
+
+		$logger = LoggerFactory::getInstance( 'BounceHandler' );
+		$logger->info( 'Un-subscribed {name} <{email}> for exceeding bounce limit {limit}', [
+			'name' => $caUser ? $caUser->getName() : $user->getName(),
+			'email' => $originalEmail,
+			'limit' => $this->bounceRecordLimit,
+			'emailHeaders' => $this->formatHeaders( $emailHeaders ),
+			'emailRaw' => $this->emailRaw,
+		] );
+
+		$from = $caUser ? 'global' : 'local';
+		MediaWikiServices::getInstance()->getStatsFactory()
+			->getCounter( 'BounceHandler_unsubscribed_total' )
+			->setLabel( 'from', $from )
+			->copyToStatsdAt( "bouncehandler.unsub.$from" )
+			->increment();
 	}
 
 	/**
