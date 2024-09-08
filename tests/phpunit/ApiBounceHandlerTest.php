@@ -3,7 +3,6 @@
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
 use MediaWiki\Tests\Api\ApiTestCase;
-use MediaWiki\User\User;
 
 /**
  * Class ApiBounceHandlerTest
@@ -30,7 +29,7 @@ class ApiBounceHandlerTest extends ApiTestCase {
 	 * @dataProvider provideBounceEmails
 	 */
 	public function testBounceHandlerWithGoodIPPasses( $email ) {
-		$user = User::newFromName( 'TestUser' );
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( 'TestUser' );
 		$user->setEmail( 'bob@example.ext' );
 		$user->addToDatabase();
 

@@ -8,6 +8,7 @@ use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Hook\UserMailerChangeReturnPathHook;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
+use MediaWiki\User\UserFactory;
 
 /**
  * Hooks used by BounceHandler
@@ -19,11 +20,14 @@ use MediaWiki\User\User;
  */
 class Hooks implements UserMailerChangeReturnPathHook {
 	private Config $config;
+	private UserFactory $userFactory;
 
 	public function __construct(
-		Config $config
+		Config $config,
+		UserFactory $userFactory
 	) {
 		$this->config = $config;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -48,7 +52,7 @@ class Hooks implements UserMailerChangeReturnPathHook {
 	 * @return bool true
 	 */
 	protected function generateVerp( MailAddress $to, &$returnPath ) {
-		$user = User::newFromName( $to->name );
+		$user = $this->userFactory->newFromName( $to->name );
 		if ( !$user ) {
 			return true;
 		}

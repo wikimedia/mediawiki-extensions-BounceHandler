@@ -9,7 +9,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
@@ -154,7 +153,7 @@ class BounceHandlerActions {
 		$originalEmail = $failedUser['rawEmail'];
 		$bounceUserId = $failedUser['rawUserId'];
 
-		$user = User::newFromId( $bounceUserId );
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromId( $bounceUserId );
 		$caUser = null;
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
 			$instance = CentralAuthUser::getPrimaryInstance( $user );

@@ -22,7 +22,6 @@
 
 use MediaWiki\Extension\BounceHandler\BounceHandlerActions;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -57,7 +56,7 @@ class InvalidateEmail extends Maintenance {
 		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( strlen( $username = trim( fgets( $file ) ) ) ) {
 			$this->output( "Invalidate email for: {$username}\n" );
-			$user = User::newFromName( $username );
+			$user = $this->getServiceContainer()->getUserFactory()->newFromName( $username );
 			if ( $user && $user->getId() ) {
 				if ( !$this->hasOption( 'dry-run' ) ) {
 					$bounce->unSubscribeUser(

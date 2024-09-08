@@ -2,7 +2,6 @@
 
 use MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex;
 use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
-use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -16,7 +15,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 class UnSubscribeUserTest extends MediaWikiIntegrationTestCase {
 
 	public function testUnSubscribeUser() {
-		$user = User::newFromName( 'TestUser' );
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( 'TestUser' );
 		$user->setEmail( 'bob@example.ext' );
 		$user->addToDatabase();
 
@@ -59,7 +58,7 @@ class UnSubscribeUserTest extends MediaWikiIntegrationTestCase {
 		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders, $emailRaw );
 		$decodeVERPwithRegex->processBounceHeaders( $emailHeaders, $emailRaw );
 
-		$newUser = User::newFromId( $uid );
+		$newUser = $this->getServiceContainer()->getUserFactory()->newFromId( $uid );
 		$newUser->load( IDBAccessObject::READ_LATEST );
 		$this->assertFalse( $newUser->isEmailConfirmed() );
 	}

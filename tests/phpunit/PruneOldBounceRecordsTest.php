@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Extension\BounceHandler\PruneOldBounceRecords;
-use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
@@ -25,7 +24,7 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$user = User::newFromName( 'OldUser' );
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( 'OldUser' );
 		$user->setEmail( 'oldbob@example.ext' );
 		$user->addToDatabase();
 

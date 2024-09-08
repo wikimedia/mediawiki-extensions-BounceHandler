@@ -2,7 +2,6 @@
 
 use MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex;
 use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
-use MediaWiki\User\User;
 
 /**
  * Class VERPEncodeDecodeTest
@@ -18,7 +17,7 @@ class VERPEncodeDecodeTest extends MediaWikiIntegrationTestCase {
 	 * Tests that the extension encodes and decodes the email address correctly
 	 */
 	public function testVERPEncodingDecoding() {
-		$user = User::newFromName( 'TestUser' );
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( 'TestUser' );
 		$user->setEmail( 'bob@example.ext' );
 		$user->addToDatabase();
 
