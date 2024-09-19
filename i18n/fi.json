@@ -2,9 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"01miki10",
-			"Pitke"
+			"Pitke",
+			"Samoasambia"
 		]
 	},
 	"notification-bouncehandler": "{{GENDER:$1|Sähköpostiosoitteesi}} ei ole enää voimassa.",
-	"notification-link-text-change-email": "Vaihda sähköpostiosoitteesi"
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Sähköpostiosoitteesi}} $1 tilaus on peruttu useiden viestien epäonnistuneen toimituksen vuoksi. Voit [[Special:ConfirmEmail|vahvistaa sähköpostiosoitteesi uudelleen]].",
+	"notification-link-text-change-email": "Vaihda sähköpostiosoitteesi",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Sähköpostiosoitteesi}} $3 tilaus on peruttu useiden viestien epäonnistuneen toimituksen vuoksi. Voit vahvistaa sähköpostiosoitteesi uudelleen."
 }
