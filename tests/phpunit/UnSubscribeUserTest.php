@@ -3,6 +3,7 @@
 use MediaWiki\Extension\BounceHandler\ProcessBounceWithRegex;
 use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
 use MediaWiki\User\User;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Class UnSubscribeUserTest

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Extension\BounceHandler\BounceHandlerActions;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 

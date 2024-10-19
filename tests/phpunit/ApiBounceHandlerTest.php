@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Extension\BounceHandler\VerpAddressGenerator;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\User\User;

@@ -12,8 +12,8 @@
 
 namespace MediaWiki\Extension\BounceHandler;
 
-use ApiBase;
-use ApiMain;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Title\Title;
 use Wikimedia\IPUtils;
