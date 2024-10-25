@@ -21,17 +21,11 @@ use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiBounceHandler extends ApiBase {
 
-	/** @var JobQueueGroupFactory */
-	private $jobQueueGroupFactory;
+	private JobQueueGroupFactory $jobQueueGroupFactory;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param JobQueueGroupFactory $jobQueueGroupFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		JobQueueGroupFactory $jobQueueGroupFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );
