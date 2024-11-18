@@ -8,5 +8,5 @@
 	"apihelp-bouncehandler-description": "Prejme zavrnjeno e-poštno sporočilo in ga obdela za obravnavo neuspešnega prejemnika.",
 	"apihelp-bouncehandler-summary": "Prejme zavrnjeno e-poštno sporočilo in ga obdela za obravnavo neuspešnega prejemnika.",
 	"apihelp-bouncehandler-param-email": "Zavrnjena e-pošta.",
-	"apierror-bouncehandler-internalonly": "Ta API-modul je namenjen samo interni uporabi."
+	"apierror-bouncehandler-internalonly": "Ta modul API-ja je namenjen samo interni uporabi."
 }
