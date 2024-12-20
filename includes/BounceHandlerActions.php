@@ -79,7 +79,7 @@ class BounceHandlerActions {
 	public function handleFailingRecipient( array $failedUser, $emailHeaders ) {
 		if ( $this->bounceHandlerUnconfirmUsers ) {
 			$originalEmail = $failedUser['rawEmail'];
-			$bounceValidPeriod = time() - $this->bounceRecordPeriod; // Unix
+			$bounceValidPeriod = time() - $this->bounceRecordPeriod;
 
 			$dbr = ProcessBounceEmails::getBounceRecordDB( DB_REPLICA, $this->wikiId );
 

@@ -64,7 +64,8 @@ class InvalidateEmail extends Maintenance {
 							'rawEmail' => $user->getEmail(),
 							'rawUserId' => $user->getId(),
 						],
-						[ /* Headers intentionally blank */ ]
+						// Headers intentionally blank
+						[]
 					);
 				}
 			} else {

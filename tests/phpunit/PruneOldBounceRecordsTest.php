@@ -63,60 +63,62 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 		$icp = $this->getServiceContainer()->getConnectionProvider();
 		$dbw = $icp->getPrimaryDatabase();
 		$dbr = $icp->getReplicaDatabase();
-		// Delete old rows
-		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
+		// Delete all old rows
+		$bounceRecordMaxAge = -1;
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
-		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // Delete all rows
+		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId );
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertSame( 0, $res ); // We will have 0 elements after pruning
+		$this->assertSame( 0, $res );
 
 		$bounceRecordMaxAge = 3;
 		$this->insertDelayedBounce( 4, $dbw );
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 
-		$this->assertSame( 1, $res ); // We have one bounce from above in the DB
-		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // 2 should get deleted
+		// We have one bounce from above in the DB
+		$this->assertSame( 1, $res );
+		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId );
 
 		// reset
 		$bounceRecordMaxAge = -1;
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertSame( 0, $res ); // We will have 0 elements after pruning
+		$this->assertSame( 0, $res );
 	}
 
 	public function testMultipleOldRows() {
 		$icp = $this->getServiceContainer()->getConnectionProvider();
 		$dbw = $icp->getPrimaryDatabase();
 		$dbr = $icp->getReplicaDatabase();
-		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
+		$bounceRecordMaxAge = -1;
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
-		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // Delete all rows
+		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId );
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertSame( 0, $res ); // We will have 0 elements
+		$this->assertSame( 0, $res );
 
-		// Insert First bounce
-		$this->insertDelayedBounce( 4, $dbw ); // Insert with 4 seconds delay
+		// Insert First bounce with 4 seconds
+		$this->insertDelayedBounce( 4, $dbw );
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertSame( 1, $res ); // We will have only one bounce in the record
+		$this->assertSame( 1, $res );
 
 		// Insert Second Bounce
-		$this->insertDelayedBounce( 0, $dbw ); // Insert with 0 delay
+		$this->insertDelayedBounce( 0, $dbw );
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertEquals( 2, $res ); // We will have two bounces in the bounce record as of now
+		$this->assertEquals( 2, $res );
 
 		// Insert Third Bounce
-		$this->insertDelayedBounce( 0, $dbw ); // Insert with 0 delay
+		$this->insertDelayedBounce( 0, $dbw );
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertEquals( 3, $res ); // We will have three bounces in the bounce record as of now
+		$this->assertEquals( 3, $res );
 
 		$bounceRecordMaxAge = 3;
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
-		$this->assertSame( 1, $res ); // Only one among the three would be that old.
+		// Only one among the three would be that old.
+		$this->assertSame( 1, $res );
 
-		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId ); // 2 should get deleted
+		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId );
 
-		$bounceRecordMaxAge = -1; // To get all the bounces in the Database
+		$bounceRecordMaxAge = -1;
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertEquals( 2, $res );
 	}
