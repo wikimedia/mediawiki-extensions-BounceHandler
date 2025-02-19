@@ -75,8 +75,8 @@
 	"Hooks": {
 		"UserMailerChangeReturnPath": "main",
 		"LoadExtensionSchemaUpdates": "schema",
-		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\BounceHandler\\Hooks::onBeforeCreateEchoEvent",
-		"EchoGetDefaultNotifiedUsers": "MediaWiki\\Extension\\BounceHandler\\Hooks::onEchoGetDefaultNotifiedUsers"
+		"BeforeCreateEchoEvent": "main",
+		"EchoGetDefaultNotifiedUsers": "main"
 	},
 	"HookHandlers": {
 		"main": {

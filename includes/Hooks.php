@@ -4,6 +4,8 @@ namespace MediaWiki\Extension\BounceHandler;
 use InvalidArgumentException;
 use MailAddress;
 use MediaWiki\Config\Config;
+use MediaWiki\Extension\Notifications\Hooks\BeforeCreateEchoEventHook;
+use MediaWiki\Extension\Notifications\Hooks\EchoGetDefaultNotifiedUsersHook;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Hook\UserMailerChangeReturnPathHook;
 use MediaWiki\MainConfigNames;
@@ -18,7 +20,11 @@ use MediaWiki\User\UserFactory;
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later
  */
-class Hooks implements UserMailerChangeReturnPathHook {
+class Hooks implements
+	BeforeCreateEchoEventHook,
+	EchoGetDefaultNotifiedUsersHook,
+	UserMailerChangeReturnPathHook
+{
 	private Config $config;
 	private UserFactory $userFactory;
 
@@ -79,9 +85,15 @@ class Hooks implements UserMailerChangeReturnPathHook {
 	 * Add BounceHandler events to Echo
 	 *
 	 * @param array &$notifications Echo notifications
+	 * @param array &$notificationCategories To expand $wgEchoNotificationCategories
+	 * @param array &$notificationIcons To expand $wgEchoNotificationIcons
 	 * @return bool
 	 */
-	public static function onBeforeCreateEchoEvent( array &$notifications ) {
+	public function onBeforeCreateEchoEvent(
+		array &$notifications,
+		array &$notificationCategories,
+		array &$notificationIcons
+	) {
 		$notifications['unsubscribe-bouncehandler'] = [
 			'presentation-model' => EchoBounceHandlerPresentationModel::class,
 			'primary-link' => [
@@ -108,7 +120,7 @@ class Hooks implements UserMailerChangeReturnPathHook {
 	 * @param User[] &$users
 	 * @return bool
 	 */
-	public static function onEchoGetDefaultNotifiedUsers( Event $event, array &$users ) {
+	public function onEchoGetDefaultNotifiedUsers( Event $event, array &$users ) {
 		if ( $event->getExtraParam( 'failed-user-id' ) === null ) {
 			return true;
 		}
