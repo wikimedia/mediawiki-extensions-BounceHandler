@@ -26,17 +26,11 @@
 		"MediaWiki\\Extension\\BounceHandler\\": "includes/"
 	},
 	"config": {
-		"BounceHandlerCluster": {
-			"value": false
-		},
 		"BounceHandlerInternalIPs": {
 			"value": [
 				"127.0.0.1",
 				"::1"
 			]
-		},
-		"BounceHandlerSharedDB": {
-			"value": false
 		},
 		"BounceHandlerUnconfirmUsers": {
 			"value": false
@@ -72,6 +66,9 @@
 			"value": "MediawikiVERP"
 		}
 	},
+	"DatabaseVirtualDomains": [
+		"virtual-bouncehandler"
+	],
 	"Hooks": {
 		"UserMailerChangeReturnPath": "main",
 		"LoadExtensionSchemaUpdates": "schema",

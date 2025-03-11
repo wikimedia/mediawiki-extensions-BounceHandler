@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\BounceHandler;
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Class ProcessBounceEmails
@@ -73,7 +74,7 @@ abstract class ProcessBounceEmails {
 			$wikiId = $failedUser['wikiId'];
 			$originalEmail = $failedUser['rawEmail'];
 			$bounceTimestamp = $failedUser['bounceTime'];
-			$dbw = self::getBounceRecordDB( DB_PRIMARY, $wikiId );
+			$dbw = self::getBounceRecordPrimaryDB();
 
 			$rowData = [
 				'br_user_email' => $originalEmail,
@@ -93,7 +94,7 @@ abstract class ProcessBounceEmails {
 
 			if ( $wgBounceRecordMaxAge ) {
 				$pruneOldRecords = new PruneOldBounceRecords( $wgBounceRecordMaxAge );
-				$pruneOldRecords->pruneOldRecords( $wikiId );
+				$pruneOldRecords->pruneOldRecords();
 			}
 
 			$takeBounceActions = new BounceHandlerActions(
@@ -233,23 +234,13 @@ abstract class ProcessBounceEmails {
 		$handleUnIdentifiedBounce->processUnRecognizedBounces( $email );
 	}
 
-	/**
-	 * Get a lazy connection to the bounce table
-	 *
-	 * @param int $index DB_PRIMARY/DB_REPLICA
-	 * @param string $wiki The DB that the bounced email was sent from
-	 * @return IDatabase
-	 */
-	public static function getBounceRecordDB( $index, $wiki ) {
-		global $wgBounceHandlerCluster, $wgBounceHandlerSharedDB;
+	public static function getBounceRecordPrimaryDB(): IDatabase {
+		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+			->getPrimaryDatabase( 'virtual-bouncehandler' );
+	}
 
-		$wiki = $wgBounceHandlerSharedDB ?: $wiki;
-
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lb = $wgBounceHandlerCluster
-			? $lbFactory->getExternalLB( $wgBounceHandlerCluster )
-			: $lbFactory->getMainLB( $wiki );
-
-		return $lb->getConnection( $index, [], $wiki );
+	public static function getBounceRecordReplicaDB(): IReadableDatabase {
+		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+			->getReplicaDatabase( 'virtual-bouncehandler' );
 	}
 }

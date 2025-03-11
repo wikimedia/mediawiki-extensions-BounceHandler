@@ -22,13 +22,24 @@ class SchemaHooks implements LoadExtensionSchemaUpdatesHook {
 		$type = $updater->getDB()->getType();
 		$path = dirname( __DIR__ ) . '/sql';
 
-		$updater->addExtensionTable( 'bounce_records', "$path/$type/tables-generated.sql" );
+		$updater->addExtensionUpdateOnVirtualDomain( [
+			'virtual-bouncehandler',
+			'addTable',
+			'bounce_records',
+			"$path/$type/tables-generated.sql",
+			true
+		] );
 
 		if ( $type !== 'sqlite' ) {
 			// 1.38
-			$updater->modifyExtensionField(
-				'bounce_records', 'br_timestamp', "$path/$type/patch-bounce_records-br_timestamp.sql"
-			);
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-bouncehandler',
+				'modifyField',
+				'bounce_records',
+				'br_timestamp',
+				"$path/$type/patch-bounce_records-br_timestamp.sql",
+				true
+			] );
 		}
 	}
 }

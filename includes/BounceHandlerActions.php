@@ -50,7 +50,7 @@ class BounceHandlerActions {
 	 * @param string $wikiId The database id of the failing recipient
 	 * @param int $bounceRecordPeriod Time period for which bounce activities are considered
 	 *  before un-subscribing
-	 * @param int $bounceRecordLimit The number of bounce allowed in the bounceRecordPeriod.
+	 * @param int $bounceRecordLimit The number of bounces allowed in the bounceRecordPeriod.
 	 * @param bool $bounceHandlerUnconfirmUsers Enable/Disable user un-subscribe action
 	 * @param string $emailRaw The raw bounce Email
 	 */
@@ -81,7 +81,7 @@ class BounceHandlerActions {
 			$originalEmail = $failedUser['rawEmail'];
 			$bounceValidPeriod = time() - $this->bounceRecordPeriod;
 
-			$dbr = ProcessBounceEmails::getBounceRecordDB( DB_REPLICA, $this->wikiId );
+			$dbr = ProcessBounceEmails::getBounceRecordReplicaDB();
 
 			$totalBounces = $dbr->newSelectQueryBuilder()
 				->select( '*' )

@@ -2,6 +2,8 @@
 
 use MediaWiki\Extension\BounceHandler\PruneOldBounceRecords;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Class PruneOldBounceRecordsTest
@@ -66,7 +68,7 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 		// Delete all old rows
 		$bounceRecordMaxAge = -1;
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
-		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId );
+		$pruneOldRecordsTester->pruneOldRecords();
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertSame( 0, $res );
 
@@ -77,7 +79,7 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 
 		// We have one bounce from above in the DB
 		$this->assertSame( 1, $res );
-		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId );
+		$pruneOldRecordsTester->pruneOldRecords();
 
 		// reset
 		$bounceRecordMaxAge = -1;
@@ -91,11 +93,11 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 		$dbr = $icp->getReplicaDatabase();
 		$bounceRecordMaxAge = -1;
 		$pruneOldRecordsTester = new PruneOldBounceRecords( $bounceRecordMaxAge );
-		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId );
+		$pruneOldRecordsTester->pruneOldRecords();
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertSame( 0, $res );
 
-		// Insert First bounce with 4 seconds
+		// Insert the First bounce with 4 seconds
 		$this->insertDelayedBounce( 4, $dbw );
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
 		$this->assertSame( 1, $res );
@@ -116,7 +118,7 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 		// Only one among the three would be that old.
 		$this->assertSame( 1, $res );
 
-		$pruneOldRecordsTester->pruneOldRecords( $this->wikiId );
+		$pruneOldRecordsTester->pruneOldRecords();
 
 		$bounceRecordMaxAge = -1;
 		$res = $this->getOldRecordsCount( $bounceRecordMaxAge, $dbr );
@@ -125,7 +127,7 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param int $delayTime
-	 * @param \Wikimedia\Rdbms\IDatabase $dbw
+	 * @param IDatabase $dbw
 	 */
 	protected function insertDelayedBounce( $delayTime, $dbw ) {
 		$bounceTimestamp = wfTimestamp( TS_MW, time() - $delayTime );
@@ -144,19 +146,18 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param int $bounceRecordMaxAge
-	 * @param \Wikimedia\Rdbms\IDatabase $dbr
+	 * @param IDatabase|IReadableDatabase $dbr
+	 *
 	 * @return int
 	 */
 	protected function getOldRecordsCount( $bounceRecordMaxAge, $dbr ) {
 		$maximumRecordAge = time() - $bounceRecordMaxAge;
-		$res = $dbr->newSelectQueryBuilder()
+		return $dbr->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'bounce_records' )
 			->where( $dbr->expr( 'br_timestamp', '<', $dbr->timestamp( $maximumRecordAge ) ) )
 			->limit( 100 )
 			->caller( __METHOD__ )->fetchRowCount();
-
-		return $res;
 	}
 
 }

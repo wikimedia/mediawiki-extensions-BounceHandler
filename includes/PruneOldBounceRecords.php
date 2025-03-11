@@ -28,15 +28,12 @@ class PruneOldBounceRecords {
 
 	/**
 	 * Prune old bounce records
-	 *
-	 * @param string $wikiId
-	 *
 	 */
-	public function pruneOldRecords( $wikiId ) {
-		$idArray = $this->getOldRecords( $wikiId );
+	public function pruneOldRecords() {
+		$idArray = $this->getOldRecords();
 		$idArrayCount = count( $idArray );
 		if ( $idArrayCount > 0 ) {
-			$dbw = ProcessBounceEmails::getBounceRecordDB( DB_PRIMARY, $wikiId );
+			$dbw = ProcessBounceEmails::getBounceRecordPrimaryDB();
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'bounce_records' )
 				->where( [
@@ -44,20 +41,19 @@ class PruneOldBounceRecords {
 				] )
 				->caller( __METHOD__ )
 				->execute();
-			wfDebugLog( 'BounceHandler', "Pruned $idArrayCount bounce records from $wikiId wiki." );
+			wfDebugLog( 'BounceHandler', "Pruned $idArrayCount bounce records." );
 		}
 	}
 
 	/**
 	 * Get Old bounce records from DB
 	 *
-	 * @param string $wikiId
 	 * @return int[]
 	 */
-	private function getOldRecords( $wikiId ) {
+	private function getOldRecords() {
 		$idArray = [];
 		$maximumRecordAge = time() - $this->bounceRecordMaxAge;
-		$dbr = ProcessBounceEmails::getBounceRecordDB( DB_REPLICA, $wikiId );
+		$dbr = ProcessBounceEmails::getBounceRecordReplicaDB();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'br_id' ] )
 			->from( 'bounce_records' )
