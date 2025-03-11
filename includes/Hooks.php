@@ -100,7 +100,7 @@ class Hooks implements
 				'message' => 'notification-link-text-change-email',
 				'destination' => 'change-email'
 			],
-			// We cannot have additional Echo emails being sent after a user is un-subscribed
+			// We cannot have additional Echo emails being sent after a user is unsubscribed
 			'category' => 'system-noemail',
 			'section' => 'alert',
 

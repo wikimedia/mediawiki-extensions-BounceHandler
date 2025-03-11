@@ -17,32 +17,16 @@ use MediaWiki\WikiMap\WikiMap;
  * @license GPL-2.0-or-later
  */
 class VerpAddressGenerator {
-	/**
-	 * @var string
-	 */
-	protected $prefix;
-	/**
-	 * @var string
-	 */
-	protected $algorithm;
 
-	/**
-	 * @var string
-	 */
-	protected $secretKey;
+	protected string $prefix;
 
-	/**
-	 * @var string
-	 */
-	protected $domain;
+	protected string $algorithm;
 
-	/**
-	 * @param string $prefix
-	 * @param string $algorithm
-	 * @param string $secretKey
-	 * @param string $domain
-	 */
-	public function __construct( $prefix, $algorithm, $secretKey, $domain ) {
+	protected string $secretKey;
+
+	protected string $domain;
+
+	public function __construct( string $prefix, string $algorithm, string $secretKey, string $domain ) {
 		$this->prefix = $prefix;
 		$this->algorithm = $algorithm;
 		$this->secretKey = $secretKey;
@@ -71,7 +55,7 @@ class VerpAddressGenerator {
 		// Creating the VERP address prefix as wikiId-base36( $UserID )-base36( $Timestamp )
 		// and the generated VERP return path is of the form :
 		// wikiId-base36( $UserID )-base36( $Timestamp )-hash( $algorithm, $key, $prefix )@$email_domain
-		// We dont want repeating '-' in our WikiId
+		// We don't want repeating '-' in our WikiId
 		$wikiId = str_replace( '-', '.', WikiMap::getCurrentWikiId() );
 		$email_prefix = $this->prefix . '-' . $wikiId . '-' . base_convert( (string)$uid, 10, 36 ) .
 			'-' . base_convert( $timeNow, 10, 36 );

@@ -36,10 +36,11 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 	 */
 	private function parseMessagePart( $partLines ) {
 		foreach ( $partLines as $partLine ) {
-			if ( preg_match( '/^Content-Type: (.+)/', $partLine, $contentTypeMatch ) ) {
-				if ( $contentTypeMatch[1] != 'message/delivery-status' ) {
-					break;
-				}
+			if (
+				preg_match( '/^Content-Type: (.+)/', $partLine, $contentTypeMatch ) &&
+				$contentTypeMatch[1] !== 'message/delivery-status'
+			) {
+				break;
 			}
 			if ( preg_match( '/^Status: (\d\.\d{1,3}\.\d{1,3})/', $partLine, $statusMatch ) ) {
 				return $statusMatch[1];
@@ -93,7 +94,7 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 			if ( preg_match( "/^X-Failed-Recipients: (.*)/", $emailLine, $failureMatch ) ) {
 				$emailHeaders['x-failed-recipients'] = $failureMatch[1];
 			}
-			if ( trim( $emailLine ) == "" ) {
+			if ( trim( $emailLine ) === "" ) {
 				// Empty line denotes that the header part is finished
 				break;
 			}

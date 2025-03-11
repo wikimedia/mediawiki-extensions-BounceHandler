@@ -16,22 +16,16 @@ use UserMailer;
  * @license GPL-2.0-or-later
  */
 class ProcessUnRecognizedBounces {
-	/**
-	 * @var string
-	 */
-	protected $passwordSender;
+	protected string $passwordSender;
 
-	/**
-	 * @var array
-	 */
-	protected $unrecognizedBounceNotify;
+	protected array $unrecognizedBounceNotify;
 
 	/**
 	 * @param array $unrecognizedBounceNotify The array of admins to be notified
 	 *   on a bounce parse failure
 	 * @param string $passwordSender The default email Return path address
 	 */
-	public function __construct( array $unrecognizedBounceNotify, $passwordSender ) {
+	public function __construct( array $unrecognizedBounceNotify, string $passwordSender ) {
 		$this->unrecognizedBounceNotify = $unrecognizedBounceNotify;
 		$this->passwordSender = $passwordSender;
 	}

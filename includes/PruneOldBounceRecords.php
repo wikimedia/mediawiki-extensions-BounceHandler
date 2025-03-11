@@ -14,15 +14,9 @@ namespace MediaWiki\Extension\BounceHandler;
  */
 class PruneOldBounceRecords {
 
-	/**
-	 * @var int
-	 */
-	private $bounceRecordMaxAge;
+	private int $bounceRecordMaxAge;
 
-	/**
-	 * @param int $bounceRecordMaxAge
-	 */
-	public function __construct( $bounceRecordMaxAge ) {
+	public function __construct( int $bounceRecordMaxAge ) {
 		$this->bounceRecordMaxAge = $bounceRecordMaxAge;
 	}
 

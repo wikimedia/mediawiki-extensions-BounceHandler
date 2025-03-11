@@ -86,7 +86,7 @@ abstract class ProcessBounceEmails {
 				->row( $rowData )
 				->caller( __METHOD__ )
 				->execute();
-			\MediaWiki\MediaWikiServices::getInstance()->getStatsFactory()
+			MediaWikiServices::getInstance()->getStatsFactory()
 				->withComponent( 'BounceHandler' )
 				->getCounter( 'bounces_total' )
 				->copyToStatsdAt( 'bouncehandler.bounces' )
@@ -106,18 +106,19 @@ abstract class ProcessBounceEmails {
 			);
 			$takeBounceActions->handleFailingRecipient( $failedUser, $emailHeaders );
 			return true;
-		} else {
-			wfDebugLog( 'BounceHandler',
-				"Error: Failed to extract user details from verp address $to"
-			);
-			return false;
 		}
+
+		wfDebugLog( 'BounceHandler',
+			"Error: Failed to extract user details from VERP address $to"
+		);
+
+		return false;
 	}
 
 	/**
 	 * Validate and extract user info from a given VERP address and
 	 *
-	 * return the failed user details, if hashes match
+	 * Return the failed user details if the hashes match
 	 * @param string $hashedEmail The original hashed Email from bounce email
 	 * @return array $failedUser The failed user details
 	 */
@@ -206,17 +207,21 @@ abstract class ProcessBounceEmails {
 	protected function checkPermanentFailure( $emailHeaders ) {
 		if ( isset( $emailHeaders['status'] ) ) {
 			$status = explode( '.', $emailHeaders['status'] );
-			// According to RFC1893 status codes starting with 5 mean Permanent Failures
+			// According to RFC1893, status codes starting with 5 mean Permanent Failures
 			return $status[0] == 5;
-		} elseif ( isset( $emailHeaders['smtp-code'] ) ) {
+		}
+
+		if ( isset( $emailHeaders['smtp-code'] ) ) {
 			return $emailHeaders['smtp-code'] >= 500;
-		} elseif ( isset( $emailHeaders['x-failed-recipients'] ) ) {
+		}
+
+		if ( isset( $emailHeaders['x-failed-recipients'] ) ) {
 			// If not status code was found, let's presume that the presence of
 			// X-Failed-Recipients means permanent failure
 			return true;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**

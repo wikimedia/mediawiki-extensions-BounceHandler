@@ -21,30 +21,15 @@ use MediaWiki\WikiMap\WikiMap;
  */
 class BounceHandlerActions {
 
-	/**
-	 * @var string
-	 */
-	protected $wikiId;
+	protected string $wikiId;
 
-	/**
-	 * @var int
-	 */
-	protected $bounceRecordPeriod;
+	protected int $bounceRecordPeriod;
 
-	/**
-	 * @var int
-	 */
-	protected $bounceRecordLimit;
+	protected int $bounceRecordLimit;
 
-	/**
-	 * @var bool
-	 */
-	protected $bounceHandlerUnconfirmUsers;
+	protected bool $bounceHandlerUnconfirmUsers;
 
-	/**
-	 * @var string
-	 */
-	protected $emailRaw;
+	protected string $emailRaw;
 
 	/**
 	 * @param string $wikiId The database id of the failing recipient
@@ -105,7 +90,7 @@ class BounceHandlerActions {
 	 * Function to trigger Echo notifications
 	 *
 	 * @param int $userId ID of user to be notified
-	 * @param string $email un-subscribed email address used in notification
+	 * @param string $email The unsubscribed email address used in notification
 	 */
 	public function createEchoNotification( $userId, $email ) {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
