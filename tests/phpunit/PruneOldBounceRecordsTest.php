@@ -35,8 +35,6 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 
 		$bounceRecordPeriod = 604800;
 		$bounceRecordLimit = 4;
-		$bounceHandlerSharedDB = false;
-		$bounceHandlerCluster = false;
 		$bounceHandlerUnconfirmUsers = false;
 
 		$prefix = 'wiki';
@@ -48,8 +46,6 @@ class PruneOldBounceRecordsTest extends MediaWikiIntegrationTestCase {
 			'BounceHandlerUnconfirmUsers' => $bounceHandlerUnconfirmUsers,
 			'BounceRecordPeriod' => $bounceRecordPeriod,
 			'BounceRecordLimit' => $bounceRecordLimit,
-			'BounceHandlerSharedDB' => $bounceHandlerSharedDB,
-			'BounceHandlerCluster' => $bounceHandlerCluster,
 			'VERPAcceptTime' => 259200,
 			'VERPprefix' => $prefix,
 			'VERPalgorithm' => $algorithm,
