@@ -32,6 +32,7 @@ class ApiBounceHandler extends ApiBase {
 		$this->jobQueueGroupFactory = $jobQueueGroupFactory;
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$requestIP = $this->getRequest()->getIP();
 		$inRangeIP = false;
