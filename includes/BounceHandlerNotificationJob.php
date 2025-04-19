@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\BounceHandler;
 
-use Job;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Title\Title;
 
 /**
