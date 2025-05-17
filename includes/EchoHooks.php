@@ -1,10 +1,9 @@
 <?php
 namespace MediaWiki\Extension\BounceHandler;
 
+use MediaWiki\Extension\Notifications\AttributeManager;
 use MediaWiki\Extension\Notifications\Hooks\BeforeCreateEchoEventHook;
-use MediaWiki\Extension\Notifications\Hooks\EchoGetDefaultNotifiedUsersHook;
-use MediaWiki\Extension\Notifications\Model\Event;
-use MediaWiki\User\User;
+use MediaWiki\Extension\Notifications\UserLocator;
 
 /**
  * Hooks used by BounceHandler
@@ -15,10 +14,8 @@ use MediaWiki\User\User;
  * @license GPL-2.0-or-later
  */
 
-class EchoHooks implements
-	BeforeCreateEchoEventHook,
-	EchoGetDefaultNotifiedUsersHook
-{
+class EchoHooks implements BeforeCreateEchoEventHook {
+
 	/**
 	 * Add BounceHandler events to Echo
 	 *
@@ -46,30 +43,16 @@ class EchoHooks implements
 			'title-params' => [ 'user' ],
 			'flyout-message' => 'notification-bouncehandler-flyout',
 			'flyout-params' => [ 'failed-email', 'user' ],
+
+			AttributeManager::ATTR_LOCATORS => [
+				[
+					[ UserLocator::class, 'locateFromEventExtra' ],
+					[ 'failed-user-id' ]
+				],
+			],
 		];
 
 		return true;
 	}
 
-	/**
-	 * Add user to be notified on echo event
-	 *
-	 * @param Event $event
-	 * @param User[] &$users
-	 * @return bool
-	 */
-	public function onEchoGetDefaultNotifiedUsers( Event $event, array &$users ) {
-		if ( $event->getExtraParam( 'failed-user-id' ) === null ) {
-			return true;
-		}
-		$extra = $event->getExtra();
-		$eventType = $event->getType();
-		if ( $eventType === 'unsubscribe-bouncehandler' ) {
-			$recipientId = $extra['failed-user-id'];
-			$recipient = User::newFromId( $recipientId );
-			$users[$recipientId] = $recipient;
-		}
-
-		return true;
-	}
 }

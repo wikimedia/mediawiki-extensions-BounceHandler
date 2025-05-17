@@ -72,8 +72,7 @@
 	"Hooks": {
 		"UserMailerChangeReturnPath": "main",
 		"LoadExtensionSchemaUpdates": "schema",
-		"BeforeCreateEchoEvent": "echo",
-		"EchoGetDefaultNotifiedUsers": "echo"
+		"BeforeCreateEchoEvent": "echo"
 	},
 	"HookHandlers": {
 		"main": {
