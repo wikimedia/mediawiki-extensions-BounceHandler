@@ -4,5 +4,8 @@
 			"Умар"
 		]
 	},
-	"apihelp-bouncehandler-param-email": "Йухадерзийна кехат."
+	"apihelp-bouncehandler-example-1": "Сканерца йина электронан пошта схьаэца «ХӀара тестан электронан пошта йу» чулацамца болх бан.",
+	"apihelp-bouncehandler-summary": "ТӀе ца лацарх лаьцна хаам схьаэца, тӀе ца лаьцна чуьнца болх бан.",
+	"apihelp-bouncehandler-param-email": "Йухадерзийна кехат.",
+	"apierror-bouncehandler-internalonly": "ХӀара API модуль чоьхьарчу лелоран бен йац."
 }
