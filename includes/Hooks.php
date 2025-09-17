@@ -11,7 +11,6 @@ use MediaWiki\User\UserFactory;
 /**
  * Hooks used by BounceHandler
  *
- * @file
  * @ingroup Hooks
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later

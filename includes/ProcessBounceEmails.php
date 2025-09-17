@@ -11,7 +11,6 @@ use Wikimedia\Rdbms\IReadableDatabase;
  *
  * Methods to process a bounce email
  *
- * @file
  * @ingroup Extensions
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later

@@ -11,7 +11,6 @@ use MediaWiki\WikiMap\WikiMap;
  * wikiId-base36( $UserID )-base36( $Timestamp )-hash( $algorithm, $key, $prefix )@$email_domain
  * for every recipient address
  *
- * @file
  * @ingroup Extensions
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later

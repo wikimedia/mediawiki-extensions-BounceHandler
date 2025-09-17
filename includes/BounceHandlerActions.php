@@ -14,7 +14,6 @@ use MediaWiki\WikiMap\WikiMap;
 /**
  * Actions to perform after we receive an email bounce
  *
- * @file
  * @ingroup Extensions
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later

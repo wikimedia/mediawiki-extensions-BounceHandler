@@ -10,7 +10,6 @@ use MediaWiki\Title\Title;
  *
  * Job Queue class to receive a POST request
  *
- * @file
  * @ingroup JobQueue
  * @author Tony Thomas
  * @license GPL-2.0-or-later

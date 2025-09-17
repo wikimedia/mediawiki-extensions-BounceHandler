@@ -10,7 +10,6 @@ use UserMailer;
  *
  * Process unrecognized bounce by notifying administrators
  *
- * @file
  * @ingroup Extensions
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later

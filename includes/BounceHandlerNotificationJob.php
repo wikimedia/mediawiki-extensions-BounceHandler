@@ -10,7 +10,6 @@ use MediaWiki\Title\Title;
  *
  * Class to notify a global user on a particular wiki on his E-mail address becoming un-subscribed
  *
- * @file
  * @ingroup JobQueue
  * @author Tony Thomas
  * @license GPL-2.0-or-later

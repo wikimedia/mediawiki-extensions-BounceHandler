@@ -7,7 +7,6 @@ namespace MediaWiki\Extension\BounceHandler;
  *
  * Extract email headers of a bounce email using various regex functions
  *
- * @file
  * @ingroup Extensions
  * @author Tony Thomas, Kunal Mehta, Jeff Green
  * @license GPL-2.0-or-later

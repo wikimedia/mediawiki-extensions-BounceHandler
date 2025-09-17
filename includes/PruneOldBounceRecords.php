@@ -7,7 +7,6 @@ namespace MediaWiki\Extension\BounceHandler;
  *
  * Prune old bounce records from the 'bounce_records' table
  *
- * @file
  * @ingroup Extensions
  * @author Tony Thomas <01tonythomas@gmail.com>
  * @license GPL-2.0-or-later
