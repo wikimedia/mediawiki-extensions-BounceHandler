@@ -3,10 +3,12 @@
 		"authors": [
 			"Aca",
 			"BadDog",
+			"Milicevic01",
 			"Zoranzoki21",
 			"Сербијана"
 		]
 	},
 	"bouncehandler-desc": "Помаже у обради имејла за Медијавики",
+	"notification-bouncehandler": "{{GENDER:$1|Ваша}} регистрована имејл адреса више није важећа.",
 	"notification-link-text-change-email": "Промените Вашу имејл адресу"
 }
