@@ -4,9 +4,11 @@
 			"BadDog",
 			"Zoranzoki21",
 			"Сербијана",
-			"Aca"
+			"Aca",
+			"Milicevic01"
 		]
 	},
 	"bouncehandler-desc": "Помаже у обради имејла за Медијавики",
+	"notification-bouncehandler": "{{GENDER:$1|Ваша}} регистрована имејл адреса више није важећа.",
 	"notification-link-text-change-email": "Промените Вашу имејл адресу"
 }
