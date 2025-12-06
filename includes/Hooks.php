@@ -18,15 +18,10 @@ use MediaWiki\User\UserFactory;
 class Hooks implements
 	UserMailerChangeReturnPathHook
 {
-	private Config $config;
-	private UserFactory $userFactory;
-
 	public function __construct(
-		Config $config,
-		UserFactory $userFactory
+		private readonly Config $config,
+		private readonly UserFactory $userFactory,
 	) {
-		$this->config = $config;
-		$this->userFactory = $userFactory;
 	}
 
 	/**
