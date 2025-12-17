@@ -6,6 +6,7 @@
 			"Samoasambia"
 		]
 	},
+	"bouncehandler-desc": "Auttaa palautuvien sähköpostien käsittelyssä MediaWikissä",
 	"notification-bouncehandler": "{{GENDER:$1|Sähköpostiosoitteesi}} ei ole enää voimassa.",
 	"notification-bouncehandler-flyout": "{{GENDER:$2|Sähköpostiosoitteesi}} $1 tilaus on peruttu useiden viestien epäonnistuneen toimituksen vuoksi. Voit [[Special:ConfirmEmail|vahvistaa sähköpostiosoitteesi uudelleen]].",
 	"notification-link-text-change-email": "Vaihda sähköpostiosoitteesi",
