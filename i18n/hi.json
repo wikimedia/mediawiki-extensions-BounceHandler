@@ -2,10 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Hindustanilanguage",
-			"Sfic"
+			"Sfic",
+			"Saurmandal"
 		]
 	},
-	"bouncehandler-desc": "मीडियाविकि द्वारा न पहुँच पा रहे ईमेलों में सहायक है",
-	"bouncehandler-notify_subject": "अस्थाई रूप से वापस सन्देश को लौटाया जा रहा है",
-	"notification-link-text-change-email": "अपना ई-मेल पता बदलें"
+	"bouncehandler-desc": "मीडियाविकि द्वारा न पहुँचाए जा रहे ईमेलों में सहायक है",
+	"bouncehandler-notify_subject": "भेजा न गया ईमेल अस्थायी रूप से लौटाया",
+	"notification-bouncehandler": "{{GENDER:$1|आपका}} पंजीकृत ईमेल पता अब मान्य नहीं है।",
+	"notification-bouncehandler-flyout": "संदेश वितरण में कई विफलताओं के कारण {{GENDER:$2|आपके}} पंजीकृत ईमेल पते $1 को सदस्यता से हटा दिया गया है। आप [[Special:ConfirmEmail|अपने ईमेल पते को पुनः प्रमाणित कर]] सकते हैं।",
+	"notification-link-text-change-email": "अपना ईमेल पता बदलें",
+	"notification-header-unsubscribe-bouncehandler": "संदेश वितरण में कई विफलताओं के कारण {{GENDER:$4|आपके}} पंजीकृत ईमेल पते $3 को सदस्यता से हटा दिया गया है। आप अपने ईमेल पते को पुनः प्रमाणित कर सकते हैं।"
 }
