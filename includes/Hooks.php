@@ -2,9 +2,9 @@
 namespace MediaWiki\Extension\BounceHandler;
 
 use InvalidArgumentException;
-use MailAddress;
 use MediaWiki\Config\Config;
-use MediaWiki\Hook\UserMailerChangeReturnPathHook;
+use MediaWiki\Mail\Hook\UserMailerChangeReturnPathHook;
+use MediaWiki\Mail\MailAddress;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserFactory;
 

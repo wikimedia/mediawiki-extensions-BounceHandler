@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\BounceHandler;
 
-use MailAddress;
-use UserMailer;
+use MediaWiki\Mail\MailAddress;
+use MediaWiki\Mail\UserMailer;
 
 /**
  * Class ProcessUnRecognizedBounces
