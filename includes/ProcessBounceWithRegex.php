@@ -81,7 +81,7 @@ class ProcessBounceWithRegex extends ProcessBounceEmails {
 		$emailHeaders = [];
 		$emailLines = preg_split( "/(\r?\n|\r)/", $email );
 		foreach ( $emailLines as $emailLine ) {
-			if ( preg_match( "/^To: (.*)/", $emailLine, $toMatch ) ) {
+			if ( preg_match( "/^To: <?(.*)>?/", $emailLine, $toMatch ) ) {
 				$emailHeaders['to'] = $toMatch[1];
 			}
 			if ( preg_match( "/^Subject: (.*)/", $emailLine, $subjectMatch ) ) {
