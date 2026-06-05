@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "د \"دا يو ازمېښتي برېښليک دی\" منځپانگې سره د پروسس کولو لپاره نارسېدلی برېښليک ترلاسه کړئ.",
+	"apihelp-bouncehandler-summary": "نارسېدلی برېښليک ترلاسه کړئ او د ترلاسه‌کوونکي د ناکامۍ بهير يې سمبال کړئ.",
+	"apihelp-bouncehandler-param-email": "نارسېدلی برېښليک.",
+	"apierror-bouncehandler-internalonly": "دا ای‌پي‌آی چلنوال يوازې دننه‌نۍ کارونې لپاره دی."
+}
