@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"bouncehandler-desc": "مېډياويکي سره د نارسېدليو برېښليکونو سمبالولو کې مرسته کوي",
+	"bouncehandler-notify_subject": "د لنډمهال راگرځېدون راستنېدل",
+	"notification-bouncehandler": "{{GENDER:$1|ستاسو}} نوم‌ليکلې برېښليک پته نور د باور وړ نه ده.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|ستاسو}} نوم‌ليکلې برېښليک پته $1 د پيغام لېږلو د ډېرو ناکاميو له امله له گډون وويستل شوه. [[Special:ConfirmEmail|تاسو کولی شئ {{GENDER:$2|خپله}} برېښليک پته يوځل بيا تاييد کړئ]].",
+	"notification-link-text-change-email": "خپله برېښليک پته بدلول",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|ستاسو}} نوم‌ليکلې برېښليک پته $3 د پيغام لېږلو د ډېرو ناکاميو له امله له گډون وويستل شوه. تاسو کولی شئ يوځل بيا {{GENDER:$4|خپله}} برېښليک پته تاييډ کړئ."
+}
