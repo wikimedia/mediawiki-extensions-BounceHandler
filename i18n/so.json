@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"bouncehandler-desc": "Waxay ka caawisaa maaraynta iimaylada soo noqda ee MediaWiki",
+	"bouncehandler-notify_subject": "Soo celin ku meelgaar ah oo iimayl soo noqday",
+	"notification-bouncehandler": "{{GENDER:$1|Iimaylkaaga}} aad isku diiwaangelisay hadda ma aha mid sax ah.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Iimaylkaaga}} aad ku diiwaangashanayd $1 waa la ka saaray sababo la xiriira fariimo badan oo aan si guul leh loo gaarsiin. Waxaad mar kale [[Special:ConfirmEmail|xaqiijin kartaa {{GENDER:$2|iimaylkaaga}}]].",
+	"notification-link-text-change-email": "Beddel iimaylkaaga",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Iimaylkaaga}} aad ku diiwaangashanayd $3 waa la ka saaray sababo la xiriira farriimo badan oo aan si guul leh loo gaarsiin. Waxaad mar kale xaqiijin kartaa {{GENDER:$4|iimaylkaaga}}."
+}

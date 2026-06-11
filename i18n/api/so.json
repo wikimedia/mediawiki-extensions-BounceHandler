@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "Hel iimayl soo noqday si loo farsameeyo, oo leh qoraalka \"Tani waa iimayl tijaabo ah\".",
+	"apihelp-bouncehandler-summary": "Hel iimayl soo noqday oo farsamee si loo maareeyo qofka qaata ee fashilmay.",
+	"apihelp-bouncehandler-param-email": "Iimaylkii soo noqday.",
+	"apierror-bouncehandler-internalonly": "Qaybtan API-ga waxaa loogu talagalay isticmaal gudaha oo kaliya."
+}
