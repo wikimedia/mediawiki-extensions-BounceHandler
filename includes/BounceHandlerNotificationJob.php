@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\BounceHandler;
 
 use MediaWiki\JobQueue\Job;
-use MediaWiki\Title\Title;
 
 /**
  * Class BounceHandlerNotificationJob
@@ -16,8 +15,8 @@ use MediaWiki\Title\Title;
  */
 class BounceHandlerNotificationJob extends Job {
 	/** @inheritDoc */
-	public function __construct( Title $title, array $params ) {
-		parent::__construct( 'BounceHandlerNotificationJob', $title, $params );
+	public function __construct( array $params ) {
+		parent::__construct( 'BounceHandlerNotificationJob', $params );
 	}
 
 	/** @inheritDoc */

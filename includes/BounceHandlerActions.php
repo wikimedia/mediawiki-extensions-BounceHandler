@@ -8,7 +8,6 @@ use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
-use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
@@ -120,8 +119,7 @@ class BounceHandlerActions {
 			'bounceHandlerUnconfirmUsers' => $this->bounceHandlerUnconfirmUsers,
 			'emailRaw' => $this->emailRaw,
 		];
-		$title = Title::newFromText( 'BounceHandler Global user notification Job' );
-		$job = new BounceHandlerNotificationJob( $title, $params );
+		$job = new BounceHandlerNotificationJob( $params );
 		MediaWikiServices::getInstance()->getJobQueueGroupFactory()
 			->makeJobQueueGroup( $this->wikiId )
 			->push( $job );

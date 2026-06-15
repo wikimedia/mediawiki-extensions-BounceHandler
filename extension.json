@@ -90,8 +90,14 @@
 		}
 	},
 	"JobClasses": {
-		"BounceHandlerJob": "MediaWiki\\Extension\\BounceHandler\\BounceHandlerJob",
-		"BounceHandlerNotificationJob": "MediaWiki\\Extension\\BounceHandler\\BounceHandlerNotificationJob"
+		"BounceHandlerJob": {
+			"class": "MediaWiki\\Extension\\BounceHandler\\BounceHandlerJob",
+			"needsPage": false
+		},
+		"BounceHandlerNotificationJob": {
+			"class": "MediaWiki\\Extension\\BounceHandler\\BounceHandlerNotificationJob",
+			"needsPage": false
+		}
 	},
 	"MessagesDirs": {
 		"BounceHandler": [

@@ -15,7 +15,6 @@ namespace MediaWiki\Extension\BounceHandler;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
-use MediaWiki\Title\Title;
 use Wikimedia\IPUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -55,8 +54,7 @@ class ApiBounceHandler extends ApiBase {
 		// Route the job to the wiki that the email was sent from.
 		// This way it can easily unconfirm the user's email using the User methods.
 		if ( isset( $failedUser['wikiId'] ) ) {
-			$title = Title::newFromText( 'BounceHandler Job' );
-			$job = new BounceHandlerJob( $title, $params );
+			$job = new BounceHandlerJob( $params );
 			$this->jobQueueGroupFactory->makeJobQueueGroup( $failedUser['wikiId'] )->push( $job );
 
 			$this->getResult()->addValue(
