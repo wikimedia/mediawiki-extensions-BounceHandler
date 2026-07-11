@@ -171,7 +171,6 @@ class BounceHandlerActions {
 		MediaWikiServices::getInstance()->getStatsFactory()
 			->getCounter( 'BounceHandler_unsubscribed_total' )
 			->setLabel( 'from', $from )
-			->copyToStatsdAt( "bouncehandler.unsub.$from" )
 			->increment();
 	}
 

@@ -88,7 +88,6 @@ abstract class ProcessBounceEmails {
 			MediaWikiServices::getInstance()->getStatsFactory()
 				->withComponent( 'BounceHandler' )
 				->getCounter( 'bounces_total' )
-				->copyToStatsdAt( 'bouncehandler.bounces' )
 				->increment();
 
 			if ( $wgBounceRecordMaxAge ) {
