@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dj"
+		]
+	},
+	"bouncehandler-desc": "Segít a MediaWikin visszapattanó e-mailek kezelésében",
+	"bouncehandler-notify_subject": "Ideiglenesen visszapattanó e-mail visszaküldése",
+	"notification-bouncehandler": "{{GENDER:$1|A regisztrált e-mail-címed}} már nem érvényes.",
+	"notification-bouncehandler-flyout": "A regisztrált $1 e-mail-címedet több sikertelen kézbesítési kísérlet miatt leiratkoztattuk. [[Special:ConfirmEmail|Újra megerősítheted az e-mail-címedet]].",
+	"notification-link-text-change-email": "E-mail-cím módosítása",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|A regisztrált}} $3 e-mail-címedet több sikertelen kézbesítési kísérlet miatt leiratkoztattuk. Újra megerősítheted {{GENDER:$4|az e-mail-címedet}}."
+}
