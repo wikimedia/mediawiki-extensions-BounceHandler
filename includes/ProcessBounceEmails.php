@@ -177,8 +177,7 @@ abstract class ProcessBounceEmails {
 		// identify the user after looking up in the required database.
 		$wikiId = $failedUser['wikiId'];
 		$rawUserId = $failedUser['rawUserId'];
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getMainLB( $wikiId );
-		$dbr = $lb->getConnection( DB_REPLICA, [], $wikiId );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase( $wikiId );
 
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'user_email' ] )
