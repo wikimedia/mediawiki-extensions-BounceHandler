@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Luky001"
+			"Luky001",
+			"Wizzard"
 		]
 	},
-	"bouncehandler-desc": "Pomáha riešiť nedoručené e-maily v MediaWiki"
+	"bouncehandler-desc": "Pomáha riešiť nedoručené e-maily v MediaWiki",
+	"bouncehandler-notify_subject": "Vrátená dočasná odpoveď o nedoručení",
+	"notification-bouncehandler": "{{GENDER:$1|Vaša}} registrovaná e-mailová adresa už nie je platná.",
+	"notification-bouncehandler-flyout": "{{GENDER:$2|Vaša}} registrovaná e-mailová adresa $1 bola odhlásená z odberu pre opakované zlyhania doručenia správ. Môžete si [[Special:ConfirmEmail|{{GENDER:$2|svoju}} e-mailovú adresu znova overiť]].",
+	"notification-link-text-change-email": "Zmeniť svoju e-mailovú adresu",
+	"notification-header-unsubscribe-bouncehandler": "{{GENDER:$4|Vaša}} registrovaná e-mailová adresa $3 bola odhlásená z odberu pre opakované zlyhania doručenia správ. Svoju e-mailovú adresu si môžete znova overiť."
 }
