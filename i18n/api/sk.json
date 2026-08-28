@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"apihelp-bouncehandler-example-1": "Prijať vrátený e-mail na spracovanie s obsahom „This is a test email“.",
+	"apihelp-bouncehandler-summary": "Prijať vrátený e-mail a spracovať ho, aby sa vyriešil zlyhávajúci príjemca.",
+	"apihelp-bouncehandler-param-email": "Vrátený e-mail.",
+	"apierror-bouncehandler-internalonly": "Tento modul API je určený len na interné použitie."
+}
